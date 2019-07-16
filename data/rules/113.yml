@@ -1,0 +1,15 @@
+companyCode: TTIC
+state: FL
+product: HO3
+code: '113'
+displayText: 'coverageLimits.personalProperty.amount > 500,000'
+condition:
+  fields: []
+  expression: 'coverageLimits.personalProperty.amount > 500000'
+category: 'Coverages & Deductibles'
+action: Fatal Error
+internalMessage: 'Personal Property limit cannot be great than 500,000, please edit value to obtain a  quote.'
+agentMessage: 'Personal Property limit cannot be great than 500,000, please edit value to obtain a  quote.'
+customerMessage: 'Personal Property limit cannot be great than 500,000, please edit value to obtain a  quote.'
+active: true
+canOverride: false

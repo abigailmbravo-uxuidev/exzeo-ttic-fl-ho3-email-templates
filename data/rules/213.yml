@@ -1,0 +1,21 @@
+companyCode: TTIC
+state: FL
+product: HO3
+code: '213'
+displayText: 'coverageLimits.dwelling > Max for zip code settings'
+condition:
+  fields:
+    - coverageLimits.dwelling.amount
+  expression: 'coverageLimits.dwelling.amount > zipCodeSettings.coverageLimits.dwelling.maxAmount'
+category: 'Coverages & Deductibles'
+action: Underwriting Review
+internalMessage: 'Building limit must be between {minLimit} and {maxLimit}. Binding requires a RCE and underwriting review.'
+agentMessage: 'Building limit must be between {minLimit} and {maxLimit}. Binding requires a RCE and underwriting review.'
+customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
+messageParameters:
+  minLimit:
+    expression: '([zipCodeSettings.coverageLimits.dwelling.minAmount]|formatCurrency)'
+  maxLimit:
+    expression: '([zipCodeSettings.coverageLimits.dwelling.maxAmount]|formatCurrency)'
+active: true
+canOverride: true

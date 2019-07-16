@@ -1,0 +1,20 @@
+companyCode: TTIC
+state: FL
+product: HO3
+code: '226'
+displayText: If netPremium < minProfitabilityPremium
+condition:
+  fields:
+    - rating.netPremium
+    - cost.totalCost
+  expression: '(rating.netPremium || 0) < (((cost.totalCost || 0) / zipCodeSettings.minLossRatio)|round)'
+category: 'Coverages & Deductibles'
+action: Underwriting Review
+internalMessage: 'Premium is less than {minProfitabilityPremium}, the minimum amount allowed for policy issuance.'
+agentMessage: 'Premium is less than {minProfitabilityPremium}, the minimum amount allowed for policy issuance.'
+customerMessage: 'Minimum premium has not been met, please contact us for further assistance.'
+messageParameters:
+  minProfitabilityPremium:
+    expression: '(((cost.totalCost || 0) / zipCodeSettings.minLossRatio)|round) + rating.totalFees'
+active: true
+canOverride: true

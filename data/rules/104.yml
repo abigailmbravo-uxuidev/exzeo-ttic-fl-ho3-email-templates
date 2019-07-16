@@ -1,0 +1,15 @@
+companyCode: TTIC
+state: FL
+product: HO3
+code: '104'
+displayText: 'Coveragelimit.dwelling.amount < $125,000'
+condition:
+  fields: []
+  expression: coverageLimits.dwelling.amount < 125000
+category: 'Coverages & Deductibles'
+action: Fatal Error
+internalMessage: Dwelling limit cannot be less than $125000. Please update the value to continue or additional review is required.
+agentMessage: 'The building replacement cost value for this property is below our minimum dwelling amount of $125,000.'
+customerMessage: 'The building replacement cost value for this property is below our minimum dwelling amount of $125,000.'
+active: true
+canOverride: false

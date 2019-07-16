@@ -1,0 +1,18 @@
+companyCode: TTIC
+state: FL
+product: HO3
+code: '219'
+displayText: 'Year Built > Max for tblUnderwritingZipFilter'
+condition:
+  fields: []
+  expression: 'property.yearBuilt > zipCodeSettings.maxYearBuilt'
+category: Zip Code Settings
+action: Underwriting Review
+internalMessage: 'Year built exceeds the maximum year built of {maxYearBuilt} for policy issuance. Review is required.'
+agentMessage: 'Year built exceeds the maximum year built of {maxYearBuilt}. Underwriting review is required for binding.'
+customerMessage: 'Year built exceeds the maximum year built of {maxYearBuilt} for policy issuance. Review is required.'
+messageParameters:
+  maxYearBuilt:
+    expression: zipCodeSettings.maxYearBuilt
+active: true
+canOverride: true

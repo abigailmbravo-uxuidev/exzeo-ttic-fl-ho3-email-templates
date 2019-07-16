@@ -1,0 +1,15 @@
+companyCode: TTIC
+state: FL
+product: HO3
+code: '209'
+displayText: underwritingAnswers.rented = Occasionally
+condition:
+  fields: []
+  expression: "underwritingAnswers.rented.answer == 'Occasionally'"
+category: Underwriting Answers
+action: Underwriting Review
+internalMessage: Homes that are rented are not eligible.
+agentMessage: Homes that are rented are not eligible for this program.
+customerMessage: Homes that are rented are not eligible for this program.
+active: true
+canOverride: true

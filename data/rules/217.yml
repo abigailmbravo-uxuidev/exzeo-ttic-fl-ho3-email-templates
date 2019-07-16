@@ -1,0 +1,17 @@
+companyCode: TTIC
+state: FL
+product: HO3
+code: '217'
+displayText: 'Other structures > 10% of Coverage A'
+condition:
+  fields:
+    - coverageLimits.otherStructures.amount
+    - coverageLimits.dwelling.amount
+  expression: 'coverageLimits.otherStructures.amount > (0.1 * coverageLimits.dwelling.amount)'
+category: 'Coverages & Deductibles'
+action: Underwriting Review
+internalMessage: 'More than 10% of dwelling limit for other structures coverage, requires the Specific Structure Increased Limits.'
+agentMessage: 'Other structures coverage of more than 10% of the dwelling amount requires underwriting review.'
+customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
+active: true
+canOverride: true

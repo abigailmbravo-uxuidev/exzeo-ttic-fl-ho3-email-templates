@@ -1,0 +1,15 @@
+companyCode: TTIC
+state: FL
+product: HO3
+code: '109'
+displayText: underwritingAnswers.monthsOccupied = 0-3
+condition:
+  fields: []
+  expression: "underwritingAnswers.monthsOccupied.answer == '0-3'"
+category: Underwriting Answers
+action: Fatal Error
+internalMessage: Homes that are unoccupied for 9 months or more are ineligible.
+agentMessage: Homes that are unoccupied for 9 months or more are ineligible.
+customerMessage: Homes that are unoccupied for 9 months or more are ineligible.
+active: true
+canOverride: false

@@ -1,0 +1,19 @@
+companyCode: TTIC
+state: FL
+product: HO3
+code: '224'
+displayText: If netPremium < minNetPremium
+condition:
+  fields:
+    - rating.netPremium
+  expression: '!(rating.netPremium == 0 || rating.netPremium == null) && ((rating.netPremium || 0) < zipCodeSettings.minNetPremium)'
+category: 'Coverages & Deductibles'
+action: Underwriting Review
+internalMessage: 'Net Premium (before fees) is less than {minNetPremium}, the minimum amount allowed for policy issuance.'
+agentMessage: 'Net Premium (before fees) is less than {minNetPremium}, the minimum amount allowed for policy issuance. Review is required.'
+customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
+messageParameters:
+  minNetPremium:
+    expression: '([zipCodeSettings.minNetPremium]|formatCurrency)'
+active: true
+canOverride: true

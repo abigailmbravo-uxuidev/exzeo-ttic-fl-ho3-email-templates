@@ -1,0 +1,15 @@
+companyCode: TTIC
+state: FL
+product: HO3
+code: '105'
+displayText: property.territory not found in zip code settings array
+condition:
+  fields: []
+  expression: '(zipCodeSettings) && (property.territory) && !(property.territory in zipCodeSettings.territories)'
+category: Zip Code Settings
+action: Fatal Error
+internalMessage: Property Territory value is not valid for the property zip code.
+agentMessage: Property Territory value is not valid for the property zip code.
+customerMessage: TypTap Homeowners product is not available for this property.
+active: true
+canOverride: false

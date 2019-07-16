@@ -1,0 +1,15 @@
+companyCode: TTIC
+state: FL
+product: HO3
+code: '208'
+displayText: underwritingAnswers.previousClaims = 3-5 Years
+condition:
+  fields: []
+  expression: "underwritingAnswers.previousClaims.answer == '3-5 Years'"
+category: Underwriting Answers
+action: Underwriting Review
+internalMessage: 'Due to previous claims history, additional review is required.'
+agentMessage: 'Due to previous claims history, underwriting review is required prior to binding.'
+customerMessage: 'Due to previous claims history, underwriting review is required.'
+active: true
+canOverride: true

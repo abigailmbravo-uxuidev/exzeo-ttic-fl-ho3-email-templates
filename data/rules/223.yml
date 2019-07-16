@@ -1,0 +1,19 @@
+companyCode: TTIC
+state: FL
+product: HO3
+code: '223'
+displayText: 'netPremium > maxNetPremium'
+condition:
+  fields:
+    - rating.netPremium
+  expression: '(rating.netPremium || 0) > zipCodeSettings.maxNetPremium'
+category: 'Coverages & Deductibles'
+action: Underwriting Review
+internalMessage: 'Quoted premium exceeds {maxNetPremium} the maximum amount allowed for policy issuance.'
+agentMessage: 'Quoted premium exceeds {maxNetPremium} the maximum amount allowed for policy issuance. Review is required.'
+customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
+messageParameters:
+  maxNetPremium:
+    expression: '([zipCodeSettings.maxNetPremium]|formatCurrency)'
+active: true
+canOverride: true

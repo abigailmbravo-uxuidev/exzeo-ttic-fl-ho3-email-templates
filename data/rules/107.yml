@@ -1,0 +1,15 @@
+companyCode: TTIC
+state: FL
+product: HO3
+code: '107'
+displayText: 'property.constructionType not in (Frame, Plastic Siding, Aluminum Siding, Masonry, Masonry Veneer, Superior)'
+condition:
+  fields: []
+  expression: "!(property.constructionType|toUpperCase in ['FRAME', 'PLASTIC SIDING', 'ALUMINUM SIDING', 'MASONRY', 'MASONRY VENEER', 'SUPERIOR'])"
+category: Property
+action: Fatal Error
+internalMessage: Construction Type for this property is not valid.
+agentMessage: Construction Type for this property is not valid.
+customerMessage: TypTap Homeowners product is not available for this property.
+active: true
+canOverride: false

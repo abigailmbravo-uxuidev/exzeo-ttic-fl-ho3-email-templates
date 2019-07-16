@@ -1,0 +1,15 @@
+companyCode: TTIC
+state: FL
+product: HO3
+code: '112'
+displayText: 'coverageLimits.personalProperty.amount > 50% of Coveragelimit.dwelling.amount'
+condition:
+  fields: []
+  expression: 'coverageLimits.personalProperty.amount > (0.5 * coverageLimits.dwelling.amount)'
+category: 'Coverages & Deductibles'
+action: Fatal Error
+internalMessage: 'Personal property limit cannot be greater than 50% of the building limit. Please edit value to obtain a quote.'
+agentMessage: 'Personal property limit cannot be greater than 50% of the building limit. Please edit value to obtain a quote.'
+customerMessage: 'Personal property limit cannot be greater than 50% of the building limit. Please edit value to obtain a quote.'
+active: true
+canOverride: false

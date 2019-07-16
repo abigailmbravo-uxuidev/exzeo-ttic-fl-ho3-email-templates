@@ -1,0 +1,15 @@
+companyCode: TTIC
+state: FL
+product: HO3
+code: '221'
+displayText: Protection class exceeds max protection class
+condition:
+  fields: []
+  expression: 'property.protectionClass > zipCodeSettings.maxProtectionClass'
+category: Zip Code Settings
+action: Underwriting Review
+internalMessage: Protection Class exceeds the max allowed for this zip code.
+agentMessage: 'Due to protection class, underwriting review is required.'
+customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
+active: true
+canOverride: true

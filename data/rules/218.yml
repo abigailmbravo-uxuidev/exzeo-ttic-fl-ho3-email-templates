@@ -1,0 +1,18 @@
+companyCode: TTIC
+state: FL
+product: HO3
+code: '218'
+displayText: Year Built < Min for tblUnderwritingZipFilter
+condition:
+  fields: []
+  expression: property.yearBuilt < zipCodeSettings.minYearBuilt
+category: Zip Code Settings
+action: Underwriting Review
+internalMessage: 'Year built does not meet the minimum year built of {minYearBuilt} for policy issuance. Review is required.'
+agentMessage: 'Year built does not meet the minimum year built of {minYearBuilt}. Underwriting review is required for binding.'
+customerMessage: 'Year built does not meet the minimum year built of {minYearBuilt} for policy issuance. Review is required.'
+messageParameters:
+  minYearBuilt:
+    expression: zipCodeSettings.minYearBuilt
+active: true
+canOverride: true

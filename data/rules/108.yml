@@ -1,0 +1,15 @@
+companyCode: TTIC
+state: FL
+product: HO3
+code: '108'
+displayText: underwritingAnswers.rented = Yes
+condition:
+  fields: []
+  expression: "underwritingAnswers.rented.answer == 'Yes'"
+category: Underwriting Answers
+action: Fatal Error
+internalMessage: Homes that are rented are not eligible.
+agentMessage: Homes that are rented are not eligible for this program.
+customerMessage: Homes that are rented are not eligible for this program.
+active: true
+canOverride: false

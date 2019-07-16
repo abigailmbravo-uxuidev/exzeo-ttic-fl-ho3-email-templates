@@ -1,0 +1,15 @@
+companyCode: TTIC
+state: FL
+product: HO3
+code: '201'
+displayText: underwritingAnswers.previousClaims  = Unknown
+condition:
+  fields: []
+  expression: "underwritingAnswers.previousClaims.answer == 'Unknown'"
+category: Underwriting Answers
+action: Underwriting Review
+internalMessage: '"Unknown" was selected for "When was the last claim filed?".  Additional review is required.'
+agentMessage: '"Unknown" was selected for "When was the last claim filed?" Underwriting review is required.'
+customerMessage: 'Due to previous claims history, underwriting review is required.'
+active: true
+canOverride: true

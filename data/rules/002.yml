@@ -1,0 +1,15 @@
+companyCode: TTIC
+state: FL
+product: HO3
+code: '002'
+displayText: Missing Info - Underwriting Info
+condition:
+  fields: []
+  expression: "['underwriting'] in errorCategories"
+category: Property
+action: Missing Info
+internalMessage: Missing required information to complete quote - Underwriting Info
+agentMessage: Missing required information to complete quote - Underwriting Info
+customerMessage: Missing required information to complete quote - Underwriting Info
+active: true
+canOverride: false

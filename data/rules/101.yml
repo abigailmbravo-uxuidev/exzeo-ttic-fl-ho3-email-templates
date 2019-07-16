@@ -1,0 +1,15 @@
+companyCode: TTIC
+state: FL
+product: HO3
+code: '101'
+displayText: Zip Code Not Found in tblUnderwritingZipFilter
+condition:
+  fields: []
+  expression: zipCodeSettings == null
+category: Zip Code Settings
+action: Fatal Error
+internalMessage: TypTap Homeowners product is not available for properties located in this zip code.
+agentMessage: TypTap Homeowners product is not available for properties located in this zip code.
+customerMessage: TypTap Homeowners product is not available for properties located in this zip code.
+active: true
+canOverride: false

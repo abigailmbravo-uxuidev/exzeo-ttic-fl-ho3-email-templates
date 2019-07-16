@@ -1,0 +1,18 @@
+companyCode: TTIC
+state: FL
+product: HO3
+code: '203'
+displayText: Building Limit Not Between  dwelling.minAmount and dwelling.maxAmount
+condition:
+  fields:
+    - coverageLimits.dwelling.amount
+    - coverageLimits.dwelling.minAmount
+    - coverageLimits.dwelling.maxAmount
+  expression: '(coverageLimits.dwelling.amount < coverageLimits.dwelling.minAmount) || (coverageLimits.dwelling.amount > coverageLimits.dwelling.maxAmount)'
+category: 'Coverages & Deductibles'
+action: Underwriting Review
+internalMessage: The building replacement cost value for this property falls outside of our allowable range. Binding requires a RCE and underwriting review.
+agentMessage: The building replacement cost value for this property falls outside of our allowable range. Binding requires a RCE and underwriting review.
+customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
+active: true
+canOverride: true

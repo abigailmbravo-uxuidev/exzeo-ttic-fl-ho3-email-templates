@@ -1,0 +1,15 @@
+companyCode: TTIC
+state: FL
+product: HO3
+code: '103'
+displayText: 'Coveragelimit.dwelling.amount > $1,200,000'
+condition:
+  fields: []
+  expression: 'coverageLimits.dwelling.amount > 1200000'
+category: 'Coverages & Deductibles'
+action: Fatal Error
+internalMessage: 'Dwelling limit cannot be greater than $1,200,000. Please update the value to continue or additional review is required.'
+agentMessage: 'The building replacement cost value for this property exceeds our maximum dwelling amount of $1,200,000.'
+customerMessage: 'The building replacement cost value for this property exceeds our maximum dwelling amount of $1,200,000.'
+active: true
+canOverride: false

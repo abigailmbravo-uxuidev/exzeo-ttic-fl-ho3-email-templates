@@ -1,0 +1,19 @@
+companyCode: TTIC
+state: FL
+product: HO3
+code: '205'
+displayText: Effective Date < Min for tblUnderwritingZipFilter
+condition:
+  fields:
+    - effectiveDate
+  expression: 'effectiveDate|asDate < zipCodeSettings.minEffectiveDate|asDate'
+category: Zip Code Settings
+action: Underwriting Review
+internalMessage: 'You cannot quote before {minEffectiveDate}.'
+agentMessage: 'You cannot quote before {minEffectiveDate}.'
+customerMessage: 'You cannot quote before {minEffectiveDate}.'
+messageParameters:
+  minEffectiveDate:
+    expression: "zipCodeSettings.minEffectiveDate|formatDate('MM/DD/YYYY')"
+active: true
+canOverride: true

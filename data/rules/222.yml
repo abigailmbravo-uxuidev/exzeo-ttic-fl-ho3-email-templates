@@ -1,0 +1,23 @@
+companyCode: TTIC
+state: FL
+product: HO3
+code: '222'
+displayText: Premium does not meet minimum cost per 100.
+condition:
+  fields:
+    - rating.netPremium
+    - coverageLimits.dwelling.amount
+    - coverageLimits.otherStructures.amount
+    - coverageLimits.personalProperty.amount
+    - coverageLimits.lossOfUse.amount
+  expression: '!(rating.netPremium == 0 || rating.netPremium == null) && ((rating.netPremium || 0) < (((coverageLimits.dwelling.amount + coverageLimits.otherStructures.amount + coverageLimits.personalProperty.amount + coverageLimits.lossOfUse.amount) / 100) * zipCodeSettings.minCostPer100))'
+category: Zip Code Settings
+action: Underwriting Review
+internalMessage: 'Net Premium (before fees) does not meet the minimum developed premium. Premium must be at least {minPremium} to qualify.'
+agentMessage: 'Net Premium (before fees) does not meet the minimum developed premium. Premium must be at least {minPremium} to qualify.'
+customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
+messageParameters:
+  minPremium:
+    expression: '((((coverageLimits.dwelling.amount + coverageLimits.otherStructures.amount + coverageLimits.personalProperty.amount + coverageLimits.lossOfUse.amount) / 100) * zipCodeSettings.minCostPer100) + 50)|formatCurrency'
+active: true
+canOverride: true

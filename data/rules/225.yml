@@ -1,0 +1,15 @@
+companyCode: TTIC
+state: FL
+product: HO3
+code: '225'
+displayText: Zip code is closed
+condition:
+  fields: []
+  expression: zipCodeSettings.availableSlots < -99
+category: Zip Code Settings
+action: Fatal Error
+internalMessage: Property location zip code is closed for this product type.
+agentMessage: Property location zip code is closed for this product type.
+customerMessage: TypTap Homeowners product is not available for this property.
+active: true
+canOverride: false

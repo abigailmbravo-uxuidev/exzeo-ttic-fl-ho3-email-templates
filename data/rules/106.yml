@@ -1,0 +1,15 @@
+companyCode: TTIC
+state: FL
+product: HO3
+code: '106'
+displayText: property.territory is null
+condition:
+  fields: []
+  expression: '!property.territory'
+category: Property
+action: Fatal Error
+internalMessage: Property Territory can not be null.
+agentMessage: We were not able to identify the correct property territory value for this property.
+customerMessage: TypTap Homeowners product is not available for this property.
+active: true
+canOverride: false

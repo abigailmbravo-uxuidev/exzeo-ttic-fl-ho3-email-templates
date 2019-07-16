@@ -1,0 +1,15 @@
+companyCode: TTIC
+state: FL
+product: HO3
+code: '216'
+displayText: 'If coverageOptions.sinkholePerilCoverage.answer = False, then there should be no deductibles.sinkhole object'
+condition:
+  fields: []
+  expression: 'coverageOptions.sinkholePerilCoverage.answer == false && (deductibles.sinkhole)'
+category: 'Coverages & Deductibles'
+action: Underwriting Review
+internalMessage: 'If no sinkhole coverage is selected, then there should be no sinkhole deductible.'
+agentMessage: 'If no sinkhole coverage is selected, then there should be no sinkhole deductible.'
+customerMessage: 'If no sinkhole coverage is selected, then there should be no sinkhole deductible.'
+active: true
+canOverride: false

@@ -1,0 +1,15 @@
+companyCode: TTIC
+state: FL
+product: HO3
+code: '102'
+displayText: Property in Do Not Write List
+condition:
+  fields: []
+  expression: "(property.id == propertySettings.propertyId) && (propertySettings.status == 'ineligible')"
+category: Property
+action: Fatal Error
+internalMessage: Address is not eligible for a policy based on the underwriting information.
+agentMessage: Address is not eligible for a policy based on the underwriting information.
+customerMessage: TypTap Homeowners product is not available for this property.
+active: true
+canOverride: false

@@ -1,0 +1,15 @@
+companyCode: TTIC
+state: FL
+product: HO3
+code: '220'
+displayText: 'coverageLimits.personalProperty.amount  between 0% and 25%'
+condition:
+  fields: []
+  expression: '(coverageLimits.personalProperty.amount > 0) && (coverageLimits.personalProperty.amount < (0.25 * coverageLimits.dwelling.amount))'
+category: 'Coverages & Deductibles'
+action: Underwriting Review
+internalMessage: 'Minimum personal property limit of 25% of dwelling is required unless personal property is excluded.'
+agentMessage: 'Minimum personal property limit of 25% of dwelling is required unless personal property is excluded.'
+customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
+active: true
+canOverride: false

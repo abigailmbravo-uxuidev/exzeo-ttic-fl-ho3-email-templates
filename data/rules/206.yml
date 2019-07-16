@@ -1,0 +1,15 @@
+companyCode: TTIC
+state: FL
+product: HO3
+code: '206'
+displayText: No capacity in this zip code
+condition:
+  fields: []
+  expression: '(zipCodeSettings.availableSlots <= 0 && zipCodeSettings.availableSlots >= -99)'
+category: Zip Code Settings
+action: Underwriting Review
+internalMessage: Capacity is not available to provide a quote. Additional review may be required.
+agentMessage: Capacity for this zip code is currently full. Underwriting review is required for binding.
+customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
+active: true
+canOverride: true

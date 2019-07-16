@@ -1,0 +1,15 @@
+companyCode: TTIC
+state: FL
+product: HO3
+code: '110'
+displayText: property.familyunits not 1-2
+condition:
+  fields: []
+  expression: "property.familyUnits != '1-2'"
+category: Property
+action: Fatal Error
+internalMessage: Homes with more than 2 family units are not eligible.
+agentMessage: Homes with more than 2 family units are not eligible.
+customerMessage: Homes with more than 2 family units are not eligible.
+active: true
+canOverride: false

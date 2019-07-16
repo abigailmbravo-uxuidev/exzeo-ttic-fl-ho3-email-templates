@@ -1,0 +1,15 @@
+companyCode: TTIC
+state: FL
+product: HO3
+code: '215'
+displayText: 'If coverageOptions.sinkholePerilCoverage.answer = True, then must have value for deductibles.sinkhole.amount'
+condition:
+  fields: []
+  expression: 'coverageOptions.sinkholePerilCoverage.answer == true && !deductibles.sinkhole.amount'
+category: 'Coverages & Deductibles'
+action: Underwriting Review
+internalMessage: A sinkhole deductible is required when sinkhole coverage is selected.
+agentMessage: A sinkhole deductible is required when sinkhole coverage is selected.
+customerMessage: A sinkhole deductible is required when sinkhole coverage is selected.
+active: true
+canOverride: false

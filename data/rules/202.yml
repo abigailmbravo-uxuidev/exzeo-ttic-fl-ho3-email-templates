@@ -1,0 +1,15 @@
+companyCode: TTIC
+state: FL
+product: HO3
+code: '202'
+displayText: Zip Code Temporarily Shut Down for Pending Storm
+condition:
+  fields: []
+  expression: zipCodeSettings.suspended == true
+category: Zip Code Settings
+action: Underwriting Review
+internalMessage: 'We apologize, due to a pending storm, we are unable to a provide a quote at this time.'
+agentMessage: 'We apologize, due to possible storm activity, we are unable to a provide a quote at this time.'
+customerMessage: 'We apologize, due to possible storm activity, we are unable to a provide a quote at this time.'
+active: true
+canOverride: true

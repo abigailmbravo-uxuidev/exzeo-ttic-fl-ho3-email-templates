@@ -1,0 +1,19 @@
+companyCode: TTIC
+state: FL
+product: HO3
+code: '204'
+displayText: 'Effective Date > Max for tblUnderwritingZipFilter'
+condition:
+  fields:
+    - effectiveDate
+  expression: 'effectiveDate|asDate > zipCodeSettings.maxEffectiveDate|asDate'
+category: Zip Code Settings
+action: Underwriting Review
+internalMessage: 'You cannot quote beyond {maxEffectiveDate}.'
+agentMessage: The effective date selected exceeds our maximum allowed effective date.
+customerMessage: The effective date selected exceeds our maximum allowed effective date.
+messageParameters:
+  maxEffectiveDate:
+    expression: "zipCodeSettings.maxEffectiveDate | formatDate('MM/DD/YYYY')"
+active: true
+canOverride: true

@@ -1,0 +1,15 @@
+companyCode: TTIC
+state: FL
+product: HO3
+code: '111'
+displayText: 'Other structures > 70% of Coverage A'
+condition:
+  fields: []
+  expression: 'coverageLimits.otherStructures.amount > (0.7 * coverageLimits.dwelling.amount)'
+category: 'Coverages & Deductibles'
+action: Fatal Error
+internalMessage: 'Other structures limit cannot exceed 70% of the dwelling limit'
+agentMessage: 'Other structures limit cannot exceed 70% of the dwelling limit'
+customerMessage: 'Other structures limit cannot exceed 70% of the dwelling limit'
+active: true
+canOverride: false

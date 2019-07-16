@@ -1,0 +1,15 @@
+companyCode: TTIC
+state: FL
+product: HO3
+code: '210'
+displayText: underwritingAnswers.business = Yes
+condition:
+  fields: []
+  expression: "underwritingAnswers.business.answer == 'Yes'"
+category: Underwriting Answers
+action: Underwriting Review
+internalMessage: Properties where a business is conducted are not eligible for this program.
+agentMessage: Properties where a business is conducted are not eligible for this program.
+customerMessage: Properties where a business is conducted are not eligible for this program.
+active: true
+canOverride: true
