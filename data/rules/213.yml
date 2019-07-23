@@ -1,21 +1,84 @@
 companyCode: TTIC
 state: FL
 product: HO3
-code: '213'
-displayText: 'coverageLimits.dwelling > Max for zip code settings'
-condition:
-  fields:
-    - coverageLimits.dwelling.amount
-  expression: 'coverageLimits.dwelling.amount > zipCodeSettings.coverageLimits.dwelling.maxAmount'
+name: 'CoverageLimits.dwelling > Max for zip code settings'
+type: underwriting
 category: 'Coverages & Deductibles'
-action: Underwriting Review
-internalMessage: 'Building limit must be between {minLimit} and {maxLimit}. Binding requires a RCE and underwriting review.'
-agentMessage: 'Building limit must be between {minLimit} and {maxLimit}. Binding requires a RCE and underwriting review.'
-customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
-messageParameters:
-  minLimit:
-    expression: '([zipCodeSettings.coverageLimits.dwelling.minAmount]|formatCurrency)'
-  maxLimit:
-    expression: '([zipCodeSettings.coverageLimits.dwelling.maxAmount]|formatCurrency)'
+code: '213'
+documentFields:
+  - coverageLimits.dwelling.amount
+  - lookupFields.zipcodesettings.coverageLimits.dwelling.maxAmount
+condition: '${it.document.coverageLimits.dwelling.amount > it.document.lookupFields.zipcodesettings.coverageLimits.dwelling.maxAmount}'
 active: true
-canOverride: true
+lookupFields:
+  - name: zipcodesettings
+    type: builtIn
+    builtInConfig:
+      name: zipcodesettings
+actions:
+  - transactionTypes:
+      - New Business
+    action: Underwriting Review
+    actionOutput:
+      internalMessage: 'Building limit must be between ${it.document.lookupFields.zipcodesettings.coverageLimits.dwelling.minAmount} and ${it.document.lookupFields.zipcodesettings.coverageLimits.dwelling.maxAmount}. Binding requires a RCE and underwriting review.'
+      agentMessage: 'Building limit must be between ${it.document.lookupFields.zipcodesettings.coverageLimits.dwelling.minAmount} and ${it.document.lookupFields.zipcodesettings.coverageLimits.dwelling.maxAmount}. Binding requires a RCE and underwriting review.'
+      customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
+    canOverride: true
+    active: true
+tests:
+  - description: 'New Business Building limit action triggers when dwelling amount > zipcodesettings coverage limits dwelling maxAmount'
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        zip: '32025'
+        product: HO3
+        transactionType: New Business
+        property:
+          id: ''
+          physicalAddress:
+            zip: '32025'
+        coverageLimits:
+          dwelling:
+            amount: 1000000
+        lookupFields:
+          - name: zipcodesettings
+            type: builtIn
+            builtInConfig:
+              name: zipcodesettings
+    output:
+      - action: Underwriting Review
+        displayText: 'CoverageLimits.dwelling > Max for zip code settings'
+        category: 'Coverages & Deductibles'
+        code: '213'
+        internalMessage: Building limit must be between 125000 and 750000. Binding requires a RCE and underwriting review.
+        agentMessage: Building limit must be between 125000 and 750000. Binding requires a RCE and underwriting review.
+        customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
+        canOverride: true
+        active: true
+        fields:
+          - name: coverageLimits.dwelling.amount
+            value: 1000000
+          - name: lookupFields.zipcodesettings.coverageLimits.dwelling.maxAmount
+            value: 750000
+  - description: 'New Business Building limit action does not trigger when dwelling amount is not > zipcodesettings coverage limits dwelling maxAmount'
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        zip: '32025'
+        product: HO3
+        transactionType: New Business
+        property:
+          id: ''
+          physicalAddress:
+            zip: '32025'
+        coverageLimits:
+          dwelling:
+            amount: 700000
+        lookupFields:
+          - name: zipcodesettings
+            type: builtIn
+            builtInConfig:
+              name: zipcodesettings
+    output: null

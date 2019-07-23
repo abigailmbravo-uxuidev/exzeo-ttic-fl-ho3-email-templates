@@ -1,15 +1,51 @@
 companyCode: TTIC
 state: FL
 product: HO3
-code: '207'
-displayText: underwritingAnswers.previousClaims  = Less than 3 Years
-condition:
-  fields: []
-  expression: "underwritingAnswers.previousClaims.answer == 'Less than 3 Years'"
+name: UnderwritingAnswers.previousClaims  = Less than 3 Years
+type: underwriting
 category: Underwriting Answers
-action: Underwriting Review
-internalMessage: 'Due to previous claims history, additional review is required.'
-agentMessage: 'Due to previous claims history, underwriting review is required prior to binding.'
-customerMessage: 'Due to previous claims history, underwriting review is required.'
+code: '207'
+documentFields:
+  - underwritingAnswers.previousClaims.answer
+condition: "${it.document.underwritingAnswers.previousClaims.answer === 'Less than 3 Years'}"
 active: true
-canOverride: true
+lookupFields: []
+actions:
+  - transactionTypes:
+      - New Business
+    action: Underwriting Review
+    actionOutput:
+      internalMessage: 'Due to previous claims history, additional review is required.'
+      agentMessage: 'Due to previous claims history, underwriting review is required prior to binding.'
+      customerMessage: 'Due to previous claims history, underwriting review is required.'
+    canOverride: true
+    active: true
+tests:
+  - description: New Business Underwriting Answers Previous Claims action triggers when equals Less than 3 Years
+    input:
+      document:
+        transactionType: New Business
+        underwritingAnswers:
+          previousClaims:
+            answer: Less than 3 Years
+    output:
+      - action: Underwriting Review
+        displayText: UnderwritingAnswers.previousClaims  = Less than 3 Years
+        category: Underwriting Answers
+        code: '207'
+        internalMessage: 'Due to previous claims history, additional review is required.'
+        agentMessage: 'Due to previous claims history, underwriting review is required prior to binding.'
+        customerMessage: 'Due to previous claims history, underwriting review is required.'
+        canOverride: true
+        active: true
+        fields:
+          - name: underwritingAnswers.previousClaims.answer
+            value: Less than 3 Years
+  - description: New Business Underwriting Answers Previous Claims action does not trigger when not equals Less than 3 Years
+    input:
+      document:
+        transactionType: New Business
+        underwritingAnswers:
+          previousClaims:
+            answer: 'No'
+    output: null

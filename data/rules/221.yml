@@ -1,15 +1,131 @@
-companyCode: TTIC
-state: FL
 product: HO3
-code: '221'
-displayText: Protection class exceeds max protection class
-condition:
-  fields: []
-  expression: 'property.protectionClass > zipCodeSettings.maxProtectionClass'
+name: Protection class exceeds max protection class
+type: underwriting
 category: Zip Code Settings
-action: Underwriting Review
-internalMessage: Protection Class exceeds the max allowed for this zip code.
-agentMessage: 'Due to protection class, underwriting review is required.'
-customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
+code: '221'
+documentFields:
+  - property.protectionClass
+  - lookupFields.zipcodesettings.maxProtectionClass
+condition: '${it.document.property.protectionClass > it.document.lookupFields.zipcodesettings.maxProtectionClass}'
 active: true
-canOverride: true
+lookupFields:
+  - name: zipcodesettings
+    type: builtIn
+    builtInConfig:
+      name: zipcodesettings
+actions:
+  - transactionTypes:
+      - New Business
+      - Renewal
+    action: Underwriting Review
+    actionOutput:
+      internalMessage: Protection Class exceeds the max allowed for this zip code.
+      agentMessage: 'Due to protection class, underwriting review is required.'
+      customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
+    canOverride: true
+    active: true
+tests:
+  - description: New Business Protection Class action triggers when it exceeds Max Protection Class in zipcodesettings collection
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        zip: '32025'
+        product: HO3
+        transactionType: New Business
+        property:
+          protectionClass: 10
+          id: ''
+          physicalAddress:
+            zip: '32025'
+        lookupFields:
+          - name: zipcodesettings
+            type: builtIn
+            builtInConfig:
+              name: zipcodesettings
+    output:
+      - action: Underwriting Review
+        displayText: Protection class exceeds max protection class
+        category: Zip Code Settings
+        code: '221'
+        internalMessage: Protection Class exceeds the max allowed for this zip code.
+        agentMessage: 'Due to protection class, underwriting review is required.'
+        customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
+        canOverride: true
+        active: true
+        fields:
+          - name: property.protectionClass
+            value: 10
+          - name: lookupFields.zipcodesettings.maxProtectionClass
+            value: 8
+  - description: Renewal Protection Class action triggers when it exceeds Max Protection Class in zipcodesettings collection
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        zip: '32025'
+        product: HO3
+        transactionType: Renewal
+        property:
+          protectionClass: 10
+          id: ''
+          physicalAddress:
+            zip: '32025'
+        lookupFields:
+          - name: zipcodesettings
+            type: builtIn
+            builtInConfig:
+              name: zipcodesettings
+    output:
+      - action: Underwriting Review
+        displayText: Protection class exceeds max protection class
+        category: Zip Code Settings
+        code: '221'
+        internalMessage: Protection Class exceeds the max allowed for this zip code.
+        agentMessage: 'Due to protection class, underwriting review is required.'
+        customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
+        canOverride: true
+        active: true
+        fields:
+          - name: property.protectionClass
+            value: 10
+          - name: lookupFields.zipcodesettings.maxProtectionClass
+            value: 8
+  - description: New Business Protection Class action does not trigger when it does not exceed Max Protection Class in zipcodesettings collection
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        zip: '32025'
+        product: HO3
+        transactionType: New Business
+        property:
+          protectionClass: 1
+          id: ''
+          physicalAddress:
+            zip: '32025'
+        lookupFields:
+          - name: zipcodesettings
+            type: builtIn
+            builtInConfig:
+              name: zipcodesettings
+    output: null
+  - description: Renewal Protection Class action does not trigger when it does not exceed Max Protection Class in zipcodesettings collection
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        zip: '32025'
+        product: HO3
+        transactionType: Renewal
+        property:
+          protectionClass: 1
+          id: ''
+          physicalAddress:
+            zip: '32025'
+        lookupFields:
+          - name: zipcodesettings
+            type: builtIn
+            builtInConfig:
+              name: zipcodesettings
+    output: null

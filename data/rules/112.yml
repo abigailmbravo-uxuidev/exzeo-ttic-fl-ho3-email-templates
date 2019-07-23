@@ -1,15 +1,101 @@
 companyCode: TTIC
 state: FL
 product: HO3
-code: '112'
-displayText: 'coverageLimits.personalProperty.amount > 50% of Coveragelimit.dwelling.amount'
-condition:
-  fields: []
-  expression: 'coverageLimits.personalProperty.amount > (0.5 * coverageLimits.dwelling.amount)'
+name: 'CoverageLimits.personalProperty.amount > 50% of Coveragelimit.dwelling.amount'
+type: underwriting
 category: 'Coverages & Deductibles'
-action: Fatal Error
-internalMessage: 'Personal property limit cannot be greater than 50% of the building limit. Please edit value to obtain a quote.'
-agentMessage: 'Personal property limit cannot be greater than 50% of the building limit. Please edit value to obtain a quote.'
-customerMessage: 'Personal property limit cannot be greater than 50% of the building limit. Please edit value to obtain a quote.'
+code: '112'
+documentFields:
+  - coverageLimits.personalProperty.amount
+  - coverageLimits.dwelling.amount
+condition: '${it.document.coverageLimits.personalProperty.amount > (0.5 * it.document.coverageLimits.dwelling.amount)}'
 active: true
-canOverride: false
+lookupFields: []
+actions:
+  - transactionTypes:
+      - New Business
+    action: Fatal Error
+    actionOutput:
+      internalMessage: 'Personal property limit cannot be greater than 50% of the building limit. Please edit value to obtain a quote.'
+      agentMessage: 'Personal property limit cannot be greater than 50% of the building limit. Please edit value to obtain a quote.'
+      customerMessage: 'Personal property limit cannot be greater than 50% of the building limit. Please edit value to obtain a quote.'
+    canOverride: false
+    active: true
+  - transactionTypes:
+      - Renewal
+    action: System Action
+    actionOutput:
+      set:
+        target: coverageLimits.personalProperty.amount
+        value: '${round(0.5 * it.document.coverageLimits.dwelling.amount, 0)}'
+    canOverride: false
+    active: true
+tests:
+  - description: 'New Business Personal property limit action triggers when greater than 50% of the building limit'
+    input:
+      document:
+        transactionType: New Business
+        coverageLimits:
+          personalProperty:
+            amount: 80021
+          dwelling:
+            amount: 100088
+    output:
+      - action: Fatal Error
+        displayText: 'CoverageLimits.personalProperty.amount > 50% of Coveragelimit.dwelling.amount'
+        category: 'Coverages & Deductibles'
+        code: '112'
+        internalMessage: 'Personal property limit cannot be greater than 50% of the building limit. Please edit value to obtain a quote.'
+        agentMessage: 'Personal property limit cannot be greater than 50% of the building limit. Please edit value to obtain a quote.'
+        customerMessage: 'Personal property limit cannot be greater than 50% of the building limit. Please edit value to obtain a quote.'
+        canOverride: false
+        active: true
+        fields:
+          - name: coverageLimits.personalProperty.amount
+            value: 80021
+          - name: coverageLimits.dwelling.amount
+            value: 100088
+  - description: 'Renewal action triggers when Personal property limit greater than 50% of the building limit'
+    input:
+      document:
+        transactionType: Renewal
+        coverageLimits:
+          dwelling:
+            amount: 155555
+          personalProperty:
+            amount: 88888
+    output:
+      - action: System Action
+        displayText: 'CoverageLimits.personalProperty.amount > 50% of Coveragelimit.dwelling.amount'
+        category: 'Coverages & Deductibles'
+        code: '112'
+        canOverride: false
+        active: true
+        fields:
+          - name: coverageLimits.personalProperty.amount
+            value: 88888
+          - name: coverageLimits.dwelling.amount
+            value: 155555
+        set:
+          target: coverageLimits.personalProperty.amount
+          value: 77778
+  - description: 'New Business Personal property limit action does not trigger when not greater than 50% of the building limit'
+    input:
+      document:
+        transactionType: New Business
+        coverageLimits:
+          personalProperty:
+            amount: 67530
+          dwelling:
+            amount: 142222
+    output: null
+  - description: 'Renewal action does not trigger when Personal property limit is not greater than 50% of the building limit'
+    input:
+      document:
+        transactionType: Renewal
+        coverageLimits:
+          dwelling:
+            amount: 867530
+          personalProperty:
+            amount: 99999
+    output: null

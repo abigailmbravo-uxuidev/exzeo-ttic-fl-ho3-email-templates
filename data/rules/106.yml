@@ -1,15 +1,93 @@
-companyCode: TTIC
-state: FL
 product: HO3
-code: '106'
-displayText: property.territory is null
-condition:
-  fields: []
-  expression: '!property.territory'
+name: Property.territory is null
+type: underwriting
 category: Property
-action: Fatal Error
-internalMessage: Property Territory can not be null.
-agentMessage: We were not able to identify the correct property territory value for this property.
-customerMessage: TypTap Homeowners product is not available for this property.
+code: '106'
+documentFields:
+  - property.territory
+condition: '${!it.document.property.territory}'
 active: true
-canOverride: false
+lookupFields: []
+actions:
+  - transactionTypes:
+      - New Business
+      - Renewal
+    action: Fatal Error
+    actionOutput:
+      internalMessage: Property Territory can not be null.
+      agentMessage: We were not able to identify the correct property territory value for this property.
+      customerMessage: TypTap Homeowners product is not available for this property.
+    canOverride: false
+    active: true
+tests:
+  - description: Property Territory action triggers when it is not passed in with the document
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        product: HO3
+        transactionType: New Business
+        property:
+          territory: null
+          id: ''
+          physicalAddress:
+            zip: ''
+        lookupFields: []
+    output:
+      - action: Fatal Error
+        displayText: Property.territory is null
+        category: Property
+        code: '106'
+        internalMessage: Property Territory can not be null.
+        agentMessage: We were not able to identify the correct property territory value for this property.
+        customerMessage: TypTap Homeowners product is not available for this property.
+        canOverride: false
+        active: true
+        fields:
+          - name: property.territory
+            value: null
+  - description: Property Territory action does not trigger when it is passed in with the document
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        product: HO3
+        transactionType: New Business
+        property:
+          territory: 123-45
+        lookupFields: []
+    output: null
+  - description: Property Territory action triggers when it is not passed in with the document
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        product: HO3
+        transactionType: Renewal
+        property:
+          territory: null
+        lookupFields: []
+    output:
+      - action: Fatal Error
+        displayText: Property.territory is null
+        category: Property
+        code: '106'
+        internalMessage: Property Territory can not be null.
+        agentMessage: We were not able to identify the correct property territory value for this property.
+        customerMessage: TypTap Homeowners product is not available for this property.
+        canOverride: false
+        active: true
+        fields:
+          - name: property.territory
+            value: null
+  - description: Property Territory action does not trigger when it is passed in with the document
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        product: HO3
+        transactionType: Renewal
+        property:
+          territory: 123-45
+        lookupFields: []
+    output: null

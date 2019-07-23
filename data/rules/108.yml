@@ -1,15 +1,59 @@
 companyCode: TTIC
 state: FL
 product: HO3
-code: '108'
-displayText: underwritingAnswers.rented = Yes
-condition:
-  fields: []
-  expression: "underwritingAnswers.rented.answer == 'Yes'"
+name: UnderwritingAnswers.rented = Yes
+type: underwriting
 category: Underwriting Answers
-action: Fatal Error
-internalMessage: Homes that are rented are not eligible.
-agentMessage: Homes that are rented are not eligible for this program.
-customerMessage: Homes that are rented are not eligible for this program.
+code: '108'
+documentFields:
+  - underwritingAnswers.rented.answer
+condition: "${it.document.underwritingAnswers.rented.answer === 'Yes'}"
 active: true
-canOverride: false
+lookupFields: []
+actions:
+  - transactionTypes:
+      - New Business
+    action: Fatal Error
+    actionOutput:
+      internalMessage: Homes that are rented are not eligible.
+      agentMessage: Homes that are rented are not eligible for this program.
+      customerMessage: Homes that are rented are not eligible for this program.
+    canOverride: false
+    active: true
+tests:
+  - description: Homes that are rented action triggers when underwriting.answers.rented is set to Yes
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        product: HO3
+        transactionType: New Business
+        underwritingAnswers:
+          rented:
+            answer: 'Yes'
+        lookupFields: []
+    output:
+      - action: Fatal Error
+        displayText: UnderwritingAnswers.rented = Yes
+        category: Underwriting Answers
+        code: '108'
+        internalMessage: Homes that are rented are not eligible.
+        agentMessage: Homes that are rented are not eligible for this program.
+        customerMessage: Homes that are rented are not eligible for this program.
+        canOverride: false
+        active: true
+        fields:
+          - name: underwritingAnswers.rented.answer
+            value: 'Yes'
+  - description: Homes that are rented action does not trigger when underwriting.answers.rented is not set to Yes
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        product: HO3
+        transactionType: New Business
+        underwritingAnswers:
+          rented:
+            answer: 'No'
+        lookupFields: []
+    output: null

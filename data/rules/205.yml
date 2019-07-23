@@ -1,19 +1,78 @@
-companyCode: TTIC
-state: FL
 product: HO3
-code: '205'
-displayText: Effective Date < Min for tblUnderwritingZipFilter
-condition:
-  fields:
-    - effectiveDate
-  expression: 'effectiveDate|asDate < zipCodeSettings.minEffectiveDate|asDate'
+name: Effective Date < Min for tblUnderwritingZipFilter
+type: underwriting
 category: Zip Code Settings
-action: Underwriting Review
-internalMessage: 'You cannot quote before {minEffectiveDate}.'
-agentMessage: 'You cannot quote before {minEffectiveDate}.'
-customerMessage: 'You cannot quote before {minEffectiveDate}.'
-messageParameters:
-  minEffectiveDate:
-    expression: "zipCodeSettings.minEffectiveDate|formatDate('MM/DD/YYYY')"
+code: '205'
+documentFields:
+  - effectiveDate
+  - lookupFields.zipcodesettings.minEffectiveDate
+condition: '${moment(it.document.effectiveDate).isBefore(it.document.lookupFields.zipcodesettings.minEffectiveDate)}'
 active: true
-canOverride: true
+lookupFields:
+  - name: zipcodesettings
+    type: builtIn
+    builtInConfig:
+      name: zipcodesettings
+actions:
+  - transactionTypes:
+      - New Business
+    action: Underwriting Review
+    actionOutput:
+      internalMessage: "You cannot quote before ${moment(it.document.lookupFields.zipcodesettings.minEffectiveDate).format('MM-DD-YYYY')}."
+      agentMessage: "You cannot quote before ${moment(it.document.lookupFields.zipcodesettings.minEffectiveDate).format('MM-DD-YYYY')}."
+      customerMessage: "You cannot quote before ${moment(it.document.lookupFields.zipcodesettings.minEffectiveDate).format('MM-DD-YYYY')}."
+    canOverride: true
+    active: true
+tests:
+  - description: 'New Business Effective date action triggers when not > minimum effective date in zipcodesettings collection'
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        zip: '32025'
+        product: HO3
+        transactionType: New Business
+        property:
+          id: ''
+          physicalAddress:
+            zip: '32025'
+        effectiveDate: 01-01-2018
+        lookupFields:
+          - name: zipcodesettings
+            type: builtIn
+            builtInConfig:
+              name: zipcodesettings
+    output:
+      - action: Underwriting Review
+        displayText: Effective Date < Min for tblUnderwritingZipFilter
+        category: Zip Code Settings
+        code: '205'
+        internalMessage: "You cannot quote before ${moment(it.document.lookupFields.zipcodesettings.minEffectiveDate).format('MM-DD-YYYY')}."
+        agentMessage: "You cannot quote before ${moment(it.document.lookupFields.zipcodesettings.minEffectiveDate).format('MM-DD-YYYY')}."
+        customerMessage: "You cannot quote before ${moment(it.document.lookupFields.zipcodesettings.minEffectiveDate).format('MM-DD-YYYY')}."
+        canOverride: true
+        active: true
+        fields:
+          - name: effectiveDate
+            value: 01-01-2018
+          - name: lookupFields.zipcodesettings.minEffectiveDate
+            value: "${moment(it.document.lookupFields.zipcodesettings.minEffectiveDate).format('MM-DD-YYYY')}"
+  - description: 'New Business Effective date action does not trigger when > minimum effective date in zipcodesettings collection'
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        zip: '32025'
+        product: HO3
+        transactionType: New Business
+        property:
+          id: ''
+          physicalAddress:
+            zip: '32025'
+        effectiveDate: 01-01-2025
+        lookupFields:
+          - name: zipcodesettings
+            type: builtIn
+            builtInConfig:
+              name: zipcodesettings
+    output: null

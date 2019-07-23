@@ -1,0 +1,173 @@
+product: HO3
+name: Send Non-Payment Notice
+type: policyState
+code: '401'
+category: State Actions
+documentFields: []
+condition: "${parseFloat(it.document.summaryLedger.balance) > it.config.writeOffThreshold && ((it.document.summaryLedger.status.code === 0 || it.document.summaryLedger.status.code === 3) && moment.utc(it.document.summaryLedger.invoiceDate).isSameOrAfter(moment.utc(it.document.summaryLedger.nonPaymentNoticeDate).subtract(it.config.mailingOffset, 'days')) || it.document.summaryLedger.status.code === 6 || it.document.summaryLedger.status.code === 99)}"
+active: true
+actions:
+  - active: true
+    action: sendNonPaymentNotice
+    actionOutput:
+      date: "${moment.max([moment.utc(it.document.summaryLedger.updatedAt).add(4, 'hours'), moment.utc(it.document.summaryLedger.nonPaymentNoticeDate)]).toISOString()}"
+    canOverride: false
+tests:
+  - description: 'sendNonPaymentNotice action triggers when balance is greater than write-off threshold, status is 0 and invoice date is less than 5 days before the non payment notice date'
+    input:
+      config:
+        writeOffThreshold: 5
+        mailingOffset: 5
+      document:
+        summaryLedger:
+          status:
+            code: 0
+          balance: 6
+          invoiceDate: '${moment.utc().second(0).millisecond(0)}'
+          nonPaymentNoticeDate: "${moment.utc().add(4, 'days').second(0).millisecond(0)}"
+          updatedAt: '${moment.utc()}'
+    output:
+      - active: true
+        action: sendNonPaymentNotice
+        category: State Actions
+        displayText: Send Non-Payment Notice
+        canOverride: false
+        code: '401'
+        fields: []
+        date: "${moment.utc().add(4, 'days').second(0).millisecond(0).toISOString()}"
+  - description: 'sendNonPaymentNotice action triggers when balance is greater than write-off threshold, status is 3 and invoice date is less than 5 days before the non payment notice date'
+    input:
+      config:
+        writeOffThreshold: 5
+        mailingOffset: 5
+      document:
+        summaryLedger:
+          status:
+            code: 3
+          balance: 6
+          invoiceDate: '${moment.utc().second(0).millisecond(0)}'
+          nonPaymentNoticeDate: "${moment.utc().add(4, 'days').second(0).millisecond(0)}"
+          updatedAt: '${moment.utc()}'
+    output:
+      - active: true
+        action: sendNonPaymentNotice
+        category: State Actions
+        displayText: Send Non-Payment Notice
+        canOverride: false
+        code: '401'
+        fields: []
+        date: "${moment.utc().add(4, 'days').second(0).millisecond(0).toISOString()}"
+  - description: sendNonPaymentNotice action triggers when balance is greater than write-off threshold and status is 6
+    input:
+      config:
+        writeOffThreshold: 5
+        mailingOffset: 5
+      document:
+        summaryLedger:
+          status:
+            code: 6
+          balance: 6
+          invoiceDate: '${moment.utc().second(0).millisecond(0)}'
+          nonPaymentNoticeDate: "${moment.utc().add(6, 'days').second(0).millisecond(0)}"
+          updatedAt: '${moment.utc()}'
+    output:
+      - active: true
+        action: sendNonPaymentNotice
+        category: State Actions
+        displayText: Send Non-Payment Notice
+        canOverride: false
+        code: '401'
+        fields: []
+        date: "${moment.utc().add(6, 'days').second(0).millisecond(0).toISOString()}"
+  - description: 'sendNonPaymentNotice action triggers when balance is greater than writeoff threshold, status is 99'
+    input:
+      config:
+        writeOffThreshold: 5
+        mailingOffset: 5
+      document:
+        summaryLedger:
+          status:
+            code: 99
+          balance: 6
+          invoiceDate: '${moment.utc().second(0).millisecond(0)}'
+          nonPaymentNoticeDate: "${moment.utc().add(6, 'days').second(0).millisecond(0)}"
+          updatedAt: '${moment.utc()}'
+    output:
+      - active: true
+        action: sendNonPaymentNotice
+        category: State Actions
+        displayText: Send Non-Payment Notice
+        canOverride: false
+        code: '401'
+        fields: []
+        date: "${moment.utc().add(6, 'days').second(0).millisecond(0).toISOString()}"
+  - description: sendNonPaymentNotice action does not trigger when balance is less than or equal to write-off threshold
+    input:
+      config:
+        writeOffThreshold: 5
+        mailingOffset: 5
+      document:
+        summaryLedger:
+          status:
+            code: 6
+          balance: 5
+          invoiceDate: '${moment.utc().second(0).millisecond(0)}'
+          nonPaymentNoticeDate: '${moment.utc().second(0).millisecond(0)}'
+          updatedAt: '${moment.utc()}'
+    output: null
+  - description: sendNonPaymentNotice action does not trigger when status is 0 and invoiceDate is more than malingOffset days before nonPaymentNoticeDate
+    input:
+      config:
+        writeOffThreshold: 5
+        mailingOffset: 5
+      document:
+        summaryLedger:
+          status:
+            code: 0
+          balance: 5
+          invoiceDate: '${moment.utc().second(0).millisecond(0)}'
+          nonPaymentNoticeDate: "${moment.utc().add(6,'days').second(0).millisecond(0)}"
+          updatedAt: '${moment.utc()}'
+    output: null
+  - description: sendNonPaymentNotice action does not trigger when status is 3 and invoiceDate is more than mailingOffset days before nonPaymentNoticeDate
+    input:
+      config:
+        writeOffThreshold: 5
+        mailingOffset: 5
+      document:
+        summaryLedger:
+          status:
+            code: 3
+          balance: 5
+          invoiceDate: '${moment.utc().second(0).millisecond(0)}'
+          nonPaymentNoticeDate: "${moment.utc().add(6,'days').second(0).millisecond(0)}"
+          updatedAt: '${moment.utc()}'
+    output: null
+  - description: sendNonPaymentNotice action does not trigger when status is 2
+    input:
+      config:
+        mailingOffset: 5
+        writeOffThreshold: 5
+      document:
+        summaryLedger:
+          status:
+            code: 2
+          balance: 5
+          invoiceDate: '${moment.utc().second(0).millisecond(0)}'
+          nonPaymentNoticeDate: '${moment.utc().second(0).millisecond(0)}'
+          updatedAt: '${moment.utc()}'
+    output: null
+  - description: sendNonPaymentNotice action does not trigger when status is 2
+    input:
+      config:
+        writeOffThreshold: 5
+        mailingOffset: 5
+      document:
+        summaryLedger:
+          status:
+            code: 2
+          balance: 5
+          invoiceDate: '${moment.utc().second(0).millisecond(0)}'
+          nonPaymentNoticeDate: '${moment.utc().second(0).millisecond(0)}'
+          updatedAt: '${moment.utc()}'
+    output: null

@@ -8,7 +8,7 @@ const util = require('util');
 const { getAccessToken } = require('./support/auth');
 const { selfCheck } = require('./support/selfCheck');
 
-context('Self Check', () => {
+context.only('Self Check', () => {
   describe('POST /selfCheck', () => {
     it('Returns correct body when all tests pass', async () => {
       const accessToken = await getAccessToken('TTIC_CSR_HO3');

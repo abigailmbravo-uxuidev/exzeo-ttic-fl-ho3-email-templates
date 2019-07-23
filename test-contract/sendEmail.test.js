@@ -3,7 +3,7 @@
 const { expect } = require('chai');
 const { generateEmailMessage, getAllEmailTemplatesFromDB, getAllEmailTemplatesFromFiles, getAllEmailTestTemplatesFromFiles, parseHtmlBody } = require('../test-contract/support/util');
 
-context.only('runs all email template tests', () => {
+context('runs all email template tests', () => {
   let requestBody = {};
   beforeEach(() => {
     requestBody = {

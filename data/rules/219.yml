@@ -1,18 +1,78 @@
-companyCode: TTIC
-state: FL
 product: HO3
-code: '219'
-displayText: 'Year Built > Max for tblUnderwritingZipFilter'
-condition:
-  fields: []
-  expression: 'property.yearBuilt > zipCodeSettings.maxYearBuilt'
+name: 'Year Built > Max for tblUnderwritingZipFilter'
+type: underwriting
 category: Zip Code Settings
-action: Underwriting Review
-internalMessage: 'Year built exceeds the maximum year built of {maxYearBuilt} for policy issuance. Review is required.'
-agentMessage: 'Year built exceeds the maximum year built of {maxYearBuilt}. Underwriting review is required for binding.'
-customerMessage: 'Year built exceeds the maximum year built of {maxYearBuilt} for policy issuance. Review is required.'
-messageParameters:
-  maxYearBuilt:
-    expression: zipCodeSettings.maxYearBuilt
+code: '219'
+documentFields:
+  - property.yearBuilt
+  - lookupFields.zipcodesettings.maxYearBuilt
+condition: '${it.document.property.yearBuilt > it.document.lookupFields.zipcodesettings.maxYearBuilt}'
 active: true
-canOverride: true
+lookupFields:
+  - name: zipcodesettings
+    type: builtIn
+    builtInConfig:
+      name: zipcodesettings
+actions:
+  - transactionTypes:
+      - New Business
+    action: Underwriting Review
+    actionOutput:
+      internalMessage: 'Year built exceeds the maximum year built of ${it.document.lookupFields.zipcodesettings.maxYearBuilt} for policy issuance. Review is required.'
+      agentMessage: 'Year built exceeds the maximum year built of ${it.document.lookupFields.zipcodesettings.maxYearBuilt}. Underwriting review is required for binding.'
+      customerMessage: 'Year built exceeds the maximum year built of ${it.document.lookupFields.zipcodesettings.maxYearBuilt} for policy issuance. Review is required.'
+    canOverride: true
+    active: true
+tests:
+  - description: 'New Business Year Built action triggers when Year Build > Max Year Build in zipcodesettings collection'
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        zip: '32025'
+        product: HO3
+        transactionType: New Business
+        property:
+          yearBuilt: 2017
+          id: ''
+          physicalAddress:
+            zip: '32025'
+        lookupFields:
+          - name: zipcodesettings
+            type: builtIn
+            builtInConfig:
+              name: zipcodesettings
+    output:
+      - action: Underwriting Review
+        displayText: 'Year Built > Max for tblUnderwritingZipFilter'
+        category: Zip Code Settings
+        code: '219'
+        internalMessage: Year built exceeds the maximum year built of 2016 for policy issuance. Review is required.
+        agentMessage: Year built exceeds the maximum year built of 2016. Underwriting review is required for binding.
+        customerMessage: Year built exceeds the maximum year built of 2016 for policy issuance. Review is required.
+        canOverride: true
+        active: true
+        fields:
+          - name: property.yearBuilt
+            value: 2017
+          - name: lookupFields.zipcodesettings.maxYearBuilt
+            value: 2016
+  - description: 'New Business Year Built action does not trigger when Year Build is not > Max Year Build in zipcodesettings collection'
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        zip: '32025'
+        product: HO3
+        transactionType: New Business
+        property:
+          yearBuilt: 2016
+          id: ''
+          physicalAddress:
+            zip: '32025'
+        lookupFields:
+          - name: zipcodesettings
+            type: builtIn
+            builtInConfig:
+              name: zipcodesettings
+    output: null

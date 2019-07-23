@@ -1,15 +1,102 @@
-companyCode: TTIC
-state: FL
 product: HO3
-code: '215'
-displayText: 'If coverageOptions.sinkholePerilCoverage.answer = True, then must have value for deductibles.sinkhole.amount'
-condition:
-  fields: []
-  expression: 'coverageOptions.sinkholePerilCoverage.answer == true && !deductibles.sinkhole.amount'
+name: 'If coverageOptions.sinkholePerilCoverage.answer = True, then must have value for deductibles.sinkhole.amount'
+type: underwriting
 category: 'Coverages & Deductibles'
-action: Underwriting Review
-internalMessage: A sinkhole deductible is required when sinkhole coverage is selected.
-agentMessage: A sinkhole deductible is required when sinkhole coverage is selected.
-customerMessage: A sinkhole deductible is required when sinkhole coverage is selected.
+code: '215'
+documentFields:
+  - coverageOptions.sinkholePerilCoverage.answer
+  - deductibles.sinkhole.amount
+condition: '${it.document.coverageOptions.sinkholePerilCoverage.answer === true && !it.document.deductibles.sinkhole.amount}'
 active: true
-canOverride: false
+lookupFields: []
+actions:
+  - transactionTypes:
+      - New Business
+    action: Underwriting Review
+    actionOutput:
+      internalMessage: A sinkhole deductible is required when sinkhole coverage is selected.
+      agentMessage: A sinkhole deductible is required when sinkhole coverage is selected.
+      customerMessage: A sinkhole deductible is required when sinkhole coverage is selected.
+    canOverride: false
+    active: true
+  - transactionTypes:
+      - Renewal
+    action: Fatal Error
+    actionOutput:
+      internalMessage: A sinkhole deductible is required when sinkhole coverage is selected.
+      agentMessage: A sinkhole deductible is required when sinkhole coverage is selected.
+      customerMessage: A sinkhole deductible is required when sinkhole coverage is selected.
+    canOverride: false
+    active: true
+tests:
+  - description: New Business Sinkhole Deductible action triggers when Sinkhole Coverage is selected and Sinkhole Deductible is missing
+    input:
+      document:
+        transactionType: New Business
+        coverageOptions:
+          sinkholePerilCoverage:
+            answer: true
+        deductibles:
+          sinkhole:
+            amount: null
+    output:
+      - action: Underwriting Review
+        displayText: 'If coverageOptions.sinkholePerilCoverage.answer = True, then must have value for deductibles.sinkhole.amount'
+        category: 'Coverages & Deductibles'
+        code: '215'
+        internalMessage: A sinkhole deductible is required when sinkhole coverage is selected.
+        agentMessage: A sinkhole deductible is required when sinkhole coverage is selected.
+        customerMessage: A sinkhole deductible is required when sinkhole coverage is selected.
+        canOverride: false
+        active: true
+        fields:
+          - name: coverageOptions.sinkholePerilCoverage.answer
+            value: true
+          - name: deductibles.sinkhole.amount
+            value: null
+  - description: Renewal Sinkhole Deductible action triggers when Sinkhole Coverage is selected and Sinkhole Deductible is missing
+    input:
+      document:
+        transactionType: Renewal
+        coverageOptions:
+          sinkholePerilCoverage:
+            answer: true
+        deductibles:
+          sinkhole:
+            amount: null
+    output:
+      - action: Fatal Error
+        displayText: 'If coverageOptions.sinkholePerilCoverage.answer = True, then must have value for deductibles.sinkhole.amount'
+        category: 'Coverages & Deductibles'
+        code: '215'
+        internalMessage: A sinkhole deductible is required when sinkhole coverage is selected.
+        agentMessage: A sinkhole deductible is required when sinkhole coverage is selected.
+        customerMessage: A sinkhole deductible is required when sinkhole coverage is selected.
+        canOverride: false
+        active: true
+        fields:
+          - name: coverageOptions.sinkholePerilCoverage.answer
+            value: true
+          - name: deductibles.sinkhole.amount
+            value: null
+  - description: New Business Sinkhole Deductible action does not trigger when Sinkhole Coverage is selected and Sinkhole Deductible is not missing
+    input:
+      document:
+        transactionType: New Business
+        coverageOptions:
+          sinkholePerilCoverage:
+            answer: true
+        deductibles:
+          sinkhole:
+            amount: 10000
+    output: null
+  - description: Renewal Sinkhole Deductible action triggers when Sinkhole Coverage is selected and Sinkhole Deductible is missing
+    input:
+      transactionType: Renewal
+      coverageOptions:
+        sinkholePerilCoverage:
+          answer: true
+      deductibles:
+        sinkhole:
+          amount: 20000
+    output: null

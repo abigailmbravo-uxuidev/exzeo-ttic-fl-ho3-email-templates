@@ -1,15 +1,142 @@
-companyCode: TTIC
-state: FL
 product: HO3
-code: '206'
-displayText: No capacity in this zip code
-condition:
-  fields: []
-  expression: '(zipCodeSettings.availableSlots <= 0 && zipCodeSettings.availableSlots >= -99)'
+name: No capacity in this zip code
+type: underwriting
 category: Zip Code Settings
-action: Underwriting Review
-internalMessage: Capacity is not available to provide a quote. Additional review may be required.
-agentMessage: Capacity for this zip code is currently full. Underwriting review is required for binding.
-customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
+code: '206'
+documentFields:
+  - lookupFields.zipcodesettings.availableSlots
+condition: '${(it.document.lookupFields.zipcodesettings.availableSlots <= 0 && it.document.lookupFields.zipcodesettings.availableSlots >= -99)}'
 active: true
-canOverride: true
+lookupFields:
+  - name: zipcodesettings
+    type: builtIn
+    builtInConfig:
+      name: zipcodesettings
+actions:
+  - transactionTypes:
+      - New Business
+    action: Underwriting Review
+    actionOutput:
+      internalMessage: Capacity is not available to provide a quote. Additional review may be required.
+      agentMessage: Capacity for this zip code is currently full. Underwriting review is required for binding.
+      customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
+    canOverride: true
+    active: true
+tests:
+  - description: 'New Business Action triggers when No Capacity in this Zip Code '
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        zip: '32168'
+        product: HO3
+        transactionType: New Business
+        property:
+          id: ''
+          physicalAddress:
+            zip: '32168'
+        lookupFields:
+          - name: zipcodesettings
+            type: builtIn
+            builtInConfig:
+              name: zipcodesettings
+    output:
+      - action: Underwriting Review
+        displayText: No capacity in this zip code
+        category: Zip Code Settings
+        code: '206'
+        internalMessage: Capacity is not available to provide a quote. Additional review may be required.
+        agentMessage: Capacity for this zip code is currently full. Underwriting review is required for binding.
+        customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
+        canOverride: true
+        active: true
+        fields:
+          - name: lookupFields.zipcodesettings.availableSlots
+            value: 0
+  - description: 'New Business Action triggers when No Capacity in this Zip Code '
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        zip: '32169'
+        product: HO3
+        transactionType: New Business
+        property:
+          id: ''
+          physicalAddress:
+            zip: '32169'
+        lookupFields:
+          - name: zipcodesettings
+            type: builtIn
+            builtInConfig:
+              name: zipcodesettings
+    output:
+      - action: Underwriting Review
+        displayText: No capacity in this zip code
+        category: Zip Code Settings
+        code: '206'
+        internalMessage: Capacity is not available to provide a quote. Additional review may be required.
+        agentMessage: Capacity for this zip code is currently full. Underwriting review is required for binding.
+        customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
+        canOverride: true
+        active: true
+        fields:
+          - name: lookupFields.zipcodesettings.availableSlots
+            value: -99
+  - description: 'New Business Action does not trigger when Capacity in this Zip Code '
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        zip: '32170'
+        product: HO3
+        transactionType: New Business
+        property:
+          id: ''
+          physicalAddress:
+            zip: '32170'
+        lookupFields:
+          - name: zipcodesettings
+            type: builtIn
+            builtInConfig:
+              name: zipcodesettings
+    output: null
+  - description: 'New Business Action does not trigger when there is Capacity in Zip Code '
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        zip: '32025'
+        product: HO3
+        transactionType: New Business
+        property:
+          id: ''
+          physicalAddress:
+            zip: '32025'
+        lookupFields:
+          - name: zipcodesettings
+            type: builtIn
+            builtInConfig:
+              name: zipcodesettings
+    output: null
+  - description: 'New Business Action does not trigger when there is Capacity in Zip Code '
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        zip: '32025'
+        product: HO3
+        transactionType: New Business
+        property:
+          id: ''
+          physicalAddress:
+            zip: '32025'
+        lookupFields:
+          - name: zipcodesettings
+            type: builtIn
+            builtInConfig:
+              name: zipcodesettings
+        fields:
+          - name: lookupFields.zipcodesettings.availableSlots
+            value: -100
+    output: null

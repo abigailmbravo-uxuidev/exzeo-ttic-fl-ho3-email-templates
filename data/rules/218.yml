@@ -1,18 +1,78 @@
-companyCode: TTIC
-state: FL
 product: HO3
-code: '218'
-displayText: Year Built < Min for tblUnderwritingZipFilter
-condition:
-  fields: []
-  expression: property.yearBuilt < zipCodeSettings.minYearBuilt
+name: Year Built < Min for tblUnderwritingZipFilter
+type: underwriting
 category: Zip Code Settings
-action: Underwriting Review
-internalMessage: 'Year built does not meet the minimum year built of {minYearBuilt} for policy issuance. Review is required.'
-agentMessage: 'Year built does not meet the minimum year built of {minYearBuilt}. Underwriting review is required for binding.'
-customerMessage: 'Year built does not meet the minimum year built of {minYearBuilt} for policy issuance. Review is required.'
-messageParameters:
-  minYearBuilt:
-    expression: zipCodeSettings.minYearBuilt
+code: '218'
+documentFields:
+  - property.yearBuilt
+  - lookupFields.zipcodesettings.minYearBuilt
+condition: '${it.document.property.yearBuilt < it.document.lookupFields.zipcodesettings.minYearBuilt}'
 active: true
-canOverride: true
+lookupFields:
+  - name: zipcodesettings
+    type: builtIn
+    builtInConfig:
+      name: zipcodesettings
+actions:
+  - transactionTypes:
+      - New Business
+    action: Underwriting Review
+    actionOutput:
+      internalMessage: 'Year built does not meet the minimum year built of ${it.document.lookupFields.zipcodesettings.minYearBuilt} for policy issuance. Review is required.'
+      agentMessage: 'Year built does not meet the minimum year built of ${it.document.lookupFields.zipcodesettings.minYearBuilt}. Underwriting review is required for binding.'
+      customerMessage: 'Year built does not meet the minimum year built of ${it.document.lookupFields.zipcodesettings.minYearBuilt} for policy issuance. Review is required.'
+    canOverride: true
+    active: true
+tests:
+  - description: New Business Year Built action triggers when minimum year < minimum year build built in zipcodesettings collection
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        zip: '32025'
+        product: HO3
+        transactionType: New Business
+        property:
+          yearBuilt: 1899
+          id: ''
+          physicalAddress:
+            zip: '32025'
+        lookupFields:
+          - name: zipcodesettings
+            type: builtIn
+            builtInConfig:
+              name: zipcodesettings
+    output:
+      - action: Underwriting Review
+        displayText: Year Built < Min for tblUnderwritingZipFilter
+        category: Zip Code Settings
+        code: '218'
+        internalMessage: Year built does not meet the minimum year built of 1900 for policy issuance. Review is required.
+        agentMessage: Year built does not meet the minimum year built of 1900. Underwriting review is required for binding.
+        customerMessage: Year built does not meet the minimum year built of 1900 for policy issuance. Review is required.
+        canOverride: true
+        active: true
+        fields:
+          - name: property.yearBuilt
+            value: 1899
+          - name: lookupFields.zipcodesettings.minYearBuilt
+            value: 1900
+  - description: 'New Business Year Built action does not trigger when minimum year is > minimum year build built in zipcodesettings collection'
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        zip: '32025'
+        product: HO3
+        transactionType: New Business
+        property:
+          yearBuilt: 1900
+          id: ''
+          physicalAddress:
+            zip: '32025'
+        lookupFields:
+          - name: zipcodesettings
+            type: builtIn
+            builtInConfig:
+              name: zipcodesettings
+    output: null

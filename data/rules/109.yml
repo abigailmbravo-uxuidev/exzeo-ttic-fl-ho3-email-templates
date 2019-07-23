@@ -1,15 +1,59 @@
 companyCode: TTIC
 state: FL
 product: HO3
-code: '109'
-displayText: underwritingAnswers.monthsOccupied = 0-3
-condition:
-  fields: []
-  expression: "underwritingAnswers.monthsOccupied.answer == '0-3'"
+name: UnderwritingAnswers.monthsOccupied = 0-3
+type: underwriting
 category: Underwriting Answers
-action: Fatal Error
-internalMessage: Homes that are unoccupied for 9 months or more are ineligible.
-agentMessage: Homes that are unoccupied for 9 months or more are ineligible.
-customerMessage: Homes that are unoccupied for 9 months or more are ineligible.
+code: '109'
+documentFields:
+  - underwritingAnswers.monthsOccupied.answer
+condition: "${it.document.underwritingAnswers.monthsOccupied.answer === '0-3'}"
 active: true
-canOverride: false
+lookupFields: []
+actions:
+  - transactionTypes:
+      - New Business
+    action: Fatal Error
+    actionOutput:
+      internalMessage: Homes that are unoccupied for 9 months or more are ineligible.
+      agentMessage: Homes that are unoccupied for 9 months or more are ineligible.
+      customerMessage: Homes that are unoccupied for 9 months or more are ineligible.
+    canOverride: false
+    active: true
+tests:
+  - description: "Homes that are unoccupied for 9 months or more action triggers when underwritingAnswers.monthsOccupied.answer is set to '0-3'"
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        product: HO3
+        transactionType: New Business
+        underwritingAnswers:
+          monthsOccupied:
+            answer: 0-3
+        lookupFields: []
+    output:
+      - action: Fatal Error
+        displayText: UnderwritingAnswers.monthsOccupied = 0-3
+        category: Underwriting Answers
+        code: '109'
+        internalMessage: Homes that are unoccupied for 9 months or more are ineligible.
+        agentMessage: Homes that are unoccupied for 9 months or more are ineligible.
+        customerMessage: Homes that are unoccupied for 9 months or more are ineligible.
+        canOverride: false
+        active: true
+        fields:
+          - name: underwritingAnswers.monthsOccupied.answer
+            value: 0-3
+  - description: "Homes that are unoccupied for 9 months or more action does not trigger when underwritingAnswers.monthsOccupied.answer is not set to '0-3'"
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        product: HO3
+        transactionType: New Business
+        underwritingAnswers:
+          monthsOccupied:
+            answer: 4-5
+        lookupFields: []
+    output: null

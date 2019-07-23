@@ -1,15 +1,104 @@
-companyCode: TTIC
-state: FL
 product: HO3
-code: '105'
-displayText: property.territory not found in zip code settings array
-condition:
-  fields: []
-  expression: '(zipCodeSettings) && (property.territory) && !(property.territory in zipCodeSettings.territories)'
+name: Property.territory not found in zip code settings array
+type: underwriting
 category: Zip Code Settings
-action: Fatal Error
-internalMessage: Property Territory value is not valid for the property zip code.
-agentMessage: Property Territory value is not valid for the property zip code.
-customerMessage: TypTap Homeowners product is not available for this property.
+code: '105'
+documentFields:
+  - lookupFields.zipcodesettings
+  - property.territory
+  - lookupFields.zipcodesettings.territories
+condition: '${(it.document.lookupFields.zipcodesettings) && (it.document.property.territory) && (!includes(it.document.lookupFields.zipcodesettings.territories, it.document.property.territory))}'
 active: true
-canOverride: false
+lookupFields:
+  - name: zipcodesettings
+    type: builtIn
+    builtInConfig:
+      name: zipcodesettings
+actions:
+  - transactionTypes:
+      - New Business
+      - Renewal
+    action: Fatal Error
+    actionOutput:
+      internalMessage: Property Territory value is not valid for the property zip code.
+      agentMessage: Property Territory value is not valid for the property zip code.
+      customerMessage: TypTap Homeowners product is not available for this property.
+    canOverride: false
+    active: true
+tests:
+  - description: Property territory action triggers when zip code territory is not found in zipcodesettings
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        zip: '11111'
+        product: HO3
+        transactionType: New Business
+        property:
+          territory: 000-00
+          id: ''
+          physicalAddress:
+            zip: '11111'
+        lookupFields:
+          - name: zipcodesettings
+            type: builtIn
+            builtInConfig:
+              name: zipcodesettings
+    output: null
+  - description: Property territory action does not trigger when zip code territory is found in zipcodesettings
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        zip: '32025'
+        product: HO3
+        transactionType: New Business
+        property:
+          territory: 293-0
+          id: ''
+          physicalAddress:
+            zip: '32025'
+        lookupFields:
+          - name: zipcodesettings
+            type: builtIn
+            builtInConfig:
+              name: zipcodesettings
+    output: null
+  - description: Property territory action triggers when zip code territory is not found in zipcodesettings
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        zip: '11111'
+        product: HO3
+        transactionType: Renewal
+        property:
+          territory: 000-00
+          id: ''
+          physicalAddress:
+            zip: '11111'
+        lookupFields:
+          - name: zipcodesettings
+            type: builtIn
+            builtInConfig:
+              name: zipcodesettings
+    output: null
+  - description: Property territory action does not trigger when zip code territory is found in zipcodesettings
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        zip: '32025'
+        product: HO3
+        transactionType: Renewal
+        property:
+          territory: 293-0
+          id: ''
+          physicalAddress:
+            zip: '32025'
+        lookupFields:
+          - name: zipcodesettings
+            type: builtIn
+            builtInConfig:
+              name: zipcodesettings
+    output: null

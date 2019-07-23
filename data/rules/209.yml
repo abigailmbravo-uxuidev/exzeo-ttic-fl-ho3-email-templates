@@ -1,15 +1,51 @@
 companyCode: TTIC
 state: FL
 product: HO3
-code: '209'
-displayText: underwritingAnswers.rented = Occasionally
-condition:
-  fields: []
-  expression: "underwritingAnswers.rented.answer == 'Occasionally'"
+name: UnderwritingAnswers.rented = Occasionally
+type: underwriting
 category: Underwriting Answers
-action: Underwriting Review
-internalMessage: Homes that are rented are not eligible.
-agentMessage: Homes that are rented are not eligible for this program.
-customerMessage: Homes that are rented are not eligible for this program.
+code: '209'
+documentFields:
+  - underwritingAnswers.rented.answer
+condition: "${it.document.underwritingAnswers.rented.answer === 'Occasionally'}"
 active: true
-canOverride: true
+lookupFields: []
+actions:
+  - transactionTypes:
+      - New Business
+    action: Underwriting Review
+    actionOutput:
+      internalMessage: Homes that are rented are not eligible.
+      agentMessage: Homes that are rented are not eligible for this program.
+      customerMessage: Homes that are rented are not eligible for this program.
+    canOverride: true
+    active: true
+tests:
+  - description: "New Business Homes that are rented action triggers when rented answer = 'Occasionally'"
+    input:
+      document:
+        transactionType: New Business
+        underwritingAnswers:
+          rented:
+            answer: Occasionally
+    output:
+      - action: Underwriting Review
+        displayText: UnderwritingAnswers.rented = Occasionally
+        category: Underwriting Answers
+        code: '209'
+        internalMessage: Homes that are rented are not eligible.
+        agentMessage: Homes that are rented are not eligible for this program.
+        customerMessage: Homes that are rented are not eligible for this program.
+        canOverride: true
+        active: true
+        fields:
+          - name: underwritingAnswers.rented.answer
+            value: Occasionally
+  - description: "New Business Homes that are rented action does not trigger when rented answer is not equal to 'Occasionally'"
+    input:
+      document:
+        transactionType: New Business
+        underwritingAnswers:
+          rented:
+            answer: Never
+    output: null
