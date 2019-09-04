@@ -1,6 +1,7 @@
 product: HO3
 name: 'CoverageLimits.personalProperty.amount between 0% and 25%'
 type: underwriting
+effectiveDate: 2017-08-01T04:00:00.000Z
 category: 'Coverages & Deductibles'
 code: '220'
 documentFields:

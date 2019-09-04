@@ -3,6 +3,7 @@ state: FL
 product: HO3
 name: Property.familyunits not 1-2
 type: underwriting
+effectiveDate: 2017-08-01T04:00:00.000Z
 category: Property
 code: '110'
 documentFields:

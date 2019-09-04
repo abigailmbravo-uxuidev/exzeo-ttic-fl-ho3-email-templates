@@ -1,6 +1,7 @@
 product: HO3
 name: 'Property.constructionType not in (Frame, Plastic Siding, Aluminum Siding, Masonry, Masonry Veneer, Superior)'
 type: underwriting
+effectiveDate: 2017-08-01T04:00:00.000Z
 category: Property
 code: '107'
 documentFields:

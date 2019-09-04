@@ -1,6 +1,7 @@
 product: HO3
 name: Set to Not In Force
 type: policyState
+effectiveDate: 2017-08-01T04:00:00.000Z
 code: '408'
 category: State Actions
 documentFields: []

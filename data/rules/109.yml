@@ -3,6 +3,7 @@ state: FL
 product: HO3
 name: UnderwritingAnswers.monthsOccupied = 0-3
 type: underwriting
+effectiveDate: 2017-08-01T04:00:00.000Z
 category: Underwriting Answers
 code: '109'
 documentFields:

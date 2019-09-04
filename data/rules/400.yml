@@ -1,6 +1,7 @@
 product: HO3
 name: Send Payment Invoice
 type: policyState
+effectiveDate: 2017-08-01T04:00:00.000Z
 code: '400'
 category: State Actions
 documentFields: []

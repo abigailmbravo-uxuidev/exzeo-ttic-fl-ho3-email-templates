@@ -3,6 +3,7 @@ state: FL
 product: HO3
 name: 'Coveragelimit.dwelling.amount < $125,000'
 type: underwriting
+effectiveDate: 2017-08-01T04:00:00.000Z
 category: 'Coverages & Deductibles'
 code: '104'
 documentFields:

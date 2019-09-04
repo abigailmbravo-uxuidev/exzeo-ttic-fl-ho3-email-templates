@@ -1,6 +1,7 @@
 product: HO3
 name: Cancel Policy
 type: policyState
+effectiveDate: 2017-08-01T04:00:00.000Z
 code: '410'
 category: State Actions
 documentFields: []

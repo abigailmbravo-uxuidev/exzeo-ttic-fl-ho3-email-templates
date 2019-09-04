@@ -1,6 +1,7 @@
 product: HO3
 name: Effective Date < Min for tblUnderwritingZipFilter
 type: underwriting
+effectiveDate: 2017-08-01T04:00:00.000Z
 category: Zip Code Settings
 code: '205'
 documentFields:

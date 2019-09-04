@@ -1,6 +1,7 @@
 product: HO3
 name: 'If coverageOptions.sinkholePerilCoverage.answer = False, then there should be no deductibles.sinkhole object'
 type: underwriting
+effectiveDate: 2017-08-01T04:00:00.000Z
 category: 'Coverages & Deductibles'
 code: '216'
 documentFields:
