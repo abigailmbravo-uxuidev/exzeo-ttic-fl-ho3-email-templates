@@ -17,7 +17,7 @@ const updateEmail = (updateAll) || (updateCommand && argv._.includes('email'));
 const service = require('exframe-service');
 service.init({ logger: require('./lib/logger'), timeout: 0 });
 
-const taskPool = require('./lib/task-pool').create();
+const taskPool = require('exframe-task-pool').create();
 taskPool.on('progress', ({ name, percentComplete }) => console.log(`${name}: ${percentComplete}`));
 
 const user = { userId: 'mpardue', userName: 'mpardue' };
