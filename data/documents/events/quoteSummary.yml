@@ -1,0 +1,43 @@
+companyCode: TTIC
+state: FL
+product: HO3
+name: quoteSummary
+active: true
+events:
+  - harmony.quote.summaryReady
+inputFields:
+  quoteNumber: ${it.input.quoteNumber}
+  toEmail: ${it.input.toEmail}
+  toName: ${it.input.toName}
+lookupFields:
+  - name: quoteDetails
+    type: rpc
+    rpcConfig:
+      routingKey: harmony.quote.getQuoteDetails
+      message:
+        quoteNumber: ${it.inputFields.quoteNumber}
+calculatedFields:
+  - name: quoteNumber
+    equation: ${it.lookupFields.quoteDetails.quote.quoteNumber}
+  - name: lastName
+    equation: ${it.lookupFields.quoteDetails.quote.policyHolders[0.lastName}
+  - name: agentEmail
+    equation: ${it.lookupFields.quoteDetails.agent.emailAddress}
+packetConfigs:
+  - packetName: agentQuoteSummary
+    args:
+      quoteNumber: ${it.inputFields.quoteNumber}
+emailConfigs:
+  - templateName: quoteEmail.html
+    fromName: TypTap
+    fromEmail: contact@typtap.com
+    subject: "TypTap Homeowners Quote # ${it.calculatedFields.quoteNumber} ${it.calculatedFields.lastName}"
+    body: ""
+    toEmail: ${Array.of(it.inputFields.toEmail)}
+    toName: ${it.inputFields.toName}
+    variables:
+      - key: QUOTE_NUMBER
+        value: ${it.calculatedFields.quoteNumber}
+      - key: POLICYHOLDER1_LASTNAME
+        value: ${it.calculatedFields.lastName}
+    attachments: ${it.pdfs}

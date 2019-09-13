@@ -1,0 +1,16 @@
+companyCode: TTIC
+state: FL
+product: HO3
+name: invoiceGenerate
+active: true
+events:
+  - harmony.policy.bound 
+  - harmony.policy.renewed
+inputFields:
+  policyTransactionId: ${it.input.policyTransactionId}
+lookupFields: []
+calculatedFields: []
+packetConfigs:
+  - packetName: invoice
+    args:
+      policyTransactionId: ${it.inputFields.policyTransactionId}
