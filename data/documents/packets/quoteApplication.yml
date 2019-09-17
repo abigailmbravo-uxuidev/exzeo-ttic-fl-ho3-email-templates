@@ -1,0 +1,33 @@
+companyCode: TTIC
+state: FL
+product: HO3
+name: quoteApplication
+inputFields:
+  quoteNumber: ${it.input.quoteNumber}
+lookupFields:
+  - name: quoteDetails
+    type: rpc
+    rpcConfig:
+      routingKey: harmony.quote.getQuoteDetails
+      message:
+        quoteNumber: ${it.inputFields.quoteNumber}
+calculatedFields:
+  - name: document
+    equation: ${it.lookupFields.quoteDetails.quote}
+packetConfig:
+  packetName: quoteApplication
+  allForms: true
+  combine: true
+  data:
+    quote: ${it.lookupFields.quoteDetails.quote}
+    rating: ${it.lookupFields.quoteDetails.quote.rating}
+    transactionType: Quote-Application
+    billPlan: ${it.lookupFields.quoteDetails.billPlan}
+    agency: ${it.lookupFields.quoteDetails.agency}
+    agent: ${it.lookupFields.quoteDetails.agent}
+    zipCodeSettings:
+      timezone: ${it.lookupFields.quoteDetails.quote.property.timezone}
+  packetType: quoteApplication
+  folderName: ${it.lookupFields.quoteDetails.quote.quoteNumber}
+documentIndex:
+  indexDocument: false

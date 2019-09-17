@@ -1,0 +1,35 @@
+companyCode: TTIC
+state: FL
+product: HO3
+name: decPage
+inputFields:
+  policyTransactionId: ${it.input.policyTransactionId}
+  transactionType: ${it.input.transactionType}
+lookupFields:
+  - name: policyDetails
+    type: rpc
+    rpcConfig:
+      routingKey: harmony.policy.retrievePolicyData
+      message:
+        policyTransactionId: ${it.inputFields.policyTransactionId}
+calculatedFields:
+  - name: transactionType
+    equation: ${it.lookupFields.policyDetails.transaction.transactionType}
+  - name: document
+    equation: ${it.lookupFields.policyDetails.transaction}
+packetConfig:
+  packetName: decPage
+  forms:
+    - name: Dec Page
+  isDec: true
+  data:
+    policy: ${it.lookupFields.policyDetails.transaction}
+    transactionDetails: "${(!['new business' 'renewal'].includes(it.calculatedFields.transactionType.toLowerCase())) ? it.lookupFields.policyDetails.transactionDetails: null}"
+    transactionType: ${it.inputFields.transactionType || it.calculatedFields.transactionType}
+    agency: ${it.lookupFields.policyDetails.agency}
+    agent: ${it.lookupFields.policyDetails.agent}
+  packetType: dec
+  folderName: ${it.lookupFields.policyDetails.transaction.policyNumber}
+  combine: true
+documentIndex:
+  indexDocument: true
