@@ -3,9 +3,7 @@ state: FL
 product: HO3
 name: invoiceGenerate
 active: true
-events:
-  - harmony.policy.bound 
-  - harmony.policy.renewed
+events: []
 inputFields:
   policyTransactionId: ${it.input.policyTransactionId}
 lookupFields: []
