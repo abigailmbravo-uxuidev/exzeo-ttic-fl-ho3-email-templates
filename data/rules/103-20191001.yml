@@ -1,0 +1,88 @@
+companyCode: TTIC
+state: FL
+product: HO3
+name: 'Coveragelimit.dwelling.amount > $1,300,000'
+type: underwriting
+effectiveDate: 2019-10-01T04:00:00.000Z
+category: 'Coverages & Deductibles'
+code: '103'
+documentFields:
+  - coverageLimits.dwelling.amount
+condition: '${it.document.coverageLimits.dwelling.amount > 1300000}'
+active: true
+lookupFields: []
+actions:
+  - transactionTypes:
+      - New Business
+    action: Fatal Error
+    actionOutput:
+      internalMessage: 'Dwelling limit cannot be greater than $1,300,000. Please update the value to continue or additional review is required.'
+      agentMessage: 'The building replacement cost value for this property exceeds our maximum dwelling amount of $1,300,000.'
+      customerMessage: 'The building replacement cost value for this property exceeds our maximum dwelling amount of $1,300,000.'
+    canOverride: false
+    active: true
+  - transactionTypes:
+      - Renewal
+    action: Underwriting Review
+    actionOutput:
+      internalMessage: 'Dwelling limit cannot be greater than $1,300,000. Please update the value to continue or additional review is required.'
+      agentMessage: 'The building replacement cost value for this property exceeds our maximum dwelling amount of $1,300,000.'
+      customerMessage: 'The building replacement cost value for this property exceeds our maximum dwelling amount of $1,300,000.'
+    canOverride: true
+    active: true
+tests:
+  - description: 'New Business exception triggers when dwelling > 1300000'
+    input:
+      document:
+        transactionType: New Business
+        coverageLimits:
+          dwelling:
+            amount: 1300001
+    output:
+      - action: Fatal Error
+        displayText: 'Coveragelimit.dwelling.amount > $1,200,000'
+        category: 'Coverages & Deductibles'
+        code: '103'
+        internalMessage: 'Dwelling limit cannot be greater than $1,300,000. Please update the value to continue or additional review is required.'
+        agentMessage: 'The building replacement cost value for this property exceeds our maximum dwelling amount of $1,300,000.'
+        customerMessage: 'The building replacement cost value for this property exceeds our maximum dwelling amount of $1,300,000.'
+        canOverride: false
+        active: true
+        fields:
+          - name: coverageLimits.dwelling.amount
+            value: 1300001
+  - description: 'Renewal exception triggers when dwelling > 1300000'
+    input:
+      document:
+        transactionType: Renewal
+        coverageLimits:
+          dwelling:
+            amount: 1500000
+    output:
+      - action: Underwriting Review
+        displayText: 'Coveragelimit.dwelling.amount > $1,300,000'
+        category: 'Coverages & Deductibles'
+        code: '103'
+        internalMessage: 'Dwelling limit cannot be greater than $1,300,000. Please update the value to continue or additional review is required.'
+        agentMessage: 'The building replacement cost value for this property exceeds our maximum dwelling amount of $1,300,000.'
+        customerMessage: 'The building replacement cost value for this property exceeds our maximum dwelling amount of $1,300,000.'
+        canOverride: true
+        active: true
+        fields:
+          - name: coverageLimits.dwelling.amount
+            value: 1500000
+  - description: New Business exception does not trigger when dwelling <= 1300000
+    input:
+      document:
+        transactionType: New Business
+        coverageLimits:
+          dwelling:
+            amount: 1300000
+    output: null
+  - description: Renewal exception does not trigger when dwelling <= 1300000
+    input:
+      transactionType: Renewal
+      coverageLimits:
+        dwelling:
+          amount: 1300000
+    output: null
