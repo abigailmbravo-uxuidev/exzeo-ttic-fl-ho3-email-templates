@@ -1,0 +1,88 @@
+product: HO3
+name: Cancel Policy
+type: policyState
+effectiveDate: 2017-08-01T04:00:00.000Z
+code: '410'
+category: State Actions
+documentFields: []
+condition: "${(it.document.transaction.status === 'Pending Voluntary Cancellation' || it.document.transaction.status === 'Pending Underwriting Cancellation' || it.document.transaction.status === 'Pending Underwriting Non-Renewal') && it.document.transaction.cancelNoticeSent === true}"
+active: true
+actions:
+  - active: true
+    action: generateCancelTransaction
+    actionOutput:
+      date: '${moment.max([moment.utc().second(0).millisecond(0), moment.utc(it.document.transaction.cancelDate)]).toISOString()}'
+    canOverride: false
+tests:
+  - description: "generateCancelTransaction action triggers when policy is in 'Pending Voluntary Cancellation' status and cancel notice has been sent."
+    input:
+      document:
+        transaction:
+          status: Pending Voluntary Cancellation
+          cancelDate: '${moment.utc().second(0).millisecond(0)}'
+          cancelNoticeSent: true
+    output:
+      - active: true
+        action: generateCancelTransaction
+        category: State Actions
+        displayText: Cancel Policy
+        canOverride: false
+        code: '410'
+        fields: []
+        date: '${moment.utc().second(0).millisecond(0).toISOString()}'
+  - description: "generateCancelTransaction action triggers when policy is in 'Pending Underwriting Cancellation' status and cancel notice has been sent."
+    input:
+      document:
+        transaction:
+          status: Pending Underwriting Cancellation
+          cancelDate: '${moment.utc().second(0).millisecond(0)}'
+          cancelNoticeSent: true
+    output:
+      - active: true
+        action: generateCancelTransaction
+        category: State Actions
+        displayText: Cancel Policy
+        canOverride: false
+        code: '410'
+        fields: []
+        date: '${moment.utc().second(0).millisecond(0).toISOString()}'
+  - description: "generateCancelTransaction action triggers when policy is in 'Pending Underwriting Non-Renewal' status and cancel notice has been sent."
+    input:
+      document:
+        transaction:
+          status: Pending Underwriting Cancellation
+          cancelDate: '${moment.utc().second(0).millisecond(0)}'
+          cancelNoticeSent: true
+    output:
+      - active: true
+        action: generateCancelTransaction
+        category: State Actions
+        displayText: Cancel Policy
+        canOverride: false
+        code: '410'
+        fields: []
+        date: '${moment.utc().second(0).millisecond(0).toISOString()}'
+  - description: "generateCancelTransaction action triggers on cancel Date when policy is in 'Pending Voluntary Cancellation' status and cancel date is more than 5 hours from now and cancel notice has been sent."
+    input:
+      document:
+        transaction:
+          status: Pending Voluntary Cancellation
+          cancelDate: "${moment.utc().second(0).millisecond(0).add(6, 'hours')}"
+          cancelNoticeSent: true
+    output:
+      - active: true
+        action: generateCancelTransaction
+        category: State Actions
+        displayText: Cancel Policy
+        canOverride: false
+        code: '410'
+        fields: []
+        date: "${moment.utc().second(0).millisecond(0).add(6, 'hours').toISOString()}"
+  - description: generateCancelTransaction action does not triggerwhen policy is not in a pending cancel status.
+    input:
+      document:
+        transaction:
+          status: In Force
+          cancelDate: null
+          cancelNoticeSent: true
+    output: null

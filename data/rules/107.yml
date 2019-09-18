@@ -1,0 +1,110 @@
+product: HO3
+name: 'Property.constructionType not in (Frame, Plastic Siding, Aluminum Siding, Masonry, Masonry Veneer, Superior)'
+type: underwriting
+effectiveDate: 2017-08-01T04:00:00.000Z
+category: Property
+code: '107'
+documentFields:
+  - property.constructionType
+condition: "${!includes(['FRAME','PLASTIC SIDING','ALUMINUM SIDING','MASONRY','MASONRY VENEER','SUPERIOR'], upperCase(it.document.property.constructionType))}"
+active: true
+lookupFields: []
+actions:
+  - transactionTypes:
+      - New Business
+    action: Fatal Error
+    actionOutput:
+      internalMessage: Construction Type for this property is not valid.
+      agentMessage: Construction Type for this property is not valid.
+      customerMessage: TypTap Homeowners product is not available for this property.
+    canOverride: false
+    active: true
+  - transactionTypes:
+      - Renewal
+    action: Underwriting Review
+    actionOutput:
+      internalMessage: Construction Type for this property is not valid.
+      agentMessage: Construction Type for this property is not valid.
+      customerMessage: TypTap Homeowners product is not available for this property.
+    canOverride: true
+    active: true
+tests:
+  - description: 'Property Construction Type New Business action triggers when it is not one of (Frame, Plastic Siding, Aluminum Siding, Masonry, Masonry Veneer, Superior)'
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        product: HO3
+        transactionType: New Business
+        property:
+          constructionType: WOOD
+        lookupFields: []
+    output:
+      - action: Fatal Error
+        displayText: 'Property.constructionType not in (Frame, Plastic Siding, Aluminum Siding, Masonry, Masonry Veneer, Superior)'
+        category: Property
+        code: '107'
+        internalMessage: Construction Type for this property is not valid.
+        agentMessage: Construction Type for this property is not valid.
+        customerMessage: TypTap Homeowners product is not available for this property.
+        canOverride: false
+        active: true
+        fields:
+          - name: property.constructionType
+            value: WOOD
+  - description: 'Renewal Property Construction Type Renewal action triggers when it is not one of (Frame, Plastic Siding, Aluminum Siding, Masonry, Masonry Veneer, Superior)'
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        product: HO3
+        transactionType: Renewal
+        property:
+          constructionType: WOOD
+        lookupFields: []
+    output:
+      - action: Underwriting Review
+        displayText: 'Property.constructionType not in (Frame, Plastic Siding, Aluminum Siding, Masonry, Masonry Veneer, Superior)'
+        category: Property
+        code: '107'
+        internalMessage: Construction Type for this property is not valid.
+        agentMessage: Construction Type for this property is not valid.
+        customerMessage: TypTap Homeowners product is not available for this property.
+        canOverride: true
+        active: true
+        fields:
+          - name: property.constructionType
+            value: WOOD
+  - description: 'Property Construction Type New Business action does not trigger when it is one of (Frame, Plastic Siding, Aluminum Siding, Masonry, Masonry Veneer, Superior)'
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        product: HO3
+        transactionType: New Business
+        property:
+          constructionType: FRAME
+        lookupFields: []
+    output: null
+  - description: 'Property Construction Type New Business action does not trigger when it is one of (Frame, Plastic Siding, Aluminum Siding, Masonry, Masonry Veneer, Superior) when not submitted as upper case'
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        product: HO3
+        transactionType: New Business
+        property:
+          constructionType: frame
+        lookupFields: []
+    output: null
+  - description: 'Property Construction Type Renewal action does not trigger when it is not one of (Frame, Plastic Siding, Aluminum Siding, Masonry, Masonry Veneer, Superior)'
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        product: HO3
+        transactionType: Renewal
+        property:
+          constructionType: MASONRY
+        lookupFields: []
+    output: null

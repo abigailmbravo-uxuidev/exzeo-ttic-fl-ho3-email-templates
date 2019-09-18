@@ -1,0 +1,74 @@
+product: HO3
+name: Zip Code is Closed
+type: underwriting
+effectiveDate: 2017-08-01T04:00:00.000Z
+category: Zip Code Settings
+code: '225'
+documentFields:
+  - lookupFields.zipcodesettings.availableSlots
+condition: '${it.document.lookupFields.zipcodesettings.availableSlots < -99}'
+active: true
+lookupFields:
+  - name: zipcodesettings
+    type: builtIn
+    builtInConfig:
+      name: zipcodesettings
+actions:
+  - transactionTypes:
+      - New Business
+    action: Fatal Error
+    actionOutput:
+      internalMessage: Property location zip code is closed for this product type.
+      agentMessage: Property location zip code is closed for this product type.
+      customerMessage: TypTap Homeowners product is not available for this property.
+    canOverride: false
+    active: true
+tests:
+  - description: New Business action triggers when Zip Code is Closed
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        zip: '33540'
+        product: HO3
+        transactionType: New Business
+        property:
+          id: ''
+          physicalAddress:
+            zip: '33540'
+        lookupFields:
+          - name: zipcodesettings
+            type: builtIn
+            builtInConfig:
+              name: zipcodesettings
+    output:
+      - action: Fatal Error
+        displayText: Zip Code is Closed
+        category: Zip Code Settings
+        code: '225'
+        internalMessage: Property location zip code is closed for this product type.
+        agentMessage: Property location zip code is closed for this product type.
+        customerMessage: TypTap Homeowners product is not available for this property.
+        canOverride: false
+        active: true
+        fields:
+          - name: lookupFields.zipcodesettings.availableSlots
+            value: -100
+  - description: New Business action does not trigger when Zip Code is not Closed
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        zip: '32025'
+        product: HO3
+        transactionType: New Business
+        property:
+          id: ''
+          physicalAddress:
+            zip: '32025'
+        lookupFields:
+          - name: zipcodesettings
+            type: builtIn
+            builtInConfig:
+              name: zipcodesettings
+    output: null

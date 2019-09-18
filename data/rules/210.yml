@@ -1,0 +1,52 @@
+companyCode: TTIC
+state: FL
+product: HO3
+name: UnderwritingAnswers.business = Yes
+type: underwriting
+effectiveDate: 2017-08-01T04:00:00.000Z
+category: Underwriting Answers
+code: '210'
+documentFields:
+  - underwritingAnswers.business.answer
+condition: "${it.document.underwritingAnswers.business.answer === 'Yes'}"
+active: true
+lookupFields: []
+actions:
+  - transactionTypes:
+      - New Business
+    action: Underwriting Review
+    actionOutput:
+      internalMessage: Properties where a business is conducted are not eligible for this program.
+      agentMessage: Properties where a business is conducted are not eligible for this program.
+      customerMessage: Properties where a business is conducted are not eligible for this program.
+    canOverride: true
+    active: true
+tests:
+  - description: "New Business Properties where a business is conducted action triggers when business answer is 'Yes'"
+    input:
+      document:
+        transactionType: New Business
+        underwritingAnswers:
+          business:
+            answer: 'Yes'
+    output:
+      - action: Underwriting Review
+        displayText: UnderwritingAnswers.business = Yes
+        category: Underwriting Answers
+        code: '210'
+        internalMessage: Properties where a business is conducted are not eligible for this program.
+        agentMessage: Properties where a business is conducted are not eligible for this program.
+        customerMessage: Properties where a business is conducted are not eligible for this program.
+        canOverride: true
+        active: true
+        fields:
+          - name: underwritingAnswers.business.answer
+            value: 'Yes'
+  - description: "New Business Properties where a business is conducted action does not trigger when business answer is not equal to 'Yes'"
+    input:
+      document:
+        transactionType: New Business
+        underwritingAnswers:
+          business:
+            answer: 'No'
+    output: null

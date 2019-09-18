@@ -1,0 +1,3 @@
+default:
+  data:
+    mongoUrl: 'MONGO_URL'

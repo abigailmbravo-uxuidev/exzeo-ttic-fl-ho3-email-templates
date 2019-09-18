@@ -1,0 +1,52 @@
+companyCode: TTIC
+state: FL
+product: HO3
+name: underwritingAnswers.previousClaims  = Unknown
+type: underwriting
+effectiveDate: 2017-08-01T04:00:00.000Z
+category: Underwriting Answers
+code: '201'
+documentFields:
+  - underwritingAnswers.previousClaims.answer
+condition: "${it.document.underwritingAnswers.previousClaims.answer === 'Unknown'}"
+active: true
+lookupFields: []
+actions:
+  - transactionTypes:
+      - New Business
+    action: Underwriting Review
+    actionOutput:
+      internalMessage: '"Unknown" was selected for "When was the last claim filed?".  Additional review is required.'
+      agentMessage: '"Unknown" was selected for "When was the last claim filed?" Underwriting review is required.'
+      customerMessage: 'Due to previous claims history, underwriting review is required.'
+    canOverride: true
+    active: true
+tests:
+  - description: New Business Underwriting Answers for Previous Claims action triggers when set to Unknown
+    input:
+      document:
+        transactionType: New Business
+        underwritingAnswers:
+          previousClaims:
+            answer: Unknown
+    output:
+      - action: Underwriting Review
+        displayText: underwritingAnswers.previousClaims  = Unknown
+        category: Underwriting Answers
+        code: '201'
+        internalMessage: '"Unknown" was selected for "When was the last claim filed?".  Additional review is required.'
+        agentMessage: '"Unknown" was selected for "When was the last claim filed?" Underwriting review is required.'
+        customerMessage: 'Due to previous claims history, underwriting review is required.'
+        canOverride: true
+        active: true
+        fields:
+          - name: underwritingAnswers.previousClaims.answer
+            value: Unknown
+  - description: New Business Underwriting Answers for Previous Claims action does not trigger when not set to Unknown
+    input:
+      document:
+        transactionType: New Business
+        underwritingAnswers:
+          previousClaims:
+            answer: 'No'
+    output: null

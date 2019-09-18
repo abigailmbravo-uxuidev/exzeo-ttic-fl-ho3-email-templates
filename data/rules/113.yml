@@ -1,0 +1,88 @@
+companyCode: TTIC
+state: FL
+product: HO3
+name: 'Personal Property limit cannot be great than $500,000'
+type: underwriting
+effectiveDate: 2017-08-01T04:00:00.000Z
+category: 'Coverages & Deductibles'
+code: '113'
+documentFields:
+  - coverageLimits.personalProperty.amount
+condition: '${it.document.coverageLimits.personalProperty.amount > 500000}'
+active: true
+lookupFields: []
+actions:
+  - transactionTypes:
+      - New Business
+    action: Fatal Error
+    actionOutput:
+      internalMessage: 'Personal Property limit cannot be great than 500,000, please edit value to obtain a  quote.'
+      agentMessage: 'Personal Property limit cannot be great than 500,000, please edit value to obtain a  quote.'
+      customerMessage: 'Personal Property limit cannot be great than 500,000, please edit value to obtain a  quote.'
+    canOverride: false
+    active: true
+  - transactionTypes:
+      - Renewal
+    action: System Action
+    actionOutput:
+      set:
+        target: coverageLimits.personalProperty.amount
+        value: '${500000}'
+    canOverride: false
+    active: true
+tests:
+  - description: 'New Business Personal Property limit action triggers when greater than $500,000'
+    input:
+      document:
+        transactionType: New Business
+        coverageLimits:
+          personalProperty:
+            amount: 500001
+    output:
+      - action: Fatal Error
+        displayText: 'Personal Property limit cannot be great than $500,000'
+        category: 'Coverages & Deductibles'
+        code: '113'
+        internalMessage: 'Personal Property limit cannot be great than 500,000, please edit value to obtain a  quote.'
+        agentMessage: 'Personal Property limit cannot be great than 500,000, please edit value to obtain a  quote.'
+        customerMessage: 'Personal Property limit cannot be great than 500,000, please edit value to obtain a  quote.'
+        canOverride: false
+        active: true
+        fields:
+          - name: coverageLimits.personalProperty.amount
+            value: 500001
+  - description: 'Renewal action triggers when Personal property limit greater than $500,000'
+    input:
+      document:
+        transactionType: Renewal
+        coverageLimits:
+          personalProperty:
+            amount: 500001
+    output:
+      - active: true
+        action: System Action
+        category: 'Coverages & Deductibles'
+        displayText: 'Personal Property limit cannot be great than $500,000'
+        canOverride: false
+        code: '113'
+        fields:
+          - name: coverageLimits.personalProperty.amount
+            value: 500001
+        set:
+          target: coverageLimits.personalProperty.amount
+          value: 500000
+  - description: 'New Business Personal Property limit action does not trigger when not greater than $500,000'
+    input:
+      document:
+        transactionType: New Business
+        coverageLimits:
+          personalProperty:
+            amount: 500000
+    output: null
+  - description: 'Renewal action does not trigger when Personal property limit is not greater than $500,000'
+    input:
+      transactionType: Renewal
+      coverageLimits:
+        personalProperty:
+          amount: 500000
+    output: null

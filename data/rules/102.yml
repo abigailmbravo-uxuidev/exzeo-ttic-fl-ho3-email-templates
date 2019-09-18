@@ -1,0 +1,141 @@
+product: HO3
+name: Property in Do Not Write List
+type: underwriting
+effectiveDate: 2017-08-01T04:00:00.000Z
+category: Property
+code: '102'
+documentFields:
+  - property.id
+  - lookupFields.propertysettings.propertyId
+  - lookupFields.propertysettings.status
+condition: "${(it.document.property.id === it.document.lookupFields.propertysettings.propertyId) && (it.document.lookupFields.propertysettings.status === 'ineligible')}"
+active: true
+lookupFields:
+  - name: propertysettings
+    type: builtIn
+    builtInConfig:
+      name: propertysettings
+actions:
+  - transactionTypes:
+      - New Business
+    action: Fatal Error
+    actionOutput:
+      internalMessage: Address is not eligible for a policy based on the underwriting information.
+      agentMessage: Address is not eligible for a policy based on the underwriting information.
+      customerMessage: TypTap Homeowners product is not available for this property.
+    canOverride: false
+    active: true
+  - transactionTypes:
+      - Renewal
+    action: Underwriting Review
+    actionOutput:
+      internalMessage: Address is not eligible for a policy based on the underwriting information.
+      agentMessage: Address is not eligible for a policy based on the underwriting information.
+      customerMessage: TypTap Homeowners product is not available for this property.
+    canOverride: true
+    active: true
+tests:
+  - description: Property in do not write list action triggers when property is found
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        product: HO3
+        transactionType: New Business
+        id: 12086BDE590F0128B
+        property:
+          id: 12086BDE590F0128B
+          physicalAddress:
+            zip: ''
+        lookupFields:
+          - name: propertysettings
+            type: builtIn
+            builtInConfig:
+              name: propertysettings
+    output:
+      - active: true
+        action: Fatal Error
+        displayText: Property in Do Not Write List
+        category: Property
+        code: '102'
+        internalMessage: Address is not eligible for a policy based on the underwriting information.
+        agentMessage: Address is not eligible for a policy based on the underwriting information.
+        customerMessage: TypTap Homeowners product is not available for this property.
+        canOverride: false
+        fields:
+          - name: property.id
+            value: 12086BDE590F0128B
+          - name: lookupFields.propertysettings.propertyId
+            value: 12086BDE590F0128B
+          - name: lookupFields.propertysettings.status
+            value: ineligible
+  - description: property in do not write list action does not trigger when property is not found
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        product: HO3
+        transactionType: New Business
+        id: 12086BDE590F0128B1
+        property:
+          id: 12086BDE590F0128B1
+          physicalAddress:
+            zip: ''
+        lookupFields:
+          - name: propertysettings
+            type: builtIn
+            builtInConfig:
+              name: propertysettings
+    output: null
+  - description: Property in do not write list action triggers when property is found
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        product: HO3
+        transactionType: Renewal
+        id: 12086BDE590F0128B
+        property:
+          id: 12086BDE590F0128B
+          physicalAddress:
+            zip: ''
+        lookupFields:
+          - name: propertysettings
+            type: builtIn
+            builtInConfig:
+              name: propertysettings
+    output:
+      - active: true
+        action: Underwriting Review
+        displayText: Property in Do Not Write List
+        category: Property
+        code: '102'
+        internalMessage: Address is not eligible for a policy based on the underwriting information.
+        agentMessage: Address is not eligible for a policy based on the underwriting information.
+        customerMessage: TypTap Homeowners product is not available for this property.
+        canOverride: true
+        fields:
+          - name: property.id
+            value: 12086BDE590F0128B
+          - name: lookupFields.propertysettings.propertyId
+            value: 12086BDE590F0128B
+          - name: lookupFields.propertysettings.status
+            value: ineligible
+  - description: property in do not write list action does not trigger when property is not found
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        product: HO3
+        transactionType: Renewal
+        id: 12086BDE590F0128B1
+        property:
+          id: 12086BDE590F0128B1
+          physicalAddress:
+            zip: ''
+        lookupFields:
+          - name: propertysettings
+            type: builtIn
+            builtInConfig:
+              name: propertysettings
+    output: null

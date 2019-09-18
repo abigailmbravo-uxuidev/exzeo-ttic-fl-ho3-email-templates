@@ -1,0 +1,86 @@
+product: HO3
+name: Building Limit Not Between dwelling.minAmount and dwelling.maxAmount
+type: underwriting
+effectiveDate: 2017-08-01T04:00:00.000Z
+category: 'Coverages & Deductibles'
+code: '203'
+documentFields:
+  - coverageLimits.dwelling.amount
+  - coverageLimits.dwelling.minAmount
+  - coverageLimits.dwelling.maxAmount
+condition: '${(it.document.coverageLimits.dwelling.amount < it.document.coverageLimits.dwelling.minAmount) || (it.document.coverageLimits.dwelling.amount > it.document.coverageLimits.dwelling.maxAmount)}'
+active: true
+lookupFields: []
+actions:
+  - transactionTypes:
+      - New Business
+    action: Underwriting Review
+    actionOutput:
+      internalMessage: The building replacement cost value for this property falls outside of our allowable range. Binding requires a RCE and underwriting review.
+      agentMessage: The building replacement cost value for this property falls outside of our allowable range. Binding requires a RCE and underwriting review.
+      customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
+    canOverride: true
+    active: true
+tests:
+  - description: New Business Building limit action triggers greater than Dwelling Max Amount
+    input:
+      document:
+        transactionType: New Business
+        coverageLimits:
+          dwelling:
+            amount: 555555
+            minAmount: 99000
+            maxAmount: 501000
+    output:
+      - action: Underwriting Review
+        displayText: Building Limit Not Between dwelling.minAmount and dwelling.maxAmount
+        category: 'Coverages & Deductibles'
+        code: '203'
+        internalMessage: The building replacement cost value for this property falls outside of our allowable range. Binding requires a RCE and underwriting review.
+        agentMessage: The building replacement cost value for this property falls outside of our allowable range. Binding requires a RCE and underwriting review.
+        customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
+        canOverride: true
+        active: true
+        fields:
+          - name: coverageLimits.dwelling.amount
+            value: 555555
+          - name: coverageLimits.dwelling.minAmount
+            value: 99000
+          - name: coverageLimits.dwelling.maxAmount
+            value: 501000
+  - description: New Business Building limit action triggers when less than Dwelling Min Amount
+    input:
+      document:
+        transactionType: New Business
+        coverageLimits:
+          dwelling:
+            amount: 88888
+            minAmount: 99000
+            maxAmount: 501000
+    output:
+      - action: Underwriting Review
+        displayText: Building Limit Not Between dwelling.minAmount and dwelling.maxAmount
+        category: 'Coverages & Deductibles'
+        code: '203'
+        internalMessage: The building replacement cost value for this property falls outside of our allowable range. Binding requires a RCE and underwriting review.
+        agentMessage: The building replacement cost value for this property falls outside of our allowable range. Binding requires a RCE and underwriting review.
+        customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
+        canOverride: true
+        active: true
+        fields:
+          - name: coverageLimits.dwelling.amount
+            value: 88888
+          - name: coverageLimits.dwelling.minAmount
+            value: 99000
+          - name: coverageLimits.dwelling.maxAmount
+            value: 501000
+  - description: New Business Building limit action does not trigger when between Dwelling Min Amount and Dwelling Max Amount
+    input:
+      document:
+        transactionType: New Business
+        coverageLimits:
+          dwelling:
+            amount: 202020
+            minAmount: 101010
+            maxAmount: 203030
+    output: null

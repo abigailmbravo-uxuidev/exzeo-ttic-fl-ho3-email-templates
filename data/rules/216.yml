@@ -1,0 +1,120 @@
+product: HO3
+name: 'If coverageOptions.sinkholePerilCoverage.answer = False, then there should be no deductibles.sinkhole object'
+type: underwriting
+effectiveDate: 2017-08-01T04:00:00.000Z
+category: 'Coverages & Deductibles'
+code: '216'
+documentFields:
+  - coverageOptions.sinkholePerilCoverage.answer
+  - deductibles.sinkhole.amount
+condition: '${it.document.coverageOptions.sinkholePerilCoverage.answer === false && it.document.deductibles.sinkhole}'
+active: true
+lookupFields: []
+actions:
+  - transactionTypes:
+      - New Business
+    action: Underwriting Review
+    actionOutput:
+      internalMessage: 'If no sinkhole coverage is selected, then there should be no sinkhole deductible.'
+      agentMessage: 'If no sinkhole coverage is selected, then there should be no sinkhole deductible.'
+      customerMessage: 'If no sinkhole coverage is selected, then there should be no sinkhole deductible.'
+    canOverride: false
+    active: true
+  - transactionTypes:
+      - Renewal
+    action: Fatal Error
+    actionOutput:
+      internalMessage: 'If no sinkhole coverage is selected, then there should be no sinkhole deductible.'
+      agentMessage: 'If no sinkhole coverage is selected, then there should be no sinkhole deductible.'
+      customerMessage: 'If no sinkhole coverage is selected, then there should be no sinkhole deductible.'
+    canOverride: false
+    active: true
+tests:
+  - description: 'New Business Sinkhole Deductible action triggers if Sinkhole Deductible exists and Sinkhole Coverage is not selected '
+    input:
+      document:
+        transactionType: New Business
+        coverageOptions:
+          sinkholePerilCoverage:
+            answer: false
+        deductibles:
+          sinkhole:
+            amount: 10000
+    output:
+      - action: Underwriting Review
+        displayText: 'If coverageOptions.sinkholePerilCoverage.answer = False, then there should be no deductibles.sinkhole object'
+        category: 'Coverages & Deductibles'
+        code: '216'
+        internalMessage: 'If no sinkhole coverage is selected, then there should be no sinkhole deductible.'
+        agentMessage: 'If no sinkhole coverage is selected, then there should be no sinkhole deductible.'
+        customerMessage: 'If no sinkhole coverage is selected, then there should be no sinkhole deductible.'
+        canOverride: false
+        active: true
+        fields:
+          - name: coverageOptions.sinkholePerilCoverage.answer
+            value: false
+          - name: deductibles.sinkhole.amount
+            value: 10000
+  - description: 'Renewal Sinkhole Deductible action triggers if Sinkhole Deductible exists and Sinkhole Coverage is not selected '
+    input:
+      document:
+        transactionType: Renewal
+        coverageOptions:
+          sinkholePerilCoverage:
+            answer: false
+        deductibles:
+          sinkhole:
+            amount: 10000
+    output:
+      - action: Fatal Error
+        displayText: 'If coverageOptions.sinkholePerilCoverage.answer = False, then there should be no deductibles.sinkhole object'
+        category: 'Coverages & Deductibles'
+        code: '216'
+        internalMessage: 'If no sinkhole coverage is selected, then there should be no sinkhole deductible.'
+        agentMessage: 'If no sinkhole coverage is selected, then there should be no sinkhole deductible.'
+        customerMessage: 'If no sinkhole coverage is selected, then there should be no sinkhole deductible.'
+        canOverride: false
+        active: true
+        fields:
+          - name: coverageOptions.sinkholePerilCoverage.answer
+            value: false
+          - name: deductibles.sinkhole.amount
+            value: 10000
+  - description: 'New Business Sinkhole Deductible action does not trigger if Sinkhole Deductible does not exist and Sinkhole Coverage is not selected '
+    input:
+      document:
+        transactionType: New Business
+        coverageOptions:
+          sinkholePerilCoverage:
+            answer: false
+    output: null
+  - description: 'Renewal Sinkhole Deductible action does not trigger if Sinkhole Deductible does not exist and Sinkhole Coverage is not selected '
+    input:
+      document:
+        transactionType: Renewal
+        coverageOptions:
+          sinkholePerilCoverage:
+            answer: false
+    output: null
+  - description: 'New Business Sinkhole Deductible action does not trigger if Sinkhole Deductible exists and Sinkhole Coverage is selected '
+    input:
+      document:
+        transactionType: New Business
+        coverageOptions:
+          sinkholePerilCoverage:
+            answer: true
+        deductibles:
+          sinkhole:
+            amount: 10000
+    output: null
+  - description: 'Renewal Sinkhole Deductible action does not trigger if Sinkhole Deductible exists and Sinkhole Coverage is selected '
+    input:
+      document:
+        transactionType: Renewal
+        coverageOptions:
+          sinkholePerilCoverage:
+            answer: true
+        deductibles:
+          sinkhole:
+            amount: 10000
+    output: null

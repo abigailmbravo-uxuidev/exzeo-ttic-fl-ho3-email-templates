@@ -1,0 +1,100 @@
+product: HO3
+name: 'Other structures > 70% of Coverage A'
+type: underwriting
+effectiveDate: 2017-08-01T04:00:00.000Z
+category: 'Coverages & Deductibles'
+code: '111'
+documentFields:
+  - coverageLimits.otherStructures.amount
+  - coverageLimits.dwelling.amount
+condition: '${it.document.coverageLimits.otherStructures.amount > round(0.7 * it.document.coverageLimits.dwelling.amount, 0)}'
+active: true
+lookupFields: []
+actions:
+  - transactionTypes:
+      - New Business
+    action: Fatal Error
+    actionOutput:
+      internalMessage: 'Other structures limit cannot exceed 70% of the dwelling limit'
+      agentMessage: 'Other structures limit cannot exceed 70% of the dwelling limit'
+      customerMessage: 'Other structures limit cannot exceed 70% of the dwelling limit'
+    canOverride: false
+    active: true
+  - transactionTypes:
+      - Renewal
+    action: System Action
+    actionOutput:
+      set:
+        target: coverageLimits.otherStructures.amount
+        value: '${round(0.7 * it.document.coverageLimits.dwelling.amount, 0)}'
+    canOverride: false
+    active: true
+tests:
+  - description: 'New Business action triggers when other structures > 70% of Coverage A'
+    input:
+      document:
+        transactionType: New Business
+        coverageLimits:
+          dwelling:
+            amount: 100033
+          otherStructures:
+            amount: 70077
+    output:
+      - action: Fatal Error
+        displayText: 'Other structures > 70% of Coverage A'
+        category: 'Coverages & Deductibles'
+        code: '111'
+        internalMessage: 'Other structures limit cannot exceed 70% of the dwelling limit'
+        agentMessage: 'Other structures limit cannot exceed 70% of the dwelling limit'
+        customerMessage: 'Other structures limit cannot exceed 70% of the dwelling limit'
+        canOverride: false
+        active: true
+        fields:
+          - name: coverageLimits.otherStructures.amount
+            value: 70077
+          - name: coverageLimits.dwelling.amount
+            value: 100033
+  - description: 'Renewal action triggers when other structures > 70% of Coverage A'
+    input:
+      document:
+        transactionType: Renewal
+        coverageLimits:
+          dwelling:
+            amount: 100007
+          otherStructures:
+            amount: 70033
+    output:
+      - action: System Action
+        displayText: 'Other structures > 70% of Coverage A'
+        category: 'Coverages & Deductibles'
+        code: '111'
+        canOverride: false
+        set:
+          target: coverageLimits.otherStructures.amount
+          value: 70005
+        active: true
+        fields:
+          - name: coverageLimits.otherStructures.amount
+            value: 70033
+          - name: coverageLimits.dwelling.amount
+            value: 100007
+  - description: 'New Business action does not trigger when other structures is not > 70% of Coverage A'
+    input:
+      document:
+        transactionType: New Business
+        coverageLimits:
+          dwelling:
+            amount: 100333
+          otherStructures:
+            amount: 50005
+    output: null
+  - description: 'Renewal action does not trigger when other structures is not > 70% of Coverage A'
+    input:
+      document:
+        transactionType: Renewal
+        coverageLimits:
+          dwelling:
+            amount: 100333
+          otherStructures:
+            amount: 50005
+    output: null

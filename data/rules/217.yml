@@ -1,0 +1,57 @@
+product: HO3
+name: 'Other structures > 10% of Coverage A'
+type: underwriting
+effectiveDate: 2017-08-01T04:00:00.000Z
+category: 'Coverages & Deductibles'
+code: '217'
+documentFields:
+  - coverageLimits.otherStructures.amount
+  - coverageLimits.dwelling.amount
+condition: '${it.document.coverageLimits.otherStructures.amount > (0.1 * it.document.coverageLimits.dwelling.amount)}'
+active: true
+lookupFields: []
+actions:
+  - transactionTypes:
+      - New Business
+    action: Underwriting Review
+    actionOutput:
+      internalMessage: 'More than 10% of dwelling limit for other structures coverage, requires the Specific Structure Increased Limits.'
+      agentMessage: 'Other structures coverage of more than 10% of the dwelling amount requires underwriting review.'
+      customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
+    canOverride: true
+    active: true
+tests:
+  - description: 'New Business Other Structures action triggers if Other Structures amount > 10% of Coverage A'
+    input:
+      document:
+        transactionType: New Business
+        coverageLimits:
+          otherStructures:
+            amount: 11000
+          dwelling:
+            amount: 100000
+    output:
+      - action: Underwriting Review
+        displayText: 'Other structures > 10% of Coverage A'
+        category: 'Coverages & Deductibles'
+        code: '217'
+        internalMessage: 'More than 10% of dwelling limit for other structures coverage, requires the Specific Structure Increased Limits.'
+        agentMessage: 'Other structures coverage of more than 10% of the dwelling amount requires underwriting review.'
+        customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
+        canOverride: true
+        active: true
+        fields:
+          - name: coverageLimits.otherStructures.amount
+            value: 11000
+          - name: coverageLimits.dwelling.amount
+            value: 100000
+  - description: 'New Business Other Structures action does not trigger if Other Structures amount is not > 10% of Coverage A'
+    input:
+      document:
+        transactionType: New Business
+        coverageLimits:
+          otherStructures:
+            amount: 25000
+          dwelling:
+            amount: 250000
+    output: null

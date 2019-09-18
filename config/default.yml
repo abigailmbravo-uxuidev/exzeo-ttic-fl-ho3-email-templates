@@ -1,0 +1,9 @@
+default:
+  data:
+    mongoUrl: 'mongodb://mongo:27017/harmony'
+  ruleservice:
+    port: 8787
+    url: 'http://localhost'
+  emailservice:
+    port: 8787
+    url: 'http://localhost'

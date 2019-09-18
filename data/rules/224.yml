@@ -1,0 +1,136 @@
+product: HO3
+name: If netPremium < minNetPremium
+type: underwriting
+effectiveDate: 2017-08-01T04:00:00.000Z
+category: 'Coverages & Deductibles'
+code: '224'
+documentFields:
+  - rating.netPremium
+  - lookupFields.zipcodesettings.minNetPremium
+condition: '${!(it.document.rating.netPremium === 0 || it.document.rating.netPremium === null) && ((it.document.rating.netPremium || 0) < it.document.lookupFields.zipcodesettings.minNetPremium)}'
+active: true
+lookupFields:
+  - name: zipcodesettings
+    type: builtIn
+    builtInConfig:
+      name: zipcodesettings
+actions:
+  - transactionTypes:
+      - New Business
+      - Renewal
+    action: Underwriting Review
+    actionOutput:
+      internalMessage: 'Net Premium (before fees) is less than ${it.document.lookupFields.zipcodesettings.minNetPremium}, the minimum amount allowed for policy issuance.'
+      agentMessage: 'Net Premium (before fees) is less than ${it.document.lookupFields.zipcodesettings.minNetPremium}, the minimum amount allowed for policy issuance. Review is required.'
+      customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
+    canOverride: true
+    active: true
+tests:
+  - description: New Business action triggers when Net Premium < Min Net Premium
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        zip: '32025'
+        product: HO3
+        transactionType: New Business
+        property:
+          id: ''
+          physicalAddress:
+            zip: '32025'
+        rating:
+          netPremium: 9000
+        lookupFields:
+          - name: zipcodesettings
+            type: builtIn
+            builtInConfig:
+              name: zipcodesettings
+    output:
+      - action: Underwriting Review
+        displayText: If netPremium < minNetPremium
+        category: 'Coverages & Deductibles'
+        code: '224'
+        internalMessage: 'Net Premium (before fees) is less than 10000, the minimum amount allowed for policy issuance.'
+        agentMessage: 'Net Premium (before fees) is less than 10000, the minimum amount allowed for policy issuance. Review is required.'
+        customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
+        canOverride: true
+        active: true
+        fields:
+          - name: rating.netPremium
+            value: 9000
+          - name: lookupFields.zipcodesettings.minNetPremium
+            value: 10000
+  - description: Renewal action triggers when Net Premium < Min Net Premium
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        zip: '32025'
+        product: HO3
+        transactionType: Renewal
+        property:
+          id: ''
+          physicalAddress:
+            zip: '32025'
+        rating:
+          netPremium: 9000
+        lookupFields:
+          - name: zipcodesettings
+            type: builtIn
+            builtInConfig:
+              name: zipcodesettings
+    output:
+      - action: Underwriting Review
+        displayText: If netPremium < minNetPremium
+        category: 'Coverages & Deductibles'
+        code: '224'
+        internalMessage: 'Net Premium (before fees) is less than 10000, the minimum amount allowed for policy issuance.'
+        agentMessage: 'Net Premium (before fees) is less than 10000, the minimum amount allowed for policy issuance. Review is required.'
+        customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
+        canOverride: true
+        active: true
+        fields:
+          - name: rating.netPremium
+            value: 9000
+          - name: lookupFields.zipcodesettings.minNetPremium
+            value: 10000
+  - description: New Business action triggers when Net Premium < Min Net Premium
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        zip: '32025'
+        product: HO3
+        transactionType: New Business
+        property:
+          id: ''
+          physicalAddress:
+            zip: '32025'
+        rating:
+          netPremium: 10000
+        lookupFields:
+          - name: zipcodesettings
+            type: builtIn
+            builtInConfig:
+              name: zipcodesettings
+    output: null
+  - description: Renewal action triggers when Net Premium < Min Net Premium
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        zip: '32025'
+        product: HO3
+        transactionType: Renewal
+        property:
+          id: ''
+          physicalAddress:
+            zip: '32025'
+        rating:
+          netPremium: 10000
+        lookupFields:
+          - name: zipcodesettings
+            type: builtIn
+            builtInConfig:
+              name: zipcodesettings
+    output: null

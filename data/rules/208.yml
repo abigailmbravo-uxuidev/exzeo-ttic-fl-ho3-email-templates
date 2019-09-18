@@ -1,0 +1,52 @@
+companyCode: TTIC
+state: FL
+product: HO3
+name: UnderwritingAnswers.previousClaims = 3-5 Years
+type: underwriting
+effectiveDate: 2017-08-01T04:00:00.000Z
+category: Underwriting Answers
+code: '208'
+documentFields:
+  - underwritingAnswers.previousClaims.answer
+condition: "${it.document.underwritingAnswers.previousClaims.answer === '3-5 Years'}"
+active: true
+lookupFields: []
+actions:
+  - transactionTypes:
+      - New Business
+    action: Underwriting Review
+    actionOutput:
+      internalMessage: 'Due to previous claims history, additional review is required.'
+      agentMessage: 'Due to previous claims history, underwriting review is required prior to binding.'
+      customerMessage: 'Due to previous claims history, underwriting review is required.'
+    canOverride: true
+    active: true
+tests:
+  - description: "New Business Previous claims history requires additional review action triggers when Previous Claims answer = '3-5 Years'"
+    input:
+      document:
+        transactionType: New Business
+        underwritingAnswers:
+          previousClaims:
+            answer: 3-5 Years
+    output:
+      - action: Underwriting Review
+        displayText: UnderwritingAnswers.previousClaims = 3-5 Years
+        category: Underwriting Answers
+        code: '208'
+        internalMessage: 'Due to previous claims history, additional review is required.'
+        agentMessage: 'Due to previous claims history, underwriting review is required prior to binding.'
+        customerMessage: 'Due to previous claims history, underwriting review is required.'
+        canOverride: true
+        active: true
+        fields:
+          - name: underwritingAnswers.previousClaims.answer
+            value: 3-5 Years
+  - description: "New Business Previous claims history requires additional review action does not trigger when Previous Claims answer is not '3-5 Years'"
+    input:
+      document:
+        transactionType: New Business
+        underwritingAnswers:
+          previousClaims:
+            answer: 1-2 Years
+    output: null

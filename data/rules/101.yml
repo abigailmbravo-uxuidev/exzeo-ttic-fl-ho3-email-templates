@@ -1,0 +1,123 @@
+product: HO3
+name: Zip Code Not Found in tblUnderwritingZipFilter
+type: underwriting
+effectiveDate: 2017-08-01T04:00:00.000Z
+category: Zip Code Settings
+code: '101'
+documentFields:
+  - lookupFields.zipcodesettings
+condition: '${it.document.lookupFields.zipcodesettings === null}'
+active: true
+lookupFields:
+  - name: zipcodesettings
+    type: builtIn
+    builtInConfig:
+      name: zipcodesettings
+actions:
+  - transactionTypes:
+      - New Business
+      - Renewal
+    action: Fatal Error
+    actionOutput:
+      internalMessage: TypTap Homeowners product is not available for properties located in this zip code.
+      agentMessage: TypTap Homeowners product is not available for properties located in this zip code.
+      customerMessage: TypTap Homeowners product is not available for properties located in this zip code.
+    canOverride: false
+    active: true
+tests:
+  - description: Zip code not found action triggers when zip code is not found in zipcodesettings collection
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        zip: '99999'
+        product: HO3
+        transactionType: New Business
+        property:
+          id: ''
+          physicalAddress:
+            zip: '99999'
+        lookupFields:
+          - name: zipcodesettings
+            type: builtIn
+            builtInConfig:
+              name: zipcodesettings
+    output:
+      - action: Fatal Error
+        displayText: Zip Code Not Found in tblUnderwritingZipFilter
+        category: Zip Code Settings
+        code: '101'
+        internalMessage: TypTap Homeowners product is not available for properties located in this zip code.
+        agentMessage: TypTap Homeowners product is not available for properties located in this zip code.
+        customerMessage: TypTap Homeowners product is not available for properties located in this zip code.
+        canOverride: false
+        active: true
+        fields:
+          - name: lookupFields.zipcodesettings
+            value: null
+  - description: Zip code not found action does not trigger when zip code is found in zipcodesettings collection
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        zip: '32025'
+        product: HO3
+        transactionType: New Business
+        property:
+          id: ''
+          physicalAddress:
+            zip: '32025'
+        lookupFields:
+          - name: zipcodesettings
+            type: builtIn
+            builtInConfig:
+              name: zipcodesettings
+    output: null
+  - description: Zip code not found action triggers when zip code is not found in zipcodesettings collection
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        zip: '99999'
+        product: HO3
+        transactionType: Renewal
+        property:
+          id: ''
+          physicalAddress:
+            zip: '99999'
+        lookupFields:
+          - name: zipcodesettings
+            type: builtIn
+            builtInConfig:
+              name: zipcodesettings
+    output:
+      - action: Fatal Error
+        displayText: Zip Code Not Found in tblUnderwritingZipFilter
+        category: Zip Code Settings
+        code: '101'
+        internalMessage: TypTap Homeowners product is not available for properties located in this zip code.
+        agentMessage: TypTap Homeowners product is not available for properties located in this zip code.
+        customerMessage: TypTap Homeowners product is not available for properties located in this zip code.
+        canOverride: false
+        active: true
+        fields:
+          - name: lookupFields.zipcodesettings
+            value: null
+  - description: Zip code not found action does not trigger when zip code is found in zipcodesettings collection
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        zip: '32025'
+        product: HO3
+        transactionType: Renewal
+        property:
+          id: ''
+          physicalAddress:
+            zip: '32025'
+        lookupFields:
+          - name: zipcodesettings
+            type: builtIn
+            builtInConfig:
+              name: zipcodesettings
+    output: null

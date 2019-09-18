@@ -1,0 +1,72 @@
+companyCode: TTIC
+state: FL
+product: HO3
+name: UnderwritingAnswers.fourPointUpdates = No or Unknown
+type: underwriting
+effectiveDate: 2017-08-01T04:00:00.000Z
+category: Underwriting Answers
+code: '211'
+documentFields:
+  - underwritingAnswers.fourPointUpdates.answer
+condition: "${includes(['No', 'Unknown'], it.document.underwritingAnswers.fourPointUpdates.answer)}"
+active: true
+lookupFields: []
+actions:
+  - transactionTypes:
+      - New Business
+    action: Underwriting Review
+    actionOutput:
+      internalMessage: 'Homes over 40 years old should (over 50 must) have proof of the electrical wiring, plumbing, and HVAC updates within the last 35 years.'
+      agentMessage: 'Older homes must have proof of updates for electrical wiring, plumbing, and HVAC within the last 35 years. Underwriting review is required for binding.'
+      customerMessage: 'Older homes must have proof of updates for electrical wiring, plumbing, and HVAC within the last 35 years. Underwriting review is required.'
+    canOverride: true
+    active: true
+tests:
+  - description: 'New Business Homes over 40 years old action triggers if electrical wiring, plumbing or HVAC updates not updated within the last 35 years'
+    input:
+      document:
+        transactionType: New Business
+        underwritingAnswers:
+          fourPointUpdates:
+            answer: 'No'
+    output:
+      - action: Underwriting Review
+        displayText: UnderwritingAnswers.fourPointUpdates = No or Unknown
+        category: Underwriting Answers
+        code: '211'
+        internalMessage: 'Homes over 40 years old should (over 50 must) have proof of the electrical wiring, plumbing, and HVAC updates within the last 35 years.'
+        agentMessage: 'Older homes must have proof of updates for electrical wiring, plumbing, and HVAC within the last 35 years. Underwriting review is required for binding.'
+        customerMessage: 'Older homes must have proof of updates for electrical wiring, plumbing, and HVAC within the last 35 years. Underwriting review is required.'
+        canOverride: true
+        active: true
+        fields:
+          - name: underwritingAnswers.fourPointUpdates.answer
+            value: 'No'
+  - description: 'New Business Homes over 40 years old action triggers if electrical wiring, plumbing or HVAC updates not updated within the last 35 years'
+    input:
+      document:
+        transactionType: New Business
+        underwritingAnswers:
+          fourPointUpdates:
+            answer: Unknown
+    output:
+      - action: Underwriting Review
+        displayText: UnderwritingAnswers.fourPointUpdates = No or Unknown
+        category: Underwriting Answers
+        code: '211'
+        internalMessage: 'Homes over 40 years old should (over 50 must) have proof of the electrical wiring, plumbing, and HVAC updates within the last 35 years.'
+        agentMessage: 'Older homes must have proof of updates for electrical wiring, plumbing, and HVAC within the last 35 years. Underwriting review is required for binding.'
+        customerMessage: 'Older homes must have proof of updates for electrical wiring, plumbing, and HVAC within the last 35 years. Underwriting review is required.'
+        canOverride: true
+        active: true
+        fields:
+          - name: underwritingAnswers.fourPointUpdates.answer
+            value: Unknown
+  - description: 'New Business Homes over 40 years old action does not trigger if electrical wiring, plumbing or HVAC updates have been updated within the last 35 years'
+    input:
+      document:
+        transactionType: New Business
+        underwritingAnswers:
+          fourPointUpdates:
+            answer: 'Yes'
+    output: null

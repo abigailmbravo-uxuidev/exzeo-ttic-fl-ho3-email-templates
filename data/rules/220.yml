@@ -1,0 +1,100 @@
+product: HO3
+name: 'CoverageLimits.personalProperty.amount between 0% and 25%'
+type: underwriting
+effectiveDate: 2017-08-01T04:00:00.000Z
+category: 'Coverages & Deductibles'
+code: '220'
+documentFields:
+  - coverageLimits.personalProperty.amount
+  - coverageLimits.dwelling.amount
+condition: '${(it.document.coverageLimits.personalProperty.amount > 0) && (it.document.coverageLimits.personalProperty.amount < 0.25 * it.document.coverageLimits.dwelling.amount)}'
+active: true
+lookupFields: []
+actions:
+  - transactionTypes:
+      - New Business
+    action: Underwriting Review
+    actionOutput:
+      internalMessage: 'Minimum personal property limit of 25% of dwelling is required unless personal property is excluded.'
+      agentMessage: 'Minimum personal property limit of 25% of dwelling is required unless personal property is excluded.'
+      customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
+    canOverride: false
+    active: true
+  - transactionTypes:
+      - Renewal
+    action: Fatal Error
+    actionOutput:
+      internalMessage: 'Minimum personal property limit of 25% of dwelling is required unless personal property is excluded.'
+      agentMessage: 'Minimum personal property limit of 25% of dwelling is required unless personal property is excluded.'
+      customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
+    canOverride: false
+    active: true
+tests:
+  - description: 'New Business Minimum personal property limit action triggers when it is not at least 25% of dwelling is required unless personal property is excluded'
+    input:
+      document:
+        transactionType: New Business
+        coverageLimits:
+          personalProperty:
+            amount: 62000
+          dwelling:
+            amount: 250000
+    output:
+      - action: Underwriting Review
+        displayText: 'CoverageLimits.personalProperty.amount between 0% and 25%'
+        category: 'Coverages & Deductibles'
+        code: '220'
+        internalMessage: 'Minimum personal property limit of 25% of dwelling is required unless personal property is excluded.'
+        agentMessage: 'Minimum personal property limit of 25% of dwelling is required unless personal property is excluded.'
+        customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
+        canOverride: false
+        active: true
+        fields:
+          - name: coverageLimits.personalProperty.amount
+            value: 62000
+          - name: coverageLimits.dwelling.amount
+            value: 250000
+  - description: 'Renewal Minimum personal property limit action triggers when it is not at least 25% of dwelling is required unless personal property is excluded'
+    input:
+      document:
+        transactionType: Renewal
+        coverageLimits:
+          personalProperty:
+            amount: 62000
+          dwelling:
+            amount: 250000
+    output:
+      - action: Fatal Error
+        displayText: 'CoverageLimits.personalProperty.amount between 0% and 25%'
+        category: 'Coverages & Deductibles'
+        code: '220'
+        internalMessage: 'Minimum personal property limit of 25% of dwelling is required unless personal property is excluded.'
+        agentMessage: 'Minimum personal property limit of 25% of dwelling is required unless personal property is excluded.'
+        customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
+        canOverride: false
+        active: true
+        fields:
+          - name: coverageLimits.personalProperty.amount
+            value: 62000
+          - name: coverageLimits.dwelling.amount
+            value: 250000
+  - description: 'New Business Minimum personal property limit action does not trigger when it is at least 25% of dwelling is required unless personal property is excluded'
+    input:
+      document:
+        transactionType: New Business
+        coverageLimits:
+          personalProperty:
+            amount: 0
+          dwelling:
+            amount: 250000
+    output: null
+  - description: 'Renewal Minimum personal property limit action does not trigger when it is at least 25% of dwelling is required unless personal property is excluded'
+    input:
+      document:
+        transactionType: Renewal
+        coverageLimits:
+          personalProperty:
+            amount: 0
+          dwelling:
+            amount: 250000
+    output: null

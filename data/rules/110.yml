@@ -1,0 +1,101 @@
+companyCode: TTIC
+state: FL
+product: HO3
+name: Property.familyunits not 1-2
+type: underwriting
+effectiveDate: 2017-08-01T04:00:00.000Z
+category: Property
+code: '110'
+documentFields:
+  - property.familyUnits
+condition: "${it.document.property.familyUnits !== '1-2'}"
+active: true
+lookupFields: []
+actions:
+  - transactionTypes:
+      - New Business
+    action: Fatal Error
+    actionOutput:
+      internalMessage: Homes with more than 2 family units are not eligible.
+      agentMessage: Homes with more than 2 family units are not eligible.
+      customerMessage: Homes with more than 2 family units are not eligible.
+    canOverride: false
+    active: true
+  - transactionTypes:
+      - Renewal
+    action: Underwriting Review
+    actionOutput:
+      internalMessage: Homes with more than 2 family units are not eligible.
+      agentMessage: Homes with more than 2 family units are not eligible.
+      customerMessage: Homes with more than 2 family units are not eligible.
+    canOverride: true
+    active: true
+tests:
+  - description: "Homes with more than 2 family units are not eligible New Business action triggers when property.familyUnits it does not equal '1-2'"
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        product: HO3
+        transactionType: New Business
+        property:
+          familyUnits: 3-4
+        lookupFields: []
+    output:
+      - action: Fatal Error
+        displayText: Property.familyunits not 1-2
+        category: Property
+        code: '110'
+        internalMessage: Homes with more than 2 family units are not eligible.
+        agentMessage: Homes with more than 2 family units are not eligible.
+        customerMessage: Homes with more than 2 family units are not eligible.
+        canOverride: false
+        active: true
+        fields:
+          - name: property.familyUnits
+            value: 3-4
+  - description: "Homes with more than 2 family units are not eligible Renewal action triggers when property.familyUnits it does not equal '1-2'"
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        product: HO3
+        transactionType: Renewal
+        property:
+          familyUnits: 3-4
+        lookupFields: []
+    output:
+      - action: Underwriting Review
+        displayText: Property.familyunits not 1-2
+        category: Property
+        code: '110'
+        internalMessage: Homes with more than 2 family units are not eligible.
+        agentMessage: Homes with more than 2 family units are not eligible.
+        customerMessage: Homes with more than 2 family units are not eligible.
+        canOverride: true
+        active: true
+        fields:
+          - name: property.familyUnits
+            value: 3-4
+  - description: "Homes with more than 2 family units are not eligible New Business action does not trigger when property.familyUnits equals '1-2'"
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        product: HO3
+        transactionType: New Business
+        property:
+          familyUnits: 1-2
+        lookupFields: []
+    output: null
+  - description: "Homes with more than 2 family units are not eligible Renewal action does not trigger when property.familyUnits equals '1-2'"
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        product: HO3
+        transactionType: Renewal
+        property:
+          familyUnits: 1-2
+        lookupFields: []
+    output: null

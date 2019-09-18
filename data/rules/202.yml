@@ -1,0 +1,74 @@
+product: HO3
+name: Zip Code Temporarily Shut Down for Pending Storm
+type: underwriting
+effectiveDate: 2017-08-01T04:00:00.000Z
+category: Zip Code Settings
+code: '202'
+documentFields:
+  - lookupFields.zipcodesettings.suspended
+condition: '${it.document.lookupFields.zipcodesettings.suspended === true}'
+active: true
+lookupFields:
+  - name: zipcodesettings
+    type: builtIn
+    builtInConfig:
+      name: zipcodesettings
+actions:
+  - transactionTypes:
+      - New Business
+    action: Underwriting Review
+    actionOutput:
+      internalMessage: 'We apologize, due to a pending storm, we are unable to a provide a quote at this time.'
+      agentMessage: 'We apologize, due to possible storm activity, we are unable to a provide a quote at this time.'
+      customerMessage: 'We apologize, due to possible storm activity, we are unable to a provide a quote at this time.'
+    canOverride: true
+    active: true
+tests:
+  - description: New Business Zip code temporarily shut down for pending storm action triggers when zip code is suspended
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        zip: '32176'
+        product: HO3
+        transactionType: New Business
+        property:
+          id: ''
+          physicalAddress:
+            zip: '32176'
+        lookupFields:
+          - name: zipcodesettings
+            type: builtIn
+            builtInConfig:
+              name: zipcodesettings
+    output:
+      - action: Underwriting Review
+        displayText: Zip Code Temporarily Shut Down for Pending Storm
+        category: Zip Code Settings
+        code: '202'
+        internalMessage: 'We apologize, due to a pending storm, we are unable to a provide a quote at this time.'
+        agentMessage: 'We apologize, due to possible storm activity, we are unable to a provide a quote at this time.'
+        customerMessage: 'We apologize, due to possible storm activity, we are unable to a provide a quote at this time.'
+        canOverride: true
+        active: true
+        fields:
+          - name: lookupFields.zipcodesettings.suspended
+            value: true
+  - description: New Business Zip code temporarily shut down for pending storm action does not trigger when zip code is not suspended
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        zip: '33333'
+        product: HO3
+        transactionType: New Business
+        property:
+          id: ''
+          physicalAddress:
+            zip: '33333'
+        lookupFields:
+          - name: zipcodesettings
+            type: builtIn
+            builtInConfig:
+              name: zipcodesettings
+    output: null

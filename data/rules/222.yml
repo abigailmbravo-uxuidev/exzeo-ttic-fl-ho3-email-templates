@@ -1,0 +1,111 @@
+product: HO3
+name: Premium does not meet minimum cost per 100
+type: underwriting
+effectiveDate: 2017-08-01T04:00:00.000Z
+category: Zip Code Settings
+code: '222'
+documentFields:
+  - rating.netPremium
+  - coverageLimits.dwelling.amount
+  - coverageLimits.otherStructures.amount
+  - coverageLimits.personalProperty.amount
+  - coverageLimits.lossOfUse.amount
+  - lookupFields.zipcodesettings.minCostPer100
+condition: '${!(it.document.rating.netPremium === 0 || it.document.rating.netPremium === null) && ((it.document.rating.netPremium || 0) < (((it.document.coverageLimits.dwelling.amount + it.document.coverageLimits.otherStructures.amount + it.document.coverageLimits.personalProperty.amount + it.document.coverageLimits.lossOfUse.amount) / 100) * it.document.lookupFields.zipcodesettings.minCostPer100))}'
+active: true
+lookupFields:
+  - name: zipcodesettings
+    type: builtIn
+    builtInConfig:
+      name: zipcodesettings
+actions:
+  - transactionTypes:
+      - New Business
+    action: Underwriting Review
+    actionOutput:
+      internalMessage: 'Net Premium (before fees) does not meet the minimum developed premium. Premium must be at least ${(((it.document.coverageLimits.dwelling.amount + it.document.coverageLimits.otherStructures.amount + it.document.coverageLimits.personalProperty.amount + it.document.coverageLimits.lossOfUse.amount) / 100) * it.document.lookupFields.zipcodesettings.minCostPer100)} to qualify.'
+      agentMessage: 'Net Premium (before fees) does not meet the minimum developed premium. Premium must be at least ${(((it.document.coverageLimits.dwelling.amount + it.document.coverageLimits.otherStructures.amount + it.document.coverageLimits.personalProperty.amount + it.document.coverageLimits.lossOfUse.amount) / 100) * it.document.lookupFields.zipcodesettings.minCostPer100)} to qualify.'
+      customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
+    canOverride: true
+    active: true
+tests:
+  - description: New Business Premium action triggers when it does not meet minimum cost per 100
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        zip: '32025'
+        product: HO3
+        transactionType: New Business
+        property:
+          id: ''
+          physicalAddress:
+            zip: '32025'
+        rating:
+          netPremium: 2500
+        coverageLimits:
+          dwelling:
+            amount: 1000000
+          otherStructures:
+            amount: 50000
+          personalProperty:
+            amount: 30000
+          lossOfUse:
+            amount: 10000
+        lookupFields:
+          - name: zipcodesettings
+            type: builtIn
+            builtInConfig:
+              name: zipcodesettings
+    output:
+      - action: Underwriting Review
+        displayText: Premium does not meet minimum cost per 100
+        category: Zip Code Settings
+        code: '222'
+        internalMessage: Net Premium (before fees) does not meet the minimum developed premium. Premium must be at least 3270 to qualify.
+        agentMessage: Net Premium (before fees) does not meet the minimum developed premium. Premium must be at least 3270 to qualify.
+        customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
+        canOverride: true
+        active: true
+        fields:
+          - name: rating.netPremium
+            value: 2500
+          - name: coverageLimits.dwelling.amount
+            value: 1000000
+          - name: coverageLimits.otherStructures.amount
+            value: 50000
+          - name: coverageLimits.personalProperty.amount
+            value: 30000
+          - name: coverageLimits.lossOfUse.amount
+            value: 10000
+          - name: lookupFields.zipcodesettings.minCostPer100
+            value: 0.3
+  - description: New Business Premium action does not trigger when it meets minimum cost per 100
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        zip: '32025'
+        product: HO3
+        transactionType: New Business
+        property:
+          id: ''
+          physicalAddress:
+            zip: '32025'
+        rating:
+          netPremium: 300000
+        coverageLimits:
+          dwelling:
+            amount: 1000000
+          otherStructures:
+            amount: 50000
+          personalProperty:
+            amount: 30000
+          lossOfUse:
+            amount: 10000
+        lookupFields:
+          - name: zipcodesettings
+            type: builtIn
+            builtInConfig:
+              name: zipcodesettings
+    output: null

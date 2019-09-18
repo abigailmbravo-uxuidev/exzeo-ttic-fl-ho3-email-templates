@@ -1,0 +1,89 @@
+companyCode: TTIC
+state: FL
+product: HO3
+name: 'Coveragelimit.dwelling.amount < $125,000'
+type: underwriting
+effectiveDate: 2017-08-01T04:00:00.000Z
+category: 'Coverages & Deductibles'
+code: '104'
+documentFields:
+  - coverageLimits.dwelling.amount
+condition: '${it.document.coverageLimits.dwelling.amount < 125000}'
+active: true
+lookupFields: []
+actions:
+  - transactionTypes:
+      - New Business
+    action: Fatal Error
+    actionOutput:
+      internalMessage: Dwelling limit cannot be less than $125000. Please update the value to continue or additional review is required.
+      agentMessage: 'The building replacement cost value for this property is below our minimum dwelling amount of $125,000.'
+      customerMessage: 'The building replacement cost value for this property is below our minimum dwelling amount of $125,000.'
+    canOverride: false
+    active: true
+  - transactionTypes:
+      - Renewal
+    action: Underwriting Review
+    actionOutput:
+      internalMessage: Dwelling limit cannot be less than $125000. Please update the value to continue or additional review is required.
+      agentMessage: 'The building replacement cost value for this property is below our minimum dwelling amount of $125,000.'
+      customerMessage: 'The building replacement cost value for this property is below our minimum dwelling amount of $125,000.'
+    canOverride: true
+    active: true
+tests:
+  - description: 'New Business action triggers when dwelling amount < $125,000'
+    input:
+      document:
+        transactionType: New Business
+        coverageLimits:
+          dwelling:
+            amount: 124000
+    output:
+      - active: true
+        action: Fatal Error
+        displayText: 'Coveragelimit.dwelling.amount < $125,000'
+        category: 'Coverages & Deductibles'
+        canOverride: false
+        code: '104'
+        fields:
+          - name: coverageLimits.dwelling.amount
+            value: 124000
+        internalMessage: Dwelling limit cannot be less than $125000. Please update the value to continue or additional review is required.
+        agentMessage: 'The building replacement cost value for this property is below our minimum dwelling amount of $125,000.'
+        customerMessage: 'The building replacement cost value for this property is below our minimum dwelling amount of $125,000.'
+  - description: 'Renewal action triggers when dwelling amount < $125,000'
+    input:
+      document:
+        transactionType: Renewal
+        coverageLimits:
+          dwelling:
+            amount: 124000
+    output:
+      - active: true
+        action: Underwriting Review
+        displayText: 'Coveragelimit.dwelling.amount < $125,000'
+        category: 'Coverages & Deductibles'
+        canOverride: true
+        code: '104'
+        fields:
+          - name: coverageLimits.dwelling.amount
+            value: 124000
+        internalMessage: Dwelling limit cannot be less than $125000. Please update the value to continue or additional review is required.
+        agentMessage: 'The building replacement cost value for this property is below our minimum dwelling amount of $125,000.'
+        customerMessage: 'The building replacement cost value for this property is below our minimum dwelling amount of $125,000.'
+  - description: 'New Business action does not trigger when dwelling amount >= $125,000'
+    input:
+      document:
+        transactionType: New Business
+        coverageLimits:
+          dwelling:
+            amount: 125001
+    output: null
+  - description: 'Renewal action does not trigger when dwelling amount >= $125,000'
+    input:
+      document:
+        transactionType: Renewal
+        coverageLimits:
+          dwelling:
+            amount: 125001
+    output: null

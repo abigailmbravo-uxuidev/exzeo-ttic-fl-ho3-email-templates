@@ -1,0 +1,79 @@
+product: HO3
+name: 'Effective Date > Max for tblUnderwritingZipFilter'
+type: underwriting
+effectiveDate: 2017-08-01T04:00:00.000Z
+category: Zip Code Settings
+code: '204'
+documentFields:
+  - effectiveDate
+  - lookupFields.zipcodesettings.maxEffectiveDate
+condition: '${moment(it.document.effectiveDate).isAfter(it.document.lookupFields.zipcodesettings.maxEffectiveDate)}'
+active: true
+lookupFields:
+  - name: zipcodesettings
+    type: builtIn
+    builtInConfig:
+      name: zipcodesettings
+actions:
+  - transactionTypes:
+      - New Business
+    action: Underwriting Review
+    actionOutput:
+      internalMessage: "You cannot quote beyond ${moment(it.document.lookupFields.zipcodesettings.maxEffectiveDate).format('MM-DD-YYYY')}."
+      agentMessage: The effective date selected exceeds our maximum allowed effective date.
+      customerMessage: The effective date selected exceeds our maximum allowed effective date.
+    canOverride: true
+    active: true
+tests:
+  - description: 'New Business Effective date action triggers when > maximum effective date in zipcodesettings collection'
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        zip: '32025'
+        product: HO3
+        transactionType: New Business
+        property:
+          id: ''
+          physicalAddress:
+            zip: '32025'
+        effectiveDate: 12-01-2019
+        lookupFields:
+          - name: zipcodesettings
+            type: builtIn
+            builtInConfig:
+              name: zipcodesettings
+    output:
+      - action: Underwriting Review
+        displayText: 'Effective Date > Max for tblUnderwritingZipFilter'
+        category: Zip Code Settings
+        code: '204'
+        internalMessage: "You cannot quote beyond ${moment(it.document.lookupFields.zipcodesettings.maxEffectiveDate).format('MM-DD-YYYY')}."
+        agentMessage: The effective date selected exceeds our maximum allowed effective date.
+        customerMessage: The effective date selected exceeds our maximum allowed effective date.
+        canOverride: true
+        active: true
+        fields:
+          - name: effectiveDate
+            value: 12-01-2019
+          - name: lookupFields.zipcodesettings.maxEffectiveDate
+            value: "${moment(it.document.lookupFields.zipcodesettings.maxEffectiveDate).format('MM-DD-YYYY')}"
+  - description: 'New Business Effective date action does not trigger when not > maximum effective date in zipcodesettings collection'
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        zip: '32025'
+        product: HO3
+        transactionType: New Business
+        property:
+          id: ''
+          physicalAddress:
+            zip: '32025'
+        effectiveDate: 01-01-2019
+        lookupFields:
+          - name: zipcodesettings
+            type: builtIn
+            builtInConfig:
+              name: zipcodesettings
+    output: null
