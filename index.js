@@ -4,7 +4,7 @@ const argv = require('yargs')
   .usage('Usage: $0 <command> [options]')
   .example('$0 update rules', '(updates rules)')
   .example('$0 update email', '(updates email templates)')
-  .example('$0 update -all', '(updates rules and email templates)')
+  .example('$0 update --all', '(updates rules and email templates)')
   .help('h')
   .alias('h', 'help')
   .argv;
