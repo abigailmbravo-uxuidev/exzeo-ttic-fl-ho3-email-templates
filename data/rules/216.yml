@@ -1,3 +1,5 @@
+companyCode: TTIC
+state: FL
 product: HO3
 name: 'If coverageOptions.sinkholePerilCoverage.answer = False, then there should be no deductibles.sinkhole object'
 type: underwriting
