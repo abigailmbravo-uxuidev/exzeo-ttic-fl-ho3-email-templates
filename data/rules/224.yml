@@ -22,8 +22,8 @@ actions:
       - Renewal
     action: Underwriting Review
     actionOutput:
-      internalMessage: 'Net Premium (before fees) is less than ${it.document.lookupFields.zipcodesettings.minNetPremium}, the minimum amount allowed for policy issuance.'
-      agentMessage: 'Net Premium (before fees) is less than ${it.document.lookupFields.zipcodesettings.minNetPremium}, the minimum amount allowed for policy issuance. Review is required.'
+      internalMessage: 'Net Premium (before fees) is less than ${formatCurrency(it.document.lookupFields.zipcodesettings.minNetPremium)}, the minimum amount allowed for policy issuance.'
+      agentMessage: 'Net Premium (before fees) is less than ${formatCurrency(it.document.lookupFields.zipcodesettings.minNetPremium)}, the minimum amount allowed for policy issuance. Review is required.'
       customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
     canOverride: true
     active: true
@@ -52,8 +52,8 @@ tests:
         displayText: If netPremium < minNetPremium
         category: 'Coverages & Deductibles'
         code: '224'
-        internalMessage: 'Net Premium (before fees) is less than 10000, the minimum amount allowed for policy issuance.'
-        agentMessage: 'Net Premium (before fees) is less than 10000, the minimum amount allowed for policy issuance. Review is required.'
+        internalMessage: 'Net Premium (before fees) is less than $10,000.00, the minimum amount allowed for policy issuance.'
+        agentMessage: 'Net Premium (before fees) is less than $10,000.00, the minimum amount allowed for policy issuance. Review is required.'
         customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
         canOverride: true
         active: true
@@ -86,8 +86,8 @@ tests:
         displayText: If netPremium < minNetPremium
         category: 'Coverages & Deductibles'
         code: '224'
-        internalMessage: 'Net Premium (before fees) is less than 10000, the minimum amount allowed for policy issuance.'
-        agentMessage: 'Net Premium (before fees) is less than 10000, the minimum amount allowed for policy issuance. Review is required.'
+        internalMessage: 'Net Premium (before fees) is less than $10,000.00, the minimum amount allowed for policy issuance.'
+        agentMessage: 'Net Premium (before fees) is less than $10,000.00, the minimum amount allowed for policy issuance. Review is required.'
         customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
         canOverride: true
         active: true

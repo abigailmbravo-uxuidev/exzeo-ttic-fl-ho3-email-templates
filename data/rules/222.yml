@@ -25,8 +25,8 @@ actions:
       - New Business
     action: Underwriting Review
     actionOutput:
-      internalMessage: 'Net Premium (before fees) does not meet the minimum developed premium. Premium must be at least ${(((it.document.coverageLimits.dwelling.amount + it.document.coverageLimits.otherStructures.amount + it.document.coverageLimits.personalProperty.amount + it.document.coverageLimits.lossOfUse.amount) / 100) * it.document.lookupFields.zipcodesettings.minCostPer100)} to qualify.'
-      agentMessage: 'Net Premium (before fees) does not meet the minimum developed premium. Premium must be at least ${(((it.document.coverageLimits.dwelling.amount + it.document.coverageLimits.otherStructures.amount + it.document.coverageLimits.personalProperty.amount + it.document.coverageLimits.lossOfUse.amount) / 100) * it.document.lookupFields.zipcodesettings.minCostPer100)} to qualify.'
+      internalMessage: 'Net Premium (before fees) does not meet the minimum developed premium. Premium must be at least ${formatCurrency((((it.document.coverageLimits.dwelling.amount + it.document.coverageLimits.otherStructures.amount + it.document.coverageLimits.personalProperty.amount + it.document.coverageLimits.lossOfUse.amount) / 100) * it.document.lookupFields.zipcodesettings.minCostPer100) + 50} to qualify.'
+      agentMessage: 'Net Premium (before fees) does not meet the minimum developed premium. Premium must be at least ${formatCurrency((((it.document.coverageLimits.dwelling.amount + it.document.coverageLimits.otherStructures.amount + it.document.coverageLimits.personalProperty.amount + it.document.coverageLimits.lossOfUse.amount) / 100) * it.document.lookupFields.zipcodesettings.minCostPer100) + 50} to qualify.'
       customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
     canOverride: true
     active: true
@@ -64,8 +64,8 @@ tests:
         displayText: Premium does not meet minimum cost per 100
         category: Zip Code Settings
         code: '222'
-        internalMessage: Net Premium (before fees) does not meet the minimum developed premium. Premium must be at least 3270 to qualify.
-        agentMessage: Net Premium (before fees) does not meet the minimum developed premium. Premium must be at least 3270 to qualify.
+        internalMessage: Net Premium (before fees) does not meet the minimum developed premium. Premium must be at least $3,320.00 to qualify.
+        agentMessage: Net Premium (before fees) does not meet the minimum developed premium. Premium must be at least $3,320.00 to qualify.
         customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
         canOverride: true
         active: true
