@@ -21,8 +21,8 @@ actions:
       - New Business
     action: Underwriting Review
     actionOutput:
-      internalMessage: 'Building limit must be between ${it.document.lookupFields.zipcodesettings.coverageLimits.dwelling.minAmount} and ${it.document.lookupFields.zipcodesettings.coverageLimits.dwelling.maxAmount}. Binding requires a RCE and underwriting review.'
-      agentMessage: 'Building limit must be between ${it.document.lookupFields.zipcodesettings.coverageLimits.dwelling.minAmount} and ${it.document.lookupFields.zipcodesettings.coverageLimits.dwelling.maxAmount}. Binding requires a RCE and underwriting review.'
+      internalMessage: 'Building limit must be between ${formatCurrency(it.document.lookupFields.zipcodesettings.coverageLimits.dwelling.minAmount)} and ${formatCurrency(it.document.lookupFields.zipcodesettings.coverageLimits.dwelling.maxAmount)}. Binding requires a RCE and underwriting review.'
+      agentMessage: 'Building limit must be between ${formatCurrency(it.document.lookupFields.zipcodesettings.coverageLimits.dwelling.minAmount)} and ${formatCurrency(it.document.lookupFields.zipcodesettings.coverageLimits.dwelling.maxAmount)}. Binding requires a RCE and underwriting review.'
       customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
     canOverride: true
     active: true
@@ -52,8 +52,8 @@ tests:
         displayText: 'CoverageLimits.dwelling > Max for zip code settings'
         category: 'Coverages & Deductibles'
         code: '213'
-        internalMessage: Building limit must be between 125000 and 750000. Binding requires a RCE and underwriting review.
-        agentMessage: Building limit must be between 125000 and 750000. Binding requires a RCE and underwriting review.
+        internalMessage: Building limit must be between $125,000.00 and $750,000.00. Binding requires a RCE and underwriting review.
+        agentMessage: Building limit must be between $125,000.00 and $750,000.00. Binding requires a RCE and underwriting review.
         customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
         canOverride: true
         active: true
