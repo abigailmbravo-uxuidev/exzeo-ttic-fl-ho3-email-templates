@@ -25,8 +25,8 @@ actions:
       - New Business
     action: Underwriting Review
     actionOutput:
-      internalMessage: 'Net Premium (before fees) does not meet the minimum developed premium. Premium must be at least ${formatCurrency((((it.document.coverageLimits.dwelling.amount + it.document.coverageLimits.otherStructures.amount + it.document.coverageLimits.personalProperty.amount + it.document.coverageLimits.lossOfUse.amount) / 100) * it.document.lookupFields.zipcodesettings.minCostPer100) + 50} to qualify.'
-      agentMessage: 'Net Premium (before fees) does not meet the minimum developed premium. Premium must be at least ${formatCurrency((((it.document.coverageLimits.dwelling.amount + it.document.coverageLimits.otherStructures.amount + it.document.coverageLimits.personalProperty.amount + it.document.coverageLimits.lossOfUse.amount) / 100) * it.document.lookupFields.zipcodesettings.minCostPer100) + 50} to qualify.'
+      internalMessage: 'Net Premium (before fees) does not meet the minimum developed premium. Premium must be at least ${formatCurrency((((it.document.coverageLimits.dwelling.amount + it.document.coverageLimits.otherStructures.amount + it.document.coverageLimits.personalProperty.amount + it.document.coverageLimits.lossOfUse.amount) / 100) * it.document.lookupFields.zipcodesettings.minCostPer100) + 50)} to qualify.'
+      agentMessage: 'Net Premium (before fees) does not meet the minimum developed premium. Premium must be at least ${formatCurrency((((it.document.coverageLimits.dwelling.amount + it.document.coverageLimits.otherStructures.amount + it.document.coverageLimits.personalProperty.amount + it.document.coverageLimits.lossOfUse.amount) / 100) * it.document.lookupFields.zipcodesettings.minCostPer100) + 50)} to qualify.'
       customerMessage: This property requires Underwriting Review.  Please contact us to discuss further.
     canOverride: true
     active: true
