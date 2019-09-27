@@ -1,0 +1,18 @@
+companyCode: TTIC
+state: FL
+product: HO3
+name: 'Set Account to Expired'
+type: policyState
+effectiveDate: 2017-08-01T04:00:00.000Z
+code: '405'
+category: 'State Actions'
+documentFields: []
+condition: '${it.document.summaryLedger.status.code === 1 || it.document.summaryLedger.status.code === 2}'
+active: true
+actions:
+    - {active: true, action: setAccountToExpired, actionOutput: {date: '${it.document.transaction.endDate}', model: setAccountToExpired, type: choreographer}, canOverride: false}
+tests:
+    - {description: 'setAccountToExpired action triggers when status is 1', input: {document: {summaryLedger: {status: {code: 1}}, transaction: {endDate: '${moment.utc().add(1, ''years'').second(0).millisecond(0)}'}}}, output: [{active: true, action: setAccountToExpired, category: 'State Actions', displayText: 'Set Account to Expired', canOverride: false, code: '405', fields: [], date: '${moment.utc().add(1, ''years'').second(0).millisecond(0)}'}]}
+    - {description: 'setAccountToExpired action triggers when status is 2', input: {document: {summaryLedger: {status: {code: 2}}, transaction: {endDate: '${moment.utc().add(1, ''years'').second(0).millisecond(0)}'}}}, output: [{active: true, action: setAccountToExpired, category: 'State Actions', displayText: 'Set Account to Expired', canOverride: false, code: '405', fields: [], date: '${moment.utc().add(1, ''years'').second(0).millisecond(0)}'}]}
+    - {description: 'setAccountToExpired action does not trigger when status is 0', input: {document: {summaryLedger: {status: {code: 0}}}, transaction: {endDate: '${moment.utc().add(1, ''years'').second(0).millisecond(0)}'}}, output: null}
+    - {description: 'setAccountToExpired action does not trigger when status is 3', input: {document: {summaryLedger: {status: {code: 3}}}, transaction: {endDate: '${moment.utc().add(1, ''years'').second(0).millisecond(0)}'}}, output: null}
