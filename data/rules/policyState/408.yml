@@ -1,0 +1,18 @@
+companyCode: TTIC
+state: FL
+product: HO3
+name: 'Set to Not In Force'
+type: policyState
+code: '408'
+effectiveDate: 2017-08-01T04:00:00.000Z
+category: 'State Actions'
+documentFields: []
+condition: '${it.document.transaction.status === ''In Force'' || (it.document.transaction.status === ''Pending Underwriting Cancellation'' && moment.utc(it.document.transaction.cancelDate).isAfter(moment.utc(it.document.transaction.endDate)))}'
+active: true
+actions:
+    - {active: true, action: setToNotInForce, actionOutput: {date: '${it.document.transaction.endDate}', model: setToNotInForce, type: choreographer}, canOverride: false}
+tests:
+    - {description: 'setToNotInForce action triggers when policy is in ''In Force'' status.', input: {document: {transaction: {status: 'In Force', endDate: '${moment.utc().add(1, ''years'').second(0).millisecond(0)}', cancelDate: null}}}, output: [{active: true, action: setToNotInForce, category: 'State Actions', displayText: 'Set to Not In Force', canOverride: false, code: '408', fields: [], date: '${moment.utc().add(1, ''years'').second(0).millisecond(0)}'}]}
+    - {description: 'setToNotInForce action triggers when policy is in ''Pending Underwriting Cancellation'' status and cancel date is after end date.', input: {document: {transaction: {status: 'Pending Underwriting Cancellation', endDate: '${moment.utc().add(1, ''years'').second(0).millisecond(0)}', cancelDate: '${moment.utc().add(1, ''years'').add(5, ''days'').second(0).millisecond(0)}'}}}, output: [{active: true, action: setToNotInForce, category: 'State Actions', displayText: 'Set to Not In Force', canOverride: false, code: '408', fields: [], date: '${moment.utc().add(1, ''years'').second(0).millisecond(0)}'}]}
+    - {description: 'setToNotInForce action does not trigger when policy is in ''Pending Underwriting Cancellation'' status and cancel date is before end date.', input: {document: {transaction: {status: 'Pending Underwriting Cancellation', endDate: '${moment.utc().add(1, ''years'').second(0).millisecond(0)}', cancelDate: '${moment.utc().add(1, ''years'').subtract(5, ''days'').second(0).millisecond(0)}'}}}, output: null}
+    - {description: 'setToNotInForce action does not trigger when policy is in a status other than ''In Force'' or ''Pending Underwriting Cancellation''', input: {document: {transaction: {status: 'Not In Force', endDate: '${moment.utc().add(1, ''years'').second(0).millisecond(0)}', cancelDate: null}}}, output: null}

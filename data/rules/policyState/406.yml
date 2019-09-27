@@ -1,0 +1,19 @@
+companyCode: TTIC
+state: FL
+product: HO3
+name: 'Send Cancel Notice'
+type: policyState
+effectiveDate: 2017-08-01T04:00:00.000Z
+code: '406'
+category: 'State Actions'
+documentFields: []
+condition: '${(it.document.transaction.status === ''Pending Voluntary Cancellation'' || it.document.transaction.status === ''Pending Underwriting Cancellation'' || it.document.transaction.status === ''Pending Underwriting Non-Renewal'') && !it.document.transaction.cancelNoticeSent}'
+active: true
+actions:
+    - {active: true, action: sendCancelNotice, actionOutput: {date: '${moment.utc(it.document.transaction.updatedAt).add(4, ''hours'').toISOString()}', model: sendCancelNotice, type: choreographer}, canOverride: false}
+tests:
+    - {description: 'sendCancelNotice triggers when status is ''Pending Voluntary Cancellation'' and cancel notice has not already been sent.', input: {document: {transaction: {status: 'Pending Voluntary Cancellation', cancelNoticeSent: false, updatedAt: '${moment.utc().second(0).millisecond(0)}'}}}, output: [{active: true, action: sendCancelNotice, category: 'State Actions', displayText: 'Send Cancel Notice', canOverride: false, code: '406', fields: [], date: '${moment.utc().add(4, ''hours'').second(0).millisecond(0).toISOString()}'}]}
+    - {description: 'sendCancelNotice triggers when status is ''Pending Underwriting Cancellation'' and cancel notice has not already been sent.', input: {document: {transaction: {status: 'Pending Underwriting Cancellation', cancelNoticeSent: false, updatedAt: '${moment.utc().second(0).millisecond(0)}'}}}, output: [{active: true, action: sendCancelNotice, category: 'State Actions', displayText: 'Send Cancel Notice', canOverride: false, code: '406', fields: [], date: '${moment.utc().add(4, ''hours'').second(0).millisecond(0).toISOString()}'}]}
+    - {description: 'sendCancelNotice triggers when status is ''Pending Underwriting Non-Renewal'' and cancel notice has not already been sent.', input: {document: {transaction: {status: 'Pending Underwriting Non-Renewal', cancelNoticeSent: false, updatedAt: '${moment.utc().second(0).millisecond(0)}'}}}, output: [{active: true, action: sendCancelNotice, category: 'State Actions', displayText: 'Send Cancel Notice', canOverride: false, code: '406', fields: [], date: '${moment.utc().add(4, ''hours'').second(0).millisecond(0).toISOString()}'}]}
+    - {description: 'sendCancelNotice does not trigger when status is ''Pending Underwriting Non-Renewal'' and cancel notice has already been sent.', input: {document: {transaction: {status: 'Pending Underwriting Non-Renewal', cancelNoticeSent: true, updatedAt: '${moment.utc().second(0).millisecond(0)}'}}}, output: null}
+    - {description: 'sendCancelNotice does not trigger when status is ''In Force'' and cancel notice has not already been sent.', input: {document: {transaction: {status: 'In Force', cancelNoticeSent: false, updatedAt: '${moment.utc().second(0).millisecond(0)}'}}}, output: null}
