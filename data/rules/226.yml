@@ -25,7 +25,7 @@ actions:
       internalMessage: 'Premium is less than ${((it.document.cost.totalCost || 0) / round(it.document.lookupFields.zipcodesettings.minLossRatio))}, the minimum amount allowed for policy issuance.'
       agentMessage: 'Premium is less than ${((it.document.cost.totalCost || 0) / round(it.document.lookupFields.zipcodesettings.minLossRatio))}, the minimum amount allowed for policy issuance.'
       customerMessage: 'Minimum premium has not been met, please contact us for further assistance.'
-    canOverride: false
+    canOverride: true
     active: true
 tests:
   - description: New Business action triggers when Net Premium < Min Profitability Premium
@@ -57,7 +57,7 @@ tests:
         internalMessage: 'Premium is less than 10000, the minimum amount allowed for policy issuance.'
         agentMessage: 'Premium is less than 10000, the minimum amount allowed for policy issuance.'
         customerMessage: 'Minimum premium has not been met, please contact us for further assistance.'
-        canOverride: false
+        canOverride: true
         active: true
         fields:
           - name: rating.netPremium
