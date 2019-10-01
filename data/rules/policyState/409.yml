@@ -1,0 +1,69 @@
+product: HO3
+companyCode: TTIC
+state: FL
+name: "Renew Policy"
+type: policyState
+code: 409
+effectiveDate: 2017-08-01T04:00:00.000Z
+category: "State Actions"
+documentFields: 
+condition: "${!it.document.renewal && (it.document.transaction.status === 'In Force' || (it.document.transaction.status === 'Pending Underwriting Cancellation' && moment.utc(it.document.transaction.cancelDate).isAfter(moment.utc(it.document.transaction.endDate))))}"
+active: true
+actions: 
+ - active: true
+   action: renewPolicy
+   actionOutput: 
+     date: "${moment.utc(it.document.transaction.endDate).subtract(60, 'days').toISOString()}"
+     type: workflow
+     exchangeName: harmony
+     routingKey: "harmony.policy.renewPolicy"
+   canOverride: false
+tests: 
+ - description: "renewPolicy action triggers when policy is in 'In Force' status."
+   input: 
+    document: 
+     transaction: 
+      status: "In Force"
+      endDate: "${moment.utc().add(1, 'years').second(0).millisecond(0)}"
+      cancelDate: null
+   output: 
+    - active: true
+      action: renewPolicy
+      category: "State Actions"
+      displayText: "Renew Policy"
+      canOverride: false
+      code: 409
+      fields: []
+      date: "${moment.utc().add(1, 'years').second(0).millisecond(0).subtract(60, 'days')}"
+ - description: "renewPolicy action triggers when policy is in 'Pending Underwriting Cancellation' status and cancel date is after end date."
+   input: 
+     document: 
+      transaction: 
+        status: "Pending Underwriting Cancellation"
+        endDate: "${moment.utc().add(1, 'years').second(0).millisecond(0)}"
+        cancelDate: "${moment.utc().add(1, 'years').add(5, 'days').second(0).millisecond(0)}"
+   output: 
+    - active: true
+      action: renewPolicy
+      category: "State Actions"
+      displayText: "Renew Policy"
+      canOverride: false
+      code: 409
+      fields: []
+      date: "${moment.utc().add(1, 'years').subtract(60, 'days').second(0).millisecond(0)}"
+ - description: "renewPolicy action does not trigger when policy is in 'Pending Underwriting Cancellation' status and cancel date is before end date."
+   input: 
+     document: 
+       transaction: 
+         status: "Pending Underwriting Cancellation"
+         endDate: "${moment.utc().add(1, 'years').second(0).millisecond(0)}"
+         cancelDate: "${moment.utc().add(1, 'years').subtract(5, 'days').second(0).millisecond(0)}"
+   output: null
+ - description: "renewPolicy action does not trigger when policy is in a status other than 'In Force' or 'Pending Underwriting Cancellation'"
+   input: 
+     document: 
+       transaction: 
+         status: "Not In Force"
+         endDate: "${moment.utc().add(1, 'years').second(0).millisecond(0).subtract(60, 'days')}"
+         cancelDate: null
+   output: null
