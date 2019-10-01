@@ -11,4 +11,4 @@ RUN npm install && \
 
 COPY . /app
 
-CMD ["node", "index.js", "-h"]
+CMD ["npm", "start"]
