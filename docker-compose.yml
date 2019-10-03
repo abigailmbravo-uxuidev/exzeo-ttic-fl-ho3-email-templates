@@ -3,7 +3,7 @@ version: "2"
 services:
   ttic-fl-ho3:
     build: .
-    command: node index.js update rules
+    command: npm start
     container_name: ttic-fl-ho3
     depends_on:
       - "mongo"
