@@ -1,0 +1,66 @@
+
+  companyCode: "TTIC"
+  state: "FL"
+  product: "HO3"
+  version: 1970-01-01T00:00:00.000Z
+  path: "root"
+  type: "object"
+  children: 
+    - "underwritingAnswers"
+  required: 
+    - "underwritingAnswers"
+  documents: 
+    - "quote-underwriting"
+  createdAt: 2019-04-05T18:09:15.732Z
+  updatedAt: 2019-04-05T18:09:15.732Z
+s"
+  documents: 
+    - "quote-application"
+  createdAt: 2019-04-05T18:09:15.732Z
+  updatedAt: 2019-04-05T18:09:15.732Z
+   - "policyHolderMailingAddress"
+    - "additionalInterests"
+    - "underwritingAnswers"
+    - "rating"
+    - "cost"
+  required: 
+    - "quoteNumber"
+    - "effectiveDate"
+    - "endDate"
+    - "agencyCode"
+    - "agentCode"
+    - "billToType"
+    - "billToId"
+    - "billPlan"
+    - "property"
+    - "companyCode"
+    - "state"
+    - "product"
+    - "policyHolders"
+    - "coverageLimits"
+    - "coverageOptions"
+    - "deductibles"
+    - "policyHolderMailingAddress"
+    - "additionalInterests"
+    - "underwritingAnswers"
+    - "rating"
+    - "cost"
+  documents: 
+    - "quote"
+  createdAt: 2019-04-05T18:09:15.732Z
+  updatedAt: 2019-04-05T18:09:15.732Z
+- "state"
+    - "product"
+    - "policyHolders"
+    - "coverageLimits"
+    - "coverageOptions"
+    - "deductibles"
+    - "policyHolderMailingAddress"
+    - "additionalInterests"
+    - "underwritingAnswers"
+    - "rating"
+    - "cost"
+  documents: 
+    - "transaction"
+  createdAt: 2019-08-29T18:09:15.732Z
+  updatedAt: 2019-04-05T18:09:15.732Z

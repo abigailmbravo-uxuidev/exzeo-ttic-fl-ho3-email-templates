@@ -1,0 +1,25 @@
+
+  companyCode: "TTIC"
+  state: "FL"
+  product: "HO3"
+  type: "coverageLimit"
+  name: "personalLiability"
+  version: 1970-01-01T00:00:00.000Z
+  createdAt: 2019-04-05T18:09:15.720Z
+  updatedAt: 2019-04-05T18:09:15.720Z
+  createdBy: {}
+  updatedBy: {}
+  details: 
+    name: "personalLiability"
+    required: true
+    amount: "${it.coverageLimits.personalLiability.value}"
+    letterDesignation: "E"
+    initialValue: |
+      
+      ${it.zipCodeSettings.coverageLimits.personalLiability.defaultAmount}
+    displayText: "Personal Liability"
+    format: "Currency"
+    groups: 
+      - "coverage"
+      - "underwriting"
+    endorsementType: "Coverage Endorsement"

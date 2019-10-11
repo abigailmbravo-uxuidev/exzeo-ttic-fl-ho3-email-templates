@@ -1,0 +1,26 @@
+
+  companyCode: "TTIC"
+  state: "FL"
+  product: "HO3"
+  type: "deductible"
+  name: "sinkhole"
+  version: 1970-01-01T00:00:00.000Z
+  createdAt: 2019-04-05T18:09:15.721Z
+  updatedAt: 2019-04-05T18:09:15.721Z
+  createdBy: {}
+  updatedBy: {}
+  details: 
+    name: "sinkhole"
+    required: "${it.coverageOptions.sinkholePerilCoverage.answer}"
+    amount: "${it.deductibles.sinkhole.value}"
+    displayText: "Sinkhole"
+    initialValue: 10
+    format: "Percentage"
+    ofCoverageLimit: "dwelling"
+    calculatedAmount: |
+      ${it.deductibles.sinkhole.value / 100 *
+      it.coverageLimits.dwelling.value}
+    groups: 
+      - "coverage"
+      - "initialData"
+    endorsementType: "Deductible Endorsement"

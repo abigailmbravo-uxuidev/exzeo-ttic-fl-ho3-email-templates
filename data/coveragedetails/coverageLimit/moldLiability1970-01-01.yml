@@ -1,0 +1,22 @@
+
+  companyCode: "TTIC"
+  state: "FL"
+  product: "HO3"
+  type: "coverageLimit"
+  name: "moldLiability"
+  version: 1970-01-01T00:00:00.000Z
+  createdAt: 2019-04-05T18:09:15.720Z
+  updatedAt: 2019-04-05T18:09:15.720Z
+  createdBy: {}
+  updatedBy: {}
+  details: 
+    name: "moldLiability"
+    required: true
+    amount: "${it.coverageLimits.moldLiability.value}"
+    initialValue: 50000
+    displayText: "Mold Liability"
+    format: "Currency"
+    groups: 
+      - "coverage"
+      - "initialData"
+    endorsementType: "Coverage Endorsement"
