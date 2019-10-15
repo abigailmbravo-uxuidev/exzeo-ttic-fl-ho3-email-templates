@@ -1,0 +1,302 @@
+
+  companyCode: "TTIC"
+  state: "FL"
+  product: "HO3"
+  version: 2017-07-31T04:00:00.000Z
+  key: "endorsementOrder"
+  value: 
+    endorsementOrder: 
+      - 
+        path: "coverageLimits.dwelling.amount"
+        label: "Dwelling (A)"
+        order: 1
+      - 
+        path: "coverageLimits.otherStructures.amount"
+        label: "Other Structures (B)"
+        order: 2
+      - 
+        path: "coverageLimits.personalProperty.amount"
+        label: "Personal Property (C)"
+        order: 3
+      - 
+        path: "coverageLimits.lossOfUse.amount"
+        label: "Loss of Use (D)"
+        order: 4
+      - 
+        path: "coverageLimits.personalLiability.amount"
+        label: "Personal Liability (E)"
+        order: 5
+      - 
+        path: "coverageLimits.medicalPayments.amount"
+        label: "Medical Payments (F)"
+        order: 6
+      - 
+        path: "coverageLimits.moldProperty.amount"
+        label: "Mold Property"
+        order: 7
+      - 
+        path: "coverageLimits.moldLiability.amount"
+        label: "Mold Liability"
+        order: 8
+      - 
+        path: "deductibles.allOtherPerils.amount"
+        label: "AOP Deductible"
+        order: 9
+      - 
+        path: "deductibles.hurricane.amount"
+        label: "Hurricane Deductible"
+        order: 10
+      - 
+        path: "coverageOptions.sinkholePerilCoverage.answer"
+        label: "Sinkhole Deductible"
+        order: 11
+      - 
+        path: "deductibles.sinkhole.amount"
+        label: "Sinkhole Deductible"
+        order: 12
+      - 
+        path: "coverageOptions.personalPropertyReplacementCost.answer"
+        label: "Personal Property Repl Cost"
+        order: 13
+      - 
+        path: "coverageLimits.ordinanceOrLaw.amount"
+        label: "Ordinance or Law"
+        order: 14
+      - 
+        path: |
+          
+          coverageOptions.propertyIncidentalOccupanciesMainDwelling.answer
+        label: "Incidental Occ Main"
+        order: 15
+      - 
+        path: |
+          
+          coverageOptions.propertyIncidentalOccupanciesOtherStructures.answer
+        label: "Incidental Occ Other"
+        order: 16
+      - 
+        path: "coverageOptions.liabilityIncidentalOccupancies.answer"
+        label: "Incidental Occ Liability"
+        order: 17
+      - 
+        path: "property.townhouseRowhouse"
+        label: "Townhouse / Rowhouse"
+        order: 18
+      - 
+        path: "underwritingAnswers.rented.answer"
+        label: "Property Ever Rented"
+        order: 19
+      - 
+        path: "underwritingAnswers.monthsOccupied.answer"
+        label: "Months Occupied"
+        order: 20
+      - 
+        path: "underwritingAnswers.noPriorInsuranceSurcharge.answer"
+        label: "No Prior Insurance"
+        order: 21
+      - 
+        path: "property.burglarAlarm"
+        label: "Burglar Alarm"
+        order: 22
+      - 
+        path: "property.fireAlarm"
+        label: "Fire Alarm"
+        order: 23
+      - 
+        path: "property.sprinkler"
+        label: "Sprinkler"
+        order: 24
+      - 
+        path: "property.windMitigation.roofCovering"
+        label: "Roof Covering"
+        order: 25
+      - 
+        path: "property.windMitigation.roofDeckAttachment"
+        label: "Roof Deck Attachment"
+        order: 26
+      - 
+        path: "property.windMitigation.roofToWallConnection"
+        label: "Roof to Wall Attachment"
+        order: 27
+      - 
+        path: "property.windMitigation.roofGeometry"
+        label: "Roof Geometry"
+        order: 28
+      - 
+        path: "property.windMitigation.secondaryWaterResistance"
+        label: "Secondary Water Resistance"
+        order: 29
+      - 
+        path: "property.windMitigation.openingProtection"
+        label: "Opening Protection"
+        order: 30
+      - 
+        path: "property.windMitigation.floridaBuildingCodeWindSpeed"
+        label: "FBC Wind Speed"
+        order: 31
+      - 
+        path: "property.windMitigation.floridaBuildingCodeWindSpeedDesign"
+        label: "FBC Wind Speed Design"
+        order: 32
+      - 
+        path: "property.windMitigation.terrain"
+        label: "Terrain"
+        order: 33
+      - 
+        path: "property.windMitigation.internalPressureDesign"
+        label: "Internal Pressure Design"
+        order: 34
+      - 
+        path: "property.windMitigation.windBorneDebrisRegion"
+        label: "Wind Borne Debris Region"
+        order: 35
+      - 
+        path: |
+          
+          rating.worksheet.elements.windMitigationFactors.windMitigiationDiscount
+        label: "Wind Mit Factor"
+        order: 36
+      - 
+        path: "property.yearBuilt"
+        label: "Year Home Built"
+        order: 37
+      - 
+        path: "property.constructionType"
+        label: "Construction"
+        order: 38
+      - 
+        path: "property.protectionClass"
+        label: "Protection Class"
+        order: 39
+      - 
+        path: "property.buildingCodeEffectivenessGrading"
+        label: "BCEG"
+        order: 40
+      - 
+        path: "property.familyUnits"
+        label: "Family Units"
+        order: 41
+      - 
+        path: "property.floodZone"
+        label: "Flood Zone"
+        order: 42
+      - 
+        path: "property.distanceToTidalWater"
+        label: "Tidal Waters Dist"
+        order: 43
+      - 
+        path: "property.distanceToFireHydrant"
+        label: "Fire Hydrant Dist"
+        order: 44
+      - 
+        path: "property.distanceToFireStation"
+        label: "Fire Station Dist"
+        order: 45
+      - 
+        path: "property.residenceType"
+        label: "Residence Type"
+        order: 46
+      - 
+        path: "property.squareFeet"
+        label: "Sq. Ft. of Home"
+        order: 47
+      - 
+        path: "property.yearOfRoof"
+        label: "Year Roof Built"
+        order: 48
+      - 
+        path: "policyHolders.0.firstName"
+        label: "PH 1 First Name"
+        order: 49
+      - 
+        path: "policyHolders.0.lastName"
+        label: "PH 1 Last Name"
+        order: 50
+      - 
+        path: "policyHolders.0.primaryPhoneNumber"
+        label: "PH 1 Primary Phone"
+        order: 51
+      - 
+        path: "policyHolders.0.secondaryPhoneNumber"
+        label: "PH 1 Secondary Phone"
+        order: 52
+      - 
+        path: "policyHolders.0.emailAddress"
+        label: "PH 1 Email Address"
+        order: 53
+      - 
+        path: "policyHolders.0.electronicDelivery"
+        label: "PH 1 Electronic Delivery"
+        order: 54
+      - 
+        path: "policyHolders.1.firstName"
+        label: "PH 2 First Name"
+        order: 55
+      - 
+        path: "policyHolders.1.lastName"
+        label: "PH 2 Last Name"
+        order: 56
+      - 
+        path: "policyHolders.1.primaryPhoneNumber"
+        label: "PH 2 Primary Phone"
+        order: 57
+      - 
+        path: "policyHolders.1.secondaryPhoneNumber"
+        label: "PH 2 Secondary Phone"
+        order: 58
+      - 
+        path: "policyHolders.1.emailAddress"
+        label: "PH 2 Email Address"
+        order: 59
+      - 
+        path: "policyHolders"
+        label: "PH 2"
+        order: 60
+      - 
+        path: "policyHolderMailingAddress.address1"
+        label: "Mailing Address 1"
+        order: 61
+      - 
+        path: "policyHolderMailingAddress.address2"
+        label: "Mailing Address 2"
+        order: 62
+      - 
+        path: "policyHolderMailingAddress.city"
+        label: "Mailing Address City"
+        order: 63
+      - 
+        path: "policyHolderMailingAddress.state"
+        label: "Mailing Address State"
+        order: 64
+      - 
+        path: "policyHolderMailingAddress.zip"
+        label: "Mailing Address Zip"
+        order: 65
+      - 
+        path: "policyHolderMailingAddress.country.code"
+        label: "Mailing Address Country Code"
+        order: 65
+      - 
+        path: "policyHolderMailingAddress.country.displayText"
+        label: "Mailing Address Country Display Text"
+        order: 65
+      - 
+        path: "property.physicalAddress.address1"
+        label: "Property 1"
+        order: 66
+      - 
+        path: "property.physicalAddress.address2"
+        label: "Property 2"
+        order: 67
+      - 
+        path: "property.physicalAddress.city"
+        label: "Property City"
+        order: 68
+      - 
+        path: "property.physicalAddress.state"
+        label: "Property State"
+        order: 69
+      - 
+        path: "property.physicalAddress.zip"
+        label: "Property Zip"
+        order: 70
