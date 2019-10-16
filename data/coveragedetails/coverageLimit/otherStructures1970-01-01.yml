@@ -12,11 +12,7 @@
   details: 
     name: "otherStructures"
     required: true
-    amount: |
-      ${(it.coverageLimits.otherStructures.value <= 100) ?
-      it.coverageLimits.dwelling.value *
-      it.coverageLimits.otherStructures.value / 100 :
-      it.coverageLimits.otherStructures.amount}
+    amount: "${(it.coverageLimits.otherStructures.value <= 100) ? it.coverageLimits.dwelling.value * it.coverageLimits.otherStructures.value / 100 : it.coverageLimits.otherStructures.amount}"
     letterDesignation: "B"
     initialValue: 2
     displayText: "Other Structures"

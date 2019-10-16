@@ -12,9 +12,7 @@
   details: 
     name: "personalPropertyReplacementCost"
     displayText: "Personal Property Replacement Cost"
-    default: |
-      
-      ${it.zipCodeSettings.coverageOptions.personalPropertyReplacementCost.defaultAnswer}
+    default: "${it.zipCodeSettings.coverageOptions.personalPropertyReplacementCost.defaultAnswer}"
     groups: 
       - "coverage"
       - "underwriting"

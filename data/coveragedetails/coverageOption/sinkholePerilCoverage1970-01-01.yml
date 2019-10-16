@@ -12,10 +12,7 @@
   details: 
     name: "sinkholePerilCoverage"
     displayText: "Sinkhole Peril Coverage"
-    default: |
-      
-      ${it.zipCodeSettings.coverageOptions.sinkholePerilCoverage.defaultAnswer
-      || false}
+    default: "${it.zipCodeSettings.coverageOptions.sinkholePerilCoverage.defaultAnswer || false}"
     groups: 
       - "coverage"
       - "underwriting"
