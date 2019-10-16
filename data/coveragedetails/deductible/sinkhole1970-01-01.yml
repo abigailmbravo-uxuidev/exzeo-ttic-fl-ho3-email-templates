@@ -17,9 +17,7 @@
     initialValue: 10
     format: "Percentage"
     ofCoverageLimit: "dwelling"
-    calculatedAmount: |
-      ${it.deductibles.sinkhole.value / 100 *
-      it.coverageLimits.dwelling.value}
+    calculatedAmount: "${it.deductibles.sinkhole.value / 100 * it.coverageLimits.dwelling.value}"
     groups: 
       - "coverage"
       - "initialData"

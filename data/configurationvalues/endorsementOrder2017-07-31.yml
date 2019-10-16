@@ -63,15 +63,11 @@
         label: "Ordinance or Law"
         order: 14
       - 
-        path: |
-          
-          coverageOptions.propertyIncidentalOccupanciesMainDwelling.answer
+        path: "coverageOptions.propertyIncidentalOccupanciesMainDwelling.answer"
         label: "Incidental Occ Main"
         order: 15
       - 
-        path: |
-          
-          coverageOptions.propertyIncidentalOccupanciesOtherStructures.answer
+        path: "coverageOptions.propertyIncidentalOccupanciesOtherStructures.answer"
         label: "Incidental Occ Other"
         order: 16
       - 
@@ -151,9 +147,7 @@
         label: "Wind Borne Debris Region"
         order: 35
       - 
-        path: |
-          
-          rating.worksheet.elements.windMitigationFactors.windMitigiationDiscount
+        path: "rating.worksheet.elements.windMitigationFactors.windMitigiationDiscount"
         label: "Wind Mit Factor"
         order: 36
       - 

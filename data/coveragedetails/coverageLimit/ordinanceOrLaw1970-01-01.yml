@@ -17,9 +17,7 @@
     displayText: "Ordinance or Law"
     format: "Percentage"
     ofCoverageLimit: "dwelling"
-    calculatedAmount: |
-      ${it.coverageLimits.ordinanceOrLaw.value / 100 *
-      it.coverageLimits.dwelling.value}
+    calculatedAmount: "${it.coverageLimits.ordinanceOrLaw.value / 100 * it.coverageLimits.dwelling.value}"
     groups: 
       - "coverage"
       - "initialData"

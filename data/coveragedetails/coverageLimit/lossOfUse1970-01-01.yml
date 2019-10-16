@@ -12,11 +12,7 @@
   details: 
     name: "lossOfUse"
     required: true
-    amount: |
-      ${(it.coverageLimits.lossOfUse.value <= 100) ?
-      it.coverageLimits.dwelling.value *
-      it.coverageLimits.lossOfUse.value / 100 :
-      it.coverageLimits.lossOfUse.amount}
+    amount: "${(it.coverageLimits.lossOfUse.value <= 100) ? it.coverageLimits.dwelling.value * it.coverageLimits.lossOfUse.value / 100 : it.coverageLimits.lossOfUse.amount}"
     letterDesignation: "D"
     initialValue: 10
     displayText: "Loss of Use"

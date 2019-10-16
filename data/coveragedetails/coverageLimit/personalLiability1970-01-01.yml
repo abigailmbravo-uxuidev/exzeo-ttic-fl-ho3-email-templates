@@ -14,9 +14,7 @@
     required: true
     amount: "${it.coverageLimits.personalLiability.value}"
     letterDesignation: "E"
-    initialValue: |
-      
-      ${it.zipCodeSettings.coverageLimits.personalLiability.defaultAmount}
+    initialValue: "${it.zipCodeSettings.coverageLimits.personalLiability.defaultAmount}"
     displayText: "Personal Liability"
     format: "Currency"
     groups: 

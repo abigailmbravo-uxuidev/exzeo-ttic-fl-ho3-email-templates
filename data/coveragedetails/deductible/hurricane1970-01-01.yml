@@ -16,9 +16,7 @@
     displayText: "Hurricane"
     initialValue: 2
     format: "Currency"
-    calculatedAmount: |
-      ${it.deductibles.hurricane.value / 100 *
-      it.coverageLimits.dwelling.value}
+    calculatedAmount: "${it.deductibles.hurricane.value / 100 * it.coverageLimits.dwelling.value}"
     groups: 
       - "coverage"
       - "initialData"

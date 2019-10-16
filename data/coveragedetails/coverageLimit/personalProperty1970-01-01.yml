@@ -12,11 +12,7 @@
   details: 
     name: "personalProperty"
     required: true
-    amount: |
-      ${(it.coverageLimits.personalProperty.value <= 100) ?
-      Math.min(it.coverageLimits.dwelling.value *
-      it.coverageLimits.personalProperty.value / 100, 500000) :
-      it.coverageLimits.personalProperty.amount}
+    amount: "${(it.coverageLimits.personalProperty.value <= 100) ? Math.min(it.coverageLimits.dwelling.value * it.coverageLimits.personalProperty.value / 100, 500000) : it.coverageLimits.personalProperty.amount}"
     letterDesignation: "C"
     initialValue: 25
     displayText: "Personal Property"
