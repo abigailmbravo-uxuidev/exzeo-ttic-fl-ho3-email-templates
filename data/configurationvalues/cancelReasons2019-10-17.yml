@@ -1,0 +1,66 @@
+
+  companyCode: "TTIC"
+  state: "FL"
+  product: "HO3"
+  version: 2017-07-31T04:00:00.000Z
+  key: "cancelReasons"
+  value: 
+    - transactionType: 'Voluntary Cancellation'
+      reasons:
+        - 'Continuous Wind Coverage - 3 Yrs'
+        - 'Duplicate - Similar Coverage'
+        -  'Insured Deceased'
+        -  'Mortgage Satisfied'
+        -  'Other'
+        -  'Property Demolished'
+        -  'Property Foreclosed'
+        -  'Reason Not Provided'
+        -  'Rewritten - Similar Coverage'
+        -  'Sold'
+    - transactionType: 'Underwriting Cancellation'
+      reasons:
+        - 'Claims Frequency'
+        - 'Claims Severity'
+        - 'Condition of Roof'
+        - 'Empty Pool'
+        - 'Existing/Unrepaired Damage'
+        - 'Failure to Comply with Underwriting Request'
+        - 'Ineligible Breed of Dog'
+        - 'Ineligible Ownership'
+        - 'Ineligible Protection Class'
+        - 'Ineligible Risk'
+        - 'Insured Deceased'
+        - 'No Insurable Interest'
+        - 'Policy Limits Paid'
+        - 'Property in Disrepair'
+        - 'Risk Management'
+        - 'Slide/Diving Board'
+        - 'Tenant Occupied'
+        - 'Trampoline'
+        - 'Unsecured Pool'
+        - 'Vacant'
+    - transactionType: 'Underwriting Non-Renewal'
+      reasons:
+        - 'Claims Frequency'
+        - 'Claims Severity'
+        - 'Condition of Roof'
+        - 'Empty Pool'
+        - 'Existing/Unrepaired Damage'
+        - 'Failure to Comply with Underwriting Request'
+        - 'Ineligible Breed of Dog'
+        - 'Ineligible Ownership'
+        - 'Ineligible Protection Class'
+        - 'Ineligible Risk'
+        - 'Insured Deceased'
+        - 'No Insurable Interest'
+        - 'Policy Limits Paid'
+        - 'Property in Disrepair'
+        - 'Risk Management'
+        - 'Slide/Diving Board'
+        - 'Tenant Occupied'
+        - 'Trampoline'
+        - 'Unsecured Pool'
+        - 'Vacant'
+  createdAt: 2019-10-17T15:11:13.156Z
+  updatedBy: {}
+  createdBy: {}
