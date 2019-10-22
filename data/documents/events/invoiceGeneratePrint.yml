@@ -3,9 +3,7 @@ state: FL
 product: HO3
 name: invoiceGeneratePrint
 active: true
-events:
-  - harmony.policy.bound 
-  - harmony.policy.renewed
+events: []
 inputFields:
   policyTransactionId: ${it.input.policyTransactionId}
 lookupFields:
@@ -49,5 +47,4 @@ emailConfigs :
         value: ${it.calculatedFields.firstName}
       - key: POLICYHOLDER1_LASTNAME
         value: ${it.calculatedFields.lastName}
-    templateName: invoice.html
     attachments: ${it.pdfs}

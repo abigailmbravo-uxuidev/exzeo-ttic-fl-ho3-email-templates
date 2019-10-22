@@ -28,6 +28,7 @@ packetConfig:
     transactionType: ${it.inputFields.transactionType || it.calculatedFields.transactionType}
     agency: ${it.lookupFields.policyDetails.agency}
     agent: ${it.lookupFields.policyDetails.agent}
+    summaryLedger: "${(!['new business', 'renewal'].includes(it.calculatedFields.transactionType.toLowerCase())) ? it.lookupFields.policyDetails.summaryLedger : null}"
   packetType: dec
   folderName: ${it.lookupFields.policyDetails.transaction.policyNumber}
   combine: true

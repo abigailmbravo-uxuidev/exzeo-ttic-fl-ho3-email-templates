@@ -1,10 +1,10 @@
 companyCode: TTIC
 state: FL
 product: HO3
-name: fullPolicyPacket
+name: fullPolicyPacketRenewal
 active: true
 events:
-  - harmony.policy.bound
+  - harmony.policy.renewed
 inputFields:
   policyTransactionId: ${it.input.policyTransactionId}
 lookupFields:
@@ -36,7 +36,7 @@ packetConfigs:
     args:
       policyTransactionId: ${it.inputFields.policyTransactionId}
 emailConfigs:
-  - templateName: welcomeEmail.html
+  - templateName: renewalEmail.html
     fromName: TypTap
     fromEmail: contact@typtap.com
     subject: "TypTap Homeowners Policy # ${it.calculatedFields.policyNumber} ${it.calculatedFields.lastName}"
