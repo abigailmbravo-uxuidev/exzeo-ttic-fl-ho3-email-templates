@@ -7,6 +7,7 @@ events:
   - harmony.quote.summaryReady
 inputFields:
   quoteNumber: ${it.input.quoteNumber}
+  summaryType: ${it.input.summaryType}
   toEmail: ${it.input.toEmail}
   toName: ${it.input.toName}
 lookupFields:
@@ -28,7 +29,7 @@ packetConfigs:
     args:
       quoteNumber: ${it.inputFields.quoteNumber}
 emailConfigs:
-  - templateName: quoteEmail.html
+  - templateName: "${it.input.summaryType === 'csr' ? quoteEmail.html : it.input.summaryType === 'agency' ? quoteEmailAgency.html : quoteEmailConsumer.html}"
     fromName: TypTap
     fromEmail: contact@typtap.com
     subject: "TypTap Homeowners Quote # ${it.calculatedFields.quoteNumber} ${it.calculatedFields.lastName}"
