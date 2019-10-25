@@ -57,11 +57,11 @@ emailConfigs:
           numberType: policyNumber
         content: "Bind Email sent to ${Array.of(it.calculatedFields.emailAddress)}"
         attachments: "${it.pdfs.map(x => ({ ...x fileType: 'Policy Packet' }))}"
-    printConfigs:
-      - printType: generic
-        metadata:
-          packetName: fullPolicyPacket
-        referenceResource:
-          resourceId: ${it.calculatedFields.policyNumber}
-          resourceType: policyNumber
-        files: "${it.pdfs.map(x => ({ ...x, fileType: 'Policy Packet' }))}"
+printConfigs:
+  - printType: generic
+    metadata:
+      packetName: fullPolicyPacket
+    referenceResource:
+      resourceId: ${it.calculatedFields.policyNumber}
+      resourceType: policyNumber
+    files: "${it.pdfs.map(x => ({ ...x, fileType: 'Policy Packet' }))}"
