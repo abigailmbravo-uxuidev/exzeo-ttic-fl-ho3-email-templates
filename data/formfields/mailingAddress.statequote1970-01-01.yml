@@ -1,0 +1,19 @@
+
+  version: 1970-01-01T00:00:00.000Z
+  path: "mailingAddress.state"
+  type: "string"
+  metaData: 
+    minLength: 2
+    maxLength: 2
+    pattern: "^[A-Z]{2}$"
+  children: []
+  documents: 
+    - "quote"
+    - "quote-application"
+    - "transaction"
+  createdAt: 2019-04-05T18:09:15.728Z
+  updatedAt: 2019-04-05T18:09:15.728Z
+  endorsementType: "Non-Premium Endorsement"
+  companyCode: "TTIC"
+  state: "FL"
+  product: "HO3"

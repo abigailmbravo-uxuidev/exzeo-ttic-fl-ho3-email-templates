@@ -1,0 +1,16 @@
+
+  version: 1970-01-01T00:00:00.000Z
+  path: "additionalInterests.additionalInterest.phoneNumber"
+  type: 
+    - "string"
+    - "null"
+  metaData: {}
+  children: []
+  documents: 
+    - "quote"
+    - "transaction"
+  createdAt: 2019-04-05T18:09:15.730Z
+  updatedAt: 2019-04-05T18:09:15.730Z
+  companyCode: "TTIC"
+  state: "FL"
+  product: "HO3"
