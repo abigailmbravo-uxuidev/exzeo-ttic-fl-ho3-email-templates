@@ -1,0 +1,33 @@
+companyCode: TTIC
+state: FL
+product: HO3
+name: quoteApplicationEvent
+active: true
+events :
+  - harmony.application.ready
+inputFields: 
+  quoteNumber: ${it.input.quoteNumber}
+lookupFields:      
+  - name: quoteDetails
+    type: rpc
+    rpcConfig: 
+      routingKey: harmony.quote.getQuoteDetails
+      message: 
+        quoteNumber: ${it.inputFields.quoteNumber}
+calculatedFields: []
+packetConfigs:   
+  - packetName: quoteApplication
+    args: 
+      quoteNumber: ${it.inputFields.quoteNumber}
+docusignConfig: 
+  emailSubject: "TypTap Homeowners Application # ${it.lookupFields.quoteDetails.quote.quoteNumber} ${it.lookupFields.quoteDetails.quote.policyHolders[0].lastName}"
+  emailBody: "TypTap Insurance Company - sent you a document to review and sign. \nYou will be asked to: \n(1) Review the information that was provided \n(2) Initial and sign the TypTap Insurance Company HO3 Application \n\nIf you have listed a second owner for the property a copy to sign will also be routed to them.\n\nPlease be aware that this application will expire in 10 days if all signatures are not received.\n\nIf you have any questions or concerns please contact us at (844) 289- 7968 or customerservice@typtap.com"
+  expirations: 
+    expireAfter: 10
+    expireWarn: 3
+  eventNotifications: 
+    events:
+      - Completed
+  quote: ${it.lookupFields.quoteDetails.quote}
+  agent: ${it.lookupFields.quoteDetails.agent}
+  documents: $reject(it.pdfs ['printOrder' 32])}

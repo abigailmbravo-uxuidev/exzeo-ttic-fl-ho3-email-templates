@@ -1,0 +1,67 @@
+companyCode: TTIC
+state: FL
+product: HO3
+name: fullPolicyPacket
+active: true
+events:
+  - harmony.policy.bound
+inputFields:
+  policyTransactionId: ${it.input.policyTransactionId}
+lookupFields:
+  - name: policyDetails
+    type: rpc
+    rpcConfig:
+      routingKey: harmony.policy.retrievePolicyData
+      message:
+        policyTransactionId: ${it.inputFields.policyTransactionId}
+  - name: toEmail
+    type: rest
+    restConfig:
+      method: get
+      endpoint: http://policy-data
+      path: /policies/${it.lookupFields.policyDetails.transaction.policyNumber}/emailAddresses
+calculatedFields:
+  - name: policyNumber
+    equation: ${it.lookupFields.policyDetails.transaction.policyNumber}
+  - name: policyHolders
+    equation: ${it.lookupFields.policyDetails.transaction.policyHolders}
+  - name: firstName
+    equation: ${it.calculatedFields.policyHolders[0].firstName}
+  - name: emailAddress
+    equation: ${it.calculatedFields.policyHolders[0].emailAddress}
+  - name: lastName
+    equation: ${it.calculatedFields.policyHolders[0].lastName}
+packetConfigs:
+  - packetName: fullPolicyPacket
+    args:
+      policyTransactionId: ${it.inputFields.policyTransactionId}
+emailConfigs:
+  - templateName: welcomeEmail.html
+    fromName: TypTap
+    fromEmail: contact@typtap.com
+    subject: "TypTap Homeowners Policy # ${it.calculatedFields.policyNumber} ${it.calculatedFields.lastName}"
+    body: ""
+    toEmail: ${Array.of(it.calculatedFields.emailAddress)}
+    toName: ${it.calculatedFields.firstName}
+    variables:
+      - key: TITLE
+        value: Hello ${it.calculatedValues.firstName}
+      - key: effective date
+        value: ${it.lookupFields.policyDetails.transaction.effectiveDate}
+    ccEmail: ${uniq(Array.of(it.lookupFields.policyDetails.agent.emailAddress, it.lookupFields.policyDetails.agency.customerServiceEmailAddress))}
+    bccEmail: ${Array.of(it.lookupFields.toEmail[0])}        
+    attachments: ${it.pdfs}
+    publishNote:
+        documentReference:
+          number: ${it.calculatedFields.policyNumber}
+          numberType: policyNumber
+        content: "Bind Email sent to ${Array.of(it.calculatedFields.emailAddress)}"
+        attachments: "${it.pdfs.map(x => ({ ...x fileType: 'Policy Packet' }))}"
+printConfigs:
+  - printType: generic
+    metadata:
+      packetName: fullPolicyPacket
+    referenceResource:
+      resourceId: ${it.calculatedFields.policyNumber}
+      resourceType: policyNumber
+    files: "${it.pdfs.map(x => ({ ...x, fileType: 'Policy Packet' }))}"

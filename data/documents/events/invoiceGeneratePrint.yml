@@ -1,0 +1,50 @@
+companyCode: TTIC
+state: FL
+product: HO3
+name: invoiceGeneratePrint
+active: true
+events: []
+inputFields:
+  policyTransactionId: ${it.input.policyTransactionId}
+lookupFields:
+  - name: policyDetails
+    type: rpc
+    rpcConfig:
+      routingKey: harmony.policy.retrievePolicyData
+      message:
+        policyTransactionId: ${it.inputFields.policyTransactionId}
+  - name: toEmail
+    type: rest
+    restConfig:
+      method: get
+      endpoint: http://policy-data
+      path: /policies/${it.lookupFields.policyDetails.transaction.policyNumber}/emailAddresses
+calculatedFields:
+  - name: policyNumber
+    equation: ${it.lookupFields.policyDetails.transaction.policyNumber}
+  - name: policyHolders
+    equation: ${it.lookupFields.policyDetails.transaction.policyHolders}
+  - name: firstName
+    equation: ${it.calculatedFields.policyHolders[0].firstName}
+  - name: lastName
+    equation: ${it.calculatedFields.policyHolders[0].lastName}
+packetConfigs:
+  - packetName: invoice
+    args:
+      policyTransactionId: ${it.inputFields.policyTransactionId}
+emailConfigs :
+  - templateName: invoice.html
+    fromName: TypTap
+    fromEmail: contact@typtap.com
+    subject: "Invoice: ${it.calculatedFields.policyNumber} ${it.calculatedFields.firstName} ${it.calculatedFields.lastName}"
+    body: ""
+    toEmail: ${it.lookupFields.toEmail}
+    toName: Print Shop
+    variables:
+      - key: POLICY_NUMBER
+        value: ${it.calculatedFields.policyNumber}
+      - key: POLICYHOLDER1_FIRSTNAME
+        value: ${it.calculatedFields.firstName}
+      - key: POLICYHOLDER1_LASTNAME
+        value: ${it.calculatedFields.lastName}
+    attachments: ${it.pdfs}
