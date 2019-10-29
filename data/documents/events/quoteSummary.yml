@@ -20,10 +20,20 @@ lookupFields:
 calculatedFields:
   - name: quoteNumber
     equation: ${it.lookupFields.quoteDetails.quote.quoteNumber}
+  - name: firstName
+    equation: ${it.lookupFields.quoteDetails.quote.policyHolders[0].firstName}
   - name: lastName
     equation: ${it.lookupFields.quoteDetails.quote.policyHolders[0].lastName}
+  - name: agentFirstName
+    equation: ${it.lookupFields.quoteDetails.agent.firstName}
+  - name: agentLastName
+    equation: ${it.lookupFields.quoteDetails.agent.lastName}
+  - name: agentPhone
+    equation: ${it.lookupFields.quoteDetails.agent.primaryPhoneNumber}
   - name: agentEmail
     equation: ${it.lookupFields.quoteDetails.agent.emailAddress}
+  - name: agencyDisplayName
+    equation: ${it.lookupFields.quoteDetails.agency.displayName}
 packetConfigs:
   - packetName: agentQuoteSummary
     args:
@@ -41,4 +51,18 @@ emailConfigs:
         value: ${it.calculatedFields.quoteNumber}
       - key: POLICYHOLDER1_LASTNAME
         value: ${it.calculatedFields.lastName}
+      - key: AGENT_FIRST_NAME
+        value: ${it.calculatedFields.agentFirstName}
+      - key: AGENT_LAST_NAME
+        value: ${it.calculatedFields.agentLastName}
+      - key: AGENT_PHONE
+        value: ${it.calculatedFields.agentPhone}
+      - key: AGENCY_NAME
+        value: ${it.calculatedFields.agencyDisplayName}
+      - key: AGENT_EMAIL_ADDRESS
+        value: ${it.calculatedFields.agentEmail}
+      - key: SITEURL
+        value: http://www.typtap.com
+      - key: TITLE
+        value: Welcome To TypTap
     attachments: ${it.pdfs}
