@@ -21,7 +21,7 @@ calculatedFields:
   - name: quoteNumber
     equation: ${it.lookupFields.quoteDetails.quote.quoteNumber}
   - name: lastName
-    equation: ${it.lookupFields.quoteDetails.quote.policyHolders[0.lastName}
+    equation: ${it.lookupFields.quoteDetails.quote.policyHolders[0].lastName}
   - name: agentEmail
     equation: ${it.lookupFields.quoteDetails.agent.emailAddress}
 packetConfigs:
@@ -29,7 +29,7 @@ packetConfigs:
     args:
       quoteNumber: ${it.inputFields.quoteNumber}
 emailConfigs:
-  - templateName: "${it.input.summaryType === 'csr' ? quoteEmail.html : it.input.summaryType === 'agency' ? quoteEmailAgency.html : quoteEmailConsumer.html}"
+  - templateName: "${it.input.summaryType === 'csr' ? 'quoteEmail.html' : it.input.summaryType === 'agency' ? 'quoteEmailAgency.html' : 'quoteEmailConsumer.html'}"
     fromName: TypTap
     fromEmail: contact@typtap.com
     subject: "TypTap Homeowners Quote # ${it.calculatedFields.quoteNumber} ${it.calculatedFields.lastName}"
