@@ -30,4 +30,4 @@ docusignConfig:
       - Completed
   quote: ${it.lookupFields.quoteDetails.quote}
   agent: ${it.lookupFields.quoteDetails.agent}
-  documents: $reject(it.pdfs ['printOrder' 32])}
+  documents: $reject(it.pdfs, ['printOrder', 32])}

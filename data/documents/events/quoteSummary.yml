@@ -29,7 +29,7 @@ packetConfigs:
     args:
       quoteNumber: ${it.inputFields.quoteNumber}
 emailConfigs:
-  - templateName: "${it.input.summaryType === 'csr' ? 'quoteEmail.html' : it.input.summaryType === 'agency' ? 'quoteEmailAgency.html' : 'quoteEmailConsumer.html'}"
+  - templateName: "${it.inputFields.summaryType === 'csr' ? 'quoteEmail.html' : it.inputFields.summaryType === 'agency' ? 'quoteEmailAgency.html' : 'quoteEmailConsumer.html'}"
     fromName: TypTap
     fromEmail: contact@typtap.com
     subject: "TypTap Homeowners Quote # ${it.calculatedFields.quoteNumber} ${it.calculatedFields.lastName}"
