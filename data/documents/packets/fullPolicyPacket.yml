@@ -24,7 +24,7 @@ packetConfig:
   data:
     quote: ${it.lookupFields.policyDetails.transaction}
     policy: ${it.lookupFields.policyDetails.transaction}
-    transactionDetails: "${(!['new business' 'renewal'].includes(it.calculatedFields.transactionType.toLowerCase())) ? it.lookupFields.policyDetails.transactionDetails: null}"
+    transactionDetails: "${(!['new business', 'renewal'].includes(it.calculatedFields.transactionType.toLowerCase())) ? it.lookupFields.policyDetails.transactionDetails: null}"
     transactionType: ${it.calculatedFields.transactionType}
     summaryLedger: ${it.lookupFields.policyDetails.summaryLedger}
     agency: ${it.lookupFields.policyDetails.agency}

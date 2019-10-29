@@ -29,7 +29,7 @@ packetConfig:
   combine: true
   data:
     policy: ${it.lookupFields.policyDetails.transaction}
-    transactionDetails: "${(!['new business' 'renewal'].includes(it.calculatedFields.transactionType.toLowerCase())) ? it.lookupFields.policyDetails.transactionDetails: null}"
+    transactionDetails: "${(!['new business', 'renewal'].includes(it.calculatedFields.transactionType.toLowerCase())) ? it.lookupFields.policyDetails.transactionDetails: null}"
     transactionType: ${it.calculatedFields.transactionType}
     agency: ${it.lookupFields.policyDetails.agency}
     agent: ${it.lookupFields.policyDetails.agent}
