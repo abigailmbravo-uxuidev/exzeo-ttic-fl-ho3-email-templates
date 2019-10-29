@@ -54,6 +54,8 @@ emailConfigs:
         value: ${it.calculatedFields.policyNumber}
       - key: Phone Number
         value: ${it.lookupFields.policyDetails.agency.primaryPhoneNumber}
+      - key: email
+        value: ${it.lookupFields.policyDetails.agency.customerServiceEmailAddress}
       - key: H03CUSTOMERSERVICEPHONE,
         value: 844-289-7968
       - key: H03STANDARDMAILCUSTOMERSERVICESTREETADDRESS,
