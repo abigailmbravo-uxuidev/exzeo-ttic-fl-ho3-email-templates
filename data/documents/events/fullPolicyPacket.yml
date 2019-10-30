@@ -56,7 +56,7 @@ emailConfigs:
           number: ${it.calculatedFields.policyNumber}
           numberType: policyNumber
         content: "Bind Email sent to ${Array.of(it.calculatedFields.emailAddress)}"
-        attachments: "${it.pdfs.map(x => ({ ...x fileType: 'Policy Packet' }))}"
+        attachments: "${it.pdfs.map(x => ({ ...x, fileType: 'Policy Packet' }))}"
 printConfigs:
   - printType: generic
     metadata:
