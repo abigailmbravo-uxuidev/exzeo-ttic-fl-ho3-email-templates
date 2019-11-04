@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Welcome To TypTap</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <style type="text/css">
+    /* CLIENT-SPECIFIC STYLES */
+
+    body,
+    table,
+    td,
+    a {
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+
+    /* Prevent WebKit and Windows mobile changing default text sizes */
+
+    table,
+    td {
+      mso-table-lspace: 0pt;
+      mso-table-rspace: 0pt;
+    }
+
+    /* Remove spacing
+between tables in Outlook 2007 and up */
+
+    img {
+      -ms-interpolation-mode: bicubic;
+    }
+
+    /* Allow smoother rendering of resized image in Internet Explorer */
+
+    /* RESET STYLES */
+
+    img {
+      height: auto;
+      text-decoration: none;
+      border: 0;
+      outline: none;
+      line-height: 100%;
+    }
+
+    table {
+      border-collapse: collapse !important;
+    }
+
+    body {
+      width: 100% !important;
+      height: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    /* iOS BLUE LINKS */
+
+    a[x-apple-data-detectors] {
+      text-decoration: none !important;
+      color: inherit !important;
+      font-family: inherit !important;
+      font-size: inherit !important;
+      font-weight: inherit !important;
+      line-height: inherit !important;
+    }
+
+    .logo {
+      padding: 16px 0 16px 8px;
+    }
+
+    .quotenumber {
+      padding: 16px 0;
+      color: #222222;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .padding-copy {
+      padding: 8px 24px;
+      font-size: 15px;
+    }
+
+    .grid .grid-copy div {
+      padding: 12px 12px 12px 0;
+      font-size: 15px;
+      margin: 0 16px 0 0;
+    }
+
+    .grid .grid-copy.label div {
+      padding: 12px 0 12px 12px;
+      font-weight: bold;
+      margin: 0 0 0 16px;
+    }
+
+    .grid tr:nth-child(even) .grid-copy div {
+      background: #f2f2f2;
+    }
+
+    .grid tr:nth-child(even) .grid-copy.label div {
+      background: #f2f2f2;
+    }
+
+    .legal-copy {
+      padding: 8px 24px;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    /* MOBILE STYLES */
+
+    @media screen and (max-width: 525px) {
+      /* ALLOWS FOR FLUID TABLES */
+      .wrapper {
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      /* ADJUSTS
+LAYOUT OF LOGO IMAGE */
+      .logo img {
+        margin: 0 auto !important;
+      }
+      /* USE THESE CLASSES TO HIDE CONTENT ON MOBILE */
+      .mobile-hide {
+        display: none !important;
+      }
+      .img-max {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+      }
+      /*
+FULL-WIDTH TABLES */
+      .responsive-table {
+        width: 100% !important;
+      }
+      /* UTILITY CLASSES FOR ADJUSTING PADDING ON MOBILE */
+      .padding-copy,
+      .legal-copy {
+        padding: 8px 5% 8px 5% !important;
+      }
+    }
+
+    /* ANDROID CENTER FIX */
+
+    div[style*="margin: 16px 0;"] {
+      margin: 0 !important;
+    }
+  </style>
+</head>
+
+<body style="margin: 0 !important; padding: 0 !important; background-color: #f6f6f6;">
+
+  <!-- HIDDEN PREHEADER TEXT -->
+  <div style="display: none; font-size: 1px; color: #fefefe; line-height: 1px; font-family: Helvetica, Arial, sans-serif; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;">
+    Your customized TypTap Insurance Homeowners Quote for your property is attached.
+  </div>
+  <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f6f6f6;">
+    <tr>
+      <!-- HEADER -->
+      <td bgcolor="#f6f6f6" align="center">
+        <!--[if (gte mso 9)|(IE)]>
+            <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
+            <tr>
+            <td align="center" valign="top" width="600">
+            <![endif]-->
+        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;" class="wrapper">
+          <tr>
+            <td align="left" valign="top" class="logo">
+              <a href="https://www.typtap.com" target="_blank">
+                <img alt="TypTap Insurance" src="https://s3.amazonaws.com/typtap/TypTap-Insurance.png" width="167" height="62" style="display: block; color: #ffffff; font-size: 16px;" border="0">
+              </a>
+            </td>
+            <td align="center" valign="middle" class="quotenumber">
+              <em>Quote Number: {{QUOTE_NUMBER}}-{{POLICYHOLDER1_LASTNAME}}</em>
+            </td>
+          </tr>
+          <tr>
+            <td bgcolor="#3f4351" colspan="2" style="padding: 2px;"></td>
+          </tr>
+        </table>
+        <!--[if (gte mso 9)|(IE)]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+      </td>
+    </tr>
+    <tr>
+      <td bgcolor="#f6f6f6" align="center" style="padding: 0">
+        <!--[if (gte mso 9)|(IE)]>
+            <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
+            <tr>
+            <td align="center" valign="top" width="600">
+            <![endif]-->
+        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;" class="responsive-table">
+          <tr bgcolor="#ffffff" style="border-left: 1px solid #cccccc !important; border-right: 1px solid #cccccc !important;">
+            <td>
+              <!-- COPY -->
+              <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td align="left" class="padding-copy" style="font-size: 20px; padding-top: 24px;">TypTap Homeowners Quote # {{QUOTE_NUMBER}}-{{POLICYHOLDER1_LASTNAME}}</td>
+                </tr>
+                <tr>
+                  <td align="left" class="padding-copy">Thank you for the opportunity to provide a homeowner’s insurance quote for your property! Attached to this email you will find your TypTap Homeowners Quote Summary. *This quote information will be saved for 30 days. The next step is simple.</td>
+                </tr>
+                <tr>
+                    <td align="left" class="padding-copy">Once you’re ready to complete the application for a policy, contact your Agent.</td>
+                  </tr>
+                <tr>
+                  <td align="left" class="padding-copy">We’re available to help you along the way. Call us at <a href="tel:8442897968">(844) 289-7968</a> or send an email to <a href="mailto:customerservice@TypTap.com">customerservice@TypTap.com</a> with any questions.</td>
+                </tr>
+                <tr>
+                  <td align="left" class="padding-copy">We value your business and look forward to being your answer to homeowners insurance.</td>
+                </tr>
+                <tr>
+                  <td align="left" class="padding-copy">Your quote #: <strong>{{QUOTE_NUMBER}}</strong></td>
+                </tr>
+                <tr>
+                    <td align="left" class="padding-copy">&bull; This quote does not provide coverage for your property nor guarantee coverage will be issued.</td>
+                  </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!--[if (gte mso 9)|(IE)]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+      </td>
+    </tr>
+    <tr>
+      <td bgcolor="#f6f6f6" align="center" style="padding: 0;">
+        <table border="0" cellpadding="0" cellspacing="0" width="600" class="responsive-table">
+          <tr>
+            <td bgcolor="#ffffff" style="border-left: 1px solid #cccccc !important; border-right: 1px solid #cccccc !important; border-bottom: 1px solid #cccccc !important;">
+              <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td align="left" style="padding-bottom: 32px" class="legal-copy">
+                    <hr style="padding:0; margin: 0 0 16px; height: 1px; background: #cccccc; border-width: 0;" /> This e-mail may contain confidential information protected by law and is intended solely for authorized persons. If you have received this e-mail in error, please (i) do not read it, (ii) Forward the email to <a href="mailto:customerservice@typtap.com">customerservice@typtap.com</a>                    to let us know you received this email in error and (iii) erase or destroy the message.
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!--[if (gte mso 9)|(IE)]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+      </td>
+    </tr>
+    <tr>
+      <td bgcolor="#f6f6f6" align="center">
+        <!--[if (gte mso 9)|(IE)]>
+            <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
+            <tr>
+            <td align="center" valign="top" width="600">
+            <![endif]-->
+        <!-- UNSUBSCRIBE COPY -->
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" style="max-width: 600px;" class="responsive-table">
+          <tr>
+            <td align="center" style="padding: 24px;" class="legal-copy">
+                All Rights Reserved &copy; TypTap&trade;
+            </td>
+          </tr>
+        </table>
+        <!--[if (gte mso 9)|(IE)]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+      </td>
+    </tr>
+  </table>
+</body>
+
+</html>

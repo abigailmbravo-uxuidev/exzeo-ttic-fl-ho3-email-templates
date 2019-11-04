@@ -54,6 +54,8 @@ emailConfigs:
         value: ${it.calculatedFields.policyNumber}
       - key: AGENCY_PHONENUMBER
         value: ${it.lookupFields.policyDetails.agency.primaryPhoneNumber}
+      - key: AGENCY_EMAIL
+        value: ${it.lookupFields.policyDetails.agency.customerServiceEmailAddress}
       - key: H03CUSTOMERSERVICEPHONE
         value: 844-289-7968
       - key: H03STANDARDMAILCUSTOMERSERVICESTREETADDRESS
@@ -76,8 +78,6 @@ emailConfigs:
         value: http://www.typtap.com/home
       - key: SITEURLAF3
         value: http://www.typtap.com/flood
-      - key: AGENCY_EMAIL
-        value: ${it.lookupFields.policyDetails.agency.customerServiceEmailAddress}
     ccEmail: ${uniq(Array.of(it.lookupFields.policyDetails.agent.emailAddress, it.lookupFields.policyDetails.agency.customerServiceEmailAddress))}
     bccEmail: ${Array.of(it.lookupFields.toEmail[0])}        
     attachments: ${it.pdfs}

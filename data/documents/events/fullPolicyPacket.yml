@@ -48,6 +48,36 @@ emailConfigs:
         value: Hello ${it.calculatedValues.firstName}
       - key: effective date
         value: ${it.lookupFields.policyDetails.transaction.effectiveDate}
+      - key: AGENCY_NAME
+        value: ${it.lookupFields.policyDetails.agency.displayName}
+      - key: POLICY_NUMBER
+        value: ${it.calculatedFields.policyNumber}
+      - key: Phone Number
+        value: ${it.lookupFields.policyDetails.agency.primaryPhoneNumber}
+      - key: email
+        value: ${it.lookupFields.policyDetails.agency.customerServiceEmailAddress}
+      - key: H03CUSTOMERSERVICEPHONE
+        value: 844-289-7968
+      - key: H03STANDARDMAILCUSTOMERSERVICESTREETADDRESS
+        value: P.O. Box 1120
+      - key: H03STANDARDMAILCUSTOMERSERVICECITYSTATEZIP
+        value: Ocala, FL 34478
+      - key: H03OVERNIGHTCUSTOMERSERVICESTREETADDRESS
+        value: 3001 SE Maricamp Road
+      - key: H03OVERNIGHTCUSTOMERSERVICECITYSTATEZIP
+        value: Ocala, FL 34471
+      - key: H03CUSTOMERSERVICEEMAIL
+        value: customerservice@typtap.com
+      - key: H03CUSTOMERSERVICEFAX
+        value: 352-533-4073
+      - key: H03CUSTOMERSERVICEMAILINGADDRESS
+        value: P.O. Box 1120, Ocala, FL 34478
+      - key: SITEURL
+        value: http://www.typtap.com
+      - key: SITEURLH03
+        value: http://www.typtap.com/home
+      - key: SITEURLAF3
+        value: http://www.typtap.com/flood
     ccEmail: ${uniq(Array.of(it.lookupFields.policyDetails.agent.emailAddress, it.lookupFields.policyDetails.agency.customerServiceEmailAddress))}
     bccEmail: ${Array.of(it.lookupFields.toEmail[0])}        
     attachments: ${it.pdfs}
