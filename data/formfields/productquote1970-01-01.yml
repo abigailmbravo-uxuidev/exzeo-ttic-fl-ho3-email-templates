@@ -1,0 +1,19 @@
+
+  version: 1970-01-01T00:00:00.000Z
+  path: "product"
+  type: "string"
+  metaData: {}
+  children: []
+  documents: 
+    - "quote"
+    - "quote-initialdata"
+    - "transaction"
+  createdAt: 2019-04-05T18:09:15.733Z
+  updatedAt: 2019-04-05T18:09:15.733Z
+  group: "coverage"
+  groups: 
+    - "initialdata"
+    - "coverage"
+  companyCode: "TTIC"
+  state: "FL"
+  product: "HO3"

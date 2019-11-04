@@ -1,0 +1,17 @@
+
+  version: 1970-01-01T00:00:00.000Z
+  path: "underwritingAnswer.question"
+  type: "string"
+  metaData: 
+    minLength: 1
+  documents: 
+    - "quote"
+    - "quote-underwriting"
+    - "transaction"
+  createdAt: 2019-04-05T18:09:15.731Z
+  updatedAt: 2019-04-05T18:09:15.731Z
+  groups: 
+    - "underwriting"
+  companyCode: "TTIC"
+  state: "FL"
+  product: "HO3"
