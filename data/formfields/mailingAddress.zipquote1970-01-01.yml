@@ -5,7 +5,7 @@
   metaData: 
     minLength: 4
     maxLength: 10
-    pattern: "^([A-Z0-9a-z-\s])*$"
+    pattern: "^([A-Z0-9a-z-\\s])*$"
   children: []
   documents: 
     - "quote"

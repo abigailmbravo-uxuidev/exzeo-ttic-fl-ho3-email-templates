@@ -1,0 +1,57 @@
+noteType: Policy Note
+companyCode: TTIC
+product: HO3
+state: FL
+validFileTypes:
+  - 4-pt Inspection
+  - AI Change
+  - AOR Change
+  - Cancellation Request
+  - Cancellation/Non-Renewal Notice
+  - Claims Documentation
+  - Consent to Rate Form
+  - Correspondence
+  - Death Certificate
+  - Dec Page
+  - Electronic Payment Receipt
+  - Elevation Certificate
+  - Endorsement
+  - Financial Document
+  - Flood Selection Form
+  - Flood Waiver Form
+  - HUD Statement
+  - New Business Application
+  - Occupancy Letter
+  - Other
+  - Policy Packet
+  - PR/POA Documents
+  - Proof of Prior Insurance
+  - Proof of Repair
+  - Property Inspection
+  - Protection Device Certificate
+  - Reinstatement Correspondence
+  - Reinstatement Notice
+  - Renewal Application
+  - Replacement Cost Estimator
+  - Returned Mail
+  - Returned Renewal Application
+  - Roof Inspection/Permit
+  - Sinkhole Loss Questionnaire
+  - Sinkhole Selection/Rejection Form
+  - Statement of No Loss
+  - UW Condition Letter
+  - Warranty Deed
+  - Wind Exclusion
+  - Wind Mitigation
+validContactTypes:
+  - Agent
+  - Policyholder
+  - Inspector
+  - Lienholder
+  - Internal
+  - Other
+  - Risk Manager
+  - System
+  - Treasury Services
+  - CLAIM
+numberType: policyNumber

@@ -1,0 +1,37 @@
+noteType: Quote Note
+companyCode: TTIC
+product: HO3
+state: FL
+validFileTypes:
+  - 4-pt Inspection
+  - Application Packet
+  - Claims Documentation
+  - Consent to Rate Form
+  - Correspondence
+  - Death Certificate
+  - Elevation Certificate
+  - Flood Selection Form
+  - Flood Waiver Form
+  - HUD Statement
+  - New Business Application
+  - Other
+  - PR/POA Documents
+  - Proof of Prior Insurance
+  - Proof of Repair
+  - Property Inspection
+  - Protection Device Certificate
+  - Quote Summary
+  - Replacement Cost Estimator
+  - Roof Inspection/Permit
+  - Sinkhole Loss Questionnaire
+  - Sinkhole Selection/Rejection Form
+  - Warranty Deed
+  - Wind Exclusion
+  - Wind Mitigation
+validContactTypes:
+  - Agent
+  - Policyholder
+  - Inspector
+  - Other
+  - System
+numberType: quoteNumber
