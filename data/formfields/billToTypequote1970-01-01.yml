@@ -10,7 +10,9 @@
     - "transaction"
   createdAt: 2019-04-05T18:09:15.733Z
   updatedAt: 2019-04-05T18:09:15.733Z
-  group: "mailingbilling"
+  groups: 
+    - "application"
+    - "mailingbilling"
   companyCode: "TTIC"
   state: "FL"
   product: "HO3"
