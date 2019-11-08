@@ -1,0 +1,91 @@
+companyCode: "TTIC"
+state: "FL"
+product: "HO3"
+name: "Inactive Agency"
+type: "underwriting"
+effectiveDate: "2017-08-01T04:00:00.000Z"
+category: "Agency"
+code: "114"
+documentFields:
+  - "agencyCode"
+  - "lookupFields.agency.status"
+condition: "${it.document.lookupFields.agency.status === 'Terminated' || it.document.lookupFields.agency.status === 'Service Only'}"
+active: true
+lookupFields:
+  - name: "agency"
+    type: "builtIn"
+    builtInConfig:
+        name: "agency"
+actions:
+  - transactionTypes:
+      - "New Business"
+      - "Renewal"
+    action: "Fatal Error"
+    actionOutput:
+      internalMessage: "The agency selected is inactive, please choose an active agency to continue."
+      agentMessage: "This agency is no longer active, please contact Marketing for assistance."
+      customerMessage: "The agency selected is no longer active, please select another agency to continue."
+    canOverride: false
+    active: true
+tests:
+  - description: "Triggers if agency is terminated"
+    input:
+      document:
+        transactionType: "New Business"
+        agencyCode: 10000
+        lookupFields:
+          - name: agency
+            type: builtIn
+            builtInConfig:
+              name: agency
+    output:
+      - action: Fatal Error
+        displayText: "Inactive Agency"
+        category: "Agency"
+        code: "114"
+        internalMessage: "The agency selected is inactive, please choose an active agency to continue."
+        agentMessage: "This agency is no longer active, please contact Marketing for assistance."
+        customerMessage: "The agency selected is no longer active, please select another agency to continue."
+        canOverride: false
+        active: true
+        fields:
+          - name: "agencyCode"
+            value: 10000
+          - name: "lookupFields.agency.status"
+            value: "Terminated"
+  - description: "Triggers if agency is service only"
+    input:
+      document:
+        transactionType: "New Business"
+        agencyCode: 10001
+        lookupFields:
+          - name: agency
+            type: builtIn
+            builtInConfig:
+              name: agency
+    output:
+      - action: "Fatal Error"
+        displayText: "Inactive Agency"
+        category: "Agency"
+        code: "114"
+        internalMessage: "The agency selected is inactive, please choose an active agency to continue."
+        agentMessage: "This agency is no longer active, please contact Marketing for assistance."
+        customerMessage: "The agency selected is no longer active, please select another agency to continue."
+        canOverride: false
+        active: true
+        fields:
+          - name: "agencyCode"
+            value: 10001
+          - name: "lookupFields.agency.status"
+            value: "Service Only"
+  - description: "Does not trigger if agency is active"
+    input:
+      document:
+        transactionType: "New Business"
+        agencyCode: 10002
+        lookupFields:
+          - name: agency
+            type: builtIn
+            builtInConfig:
+              name: agency
+    output: null

@@ -16,7 +16,7 @@ context.only('Self Check', () => {
 
       if (!response.data.result || !response.data.result.failedTests) {
         console.log(response.data);
-        return Promise.resolve();
+        return response.data.status === 500 ? Promise.reject(response.data) : Promise.resolve();
       }
 
       if (response.data.result.failedTests && response.data.result.failedTests.length > 0) {
@@ -46,6 +46,6 @@ context.only('Self Check', () => {
 
       const { data: { result } } = response;
       expect(result.testsFailed).to.equal(0);
-    });
+    }).timeout(5000);
   });
 });
