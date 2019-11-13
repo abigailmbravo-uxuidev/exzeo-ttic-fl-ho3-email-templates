@@ -36,7 +36,7 @@ emailConfigs:
   - templateName: decPage.html
     fromName: TypTap
     fromEmail: contact@typtap.com
-    subject: "Dec Page: ${it.calculatedFields.policyNumber} ${it.calculatedFields.firstName} ${it.calculatedFields.lastName}"
+    subject: "Dec Page: {{POLICY_NUMBER}} {{POLICYHOLDER1_FIRSTNAME}} {{POLICYHOLDER1_LASTNAME}}"
     body: ""
     toEmail: ${it.lookupFields.toEmail}
     toName: Print Shop

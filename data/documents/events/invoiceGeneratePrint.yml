@@ -36,7 +36,7 @@ emailConfigs :
   - templateName: invoice.html
     fromName: TypTap
     fromEmail: contact@typtap.com
-    subject: "Invoice: ${it.calculatedFields.policyNumber} ${it.calculatedFields.firstName} ${it.calculatedFields.lastName}"
+    subject: "Invoice: {{POLICY_NUMBER}} {{POLICYHOLDER1_FIRSTNAME}} {{POLICYHOLDER1_LASTNAME}}"
     body: ""
     toEmail: ${it.lookupFields.toEmail}
     toName: Print Shop
