@@ -39,7 +39,7 @@ emailConfigs:
   - templateName: welcomeEmail.html
     fromName: TypTap
     fromEmail: contact@typtap.com
-    subject: "TypTap Homeowners Policy # {{POLICY_NUMBER}} {{POLICYHOLDER1_LASTNAME}}"
+    subject: ""
     body: ""
     toEmail: ${Array.of(it.calculatedFields.emailAddress)}
     toName: ${it.calculatedFields.firstName}

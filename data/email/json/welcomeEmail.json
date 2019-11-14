@@ -3,7 +3,7 @@
   "state": "FL",
   "product": "HO3",
   "name": "welcomeEmail.html",
-  "subject": "",
+  "subject": "TypTap Homeowners Policy # {{POLICY_NUMBER}} {{POLICYHOLDER1_LASTNAME}}",
   "body": "",
   "_v": 0
 }
