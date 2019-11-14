@@ -10,7 +10,7 @@ documentFields:
   - rating.netPremium
   - cost.totalCost
   - lookupFields.zipcodesettings.minLossRatio
-condition: '${(it.document.rating.netPremium || 0) < ((it.document.cost.totalCost || 0) / round(it.document.lookupFields.zipcodesettings.minLossRatio))}'
+condition: '${(it.document.rating.netPremium || 0) < (round((it.document.cost.totalCost || 0) / it.document.lookupFields.zipcodesettings.minLossRatio))}'
 active: true
 lookupFields:
   - name: zipcodesettings
@@ -22,8 +22,8 @@ actions:
       - New Business
     action: Underwriting Review
     actionOutput:
-      internalMessage: 'Premium is less than ${((it.document.cost.totalCost || 0) / round(it.document.lookupFields.zipcodesettings.minLossRatio))}, the minimum amount allowed for policy issuance.'
-      agentMessage: 'Premium is less than ${((it.document.cost.totalCost || 0) / round(it.document.lookupFields.zipcodesettings.minLossRatio))}, the minimum amount allowed for policy issuance.'
+      internalMessage: 'Premium is less than ${(round((it.document.cost.totalCost || 0) / it.document.lookupFields.zipcodesettings.minLossRatio))}, the minimum amount allowed for policy issuance.'
+      agentMessage: 'Premium is less than ${(round((it.document.cost.totalCost || 0) / it.document.lookupFields.zipcodesettings.minLossRatio))}, the minimum amount allowed for policy issuance.'
       customerMessage: 'Minimum premium has not been met, please contact us for further assistance.'
     canOverride: true
     active: true
@@ -41,7 +41,7 @@ tests:
           physicalAddress:
             zip: '32025'
         rating:
-          netPremium: 500
+          netPremium: 9090
         cost:
           totalCost: 10000
         lookupFields:
@@ -54,18 +54,56 @@ tests:
         displayText: Net Premium < Min Profitability Premium
         category: 'Coverages & Deductibles'
         code: '226'
-        internalMessage: 'Premium is less than 10000, the minimum amount allowed for policy issuance.'
-        agentMessage: 'Premium is less than 10000, the minimum amount allowed for policy issuance.'
+        internalMessage: 'Premium is less than 9091, the minimum amount allowed for policy issuance.'
+        agentMessage: 'Premium is less than 9091, the minimum amount allowed for policy issuance.'
         customerMessage: 'Minimum premium has not been met, please contact us for further assistance.'
         canOverride: true
         active: true
         fields:
           - name: rating.netPremium
-            value: 500
+            value: 9090
           - name: cost.totalCost
             value: 10000
           - name: lookupFields.zipcodesettings.minLossRatio
             value: 1.1
+  - description: New Business action triggers when Net Premium < Min Profitability Premium
+    input:
+      document:
+        companyCode: TTIC
+        state: FL
+        zip: '32026'
+        product: HO3
+        transactionType: New Business
+        property:
+          id: ''
+          physicalAddress:
+            zip: '32026'
+        rating:
+          netPremium: 11110
+        cost:
+          totalCost: 10000
+        lookupFields:
+          - name: zipcodesettings
+            type: builtIn
+            builtInConfig:
+              name: zipcodesettings
+    output:
+      - action: Underwriting Review
+        displayText: Net Premium < Min Profitability Premium
+        category: 'Coverages & Deductibles'
+        code: '226'
+        internalMessage: 'Premium is less than 11111, the minimum amount allowed for policy issuance.'
+        agentMessage: 'Premium is less than 11111, the minimum amount allowed for policy issuance.'
+        customerMessage: 'Minimum premium has not been met, please contact us for further assistance.'
+        canOverride: true
+        active: true
+        fields:
+          - name: rating.netPremium
+            value: 11110
+          - name: cost.totalCost
+            value: 10000
+          - name: lookupFields.zipcodesettings.minLossRatio
+            value: 0.9
   - description: New Business action does not trigger when Net Premium is not < Min Profitability Premium
     input:
       document:
