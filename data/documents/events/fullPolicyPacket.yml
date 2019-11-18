@@ -69,7 +69,7 @@ emailConfigs:
       - key: H03CUSTOMERSERVICEEMAIL
         value: customerservice@typtap.com
       - key: H03CUSTOMERSERVICEFAX
-        value: 352-533-4073
+        value: (352) 533-4073
       - key: H03CUSTOMERSERVICEMAILINGADDRESS
         value: P.O. Box 1120, Ocala, FL 34478
       - key: SITEURL
