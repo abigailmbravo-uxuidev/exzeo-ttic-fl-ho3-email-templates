@@ -15,3 +15,5 @@
   companyCode: "TTIC"
   state: "FL"
   product: "HO3"
+  groups:
+    - "mailingbilling"

@@ -7,6 +7,7 @@
     - "policyHolders.policyHolder.entityType"
     - "policyHolders.policyHolder.order"
     - "policyHolders.policyHolder.emailAddress"
+    - "policyHolders.policyHolder.primaryPhoneNumber"
   children: 
     - "policyHolders.policyHolder.entityType"
     - "policyHolders.policyHolder.order"
@@ -15,19 +16,15 @@
     - "policyHolders.policyHolder.secondaryPhoneNumber"
     - "policyHolders.policyHolder.electronicDelivery"
   variations: 
-    - 
-      conditions: 
-        - 
-          field: "policyHolders.policyHolder.entityType"
+    - conditions: 
+        - field: "policyHolders.policyHolder.entityType"
           value: "Company"
       children: 
         - "policyHolders.policyHolder.companyName"
       required: 
         - "policyHolders.policyHolder.companyName"
-    - 
-      conditions: 
-        - 
-          field: "policyHolders.policyHolder.entityType"
+    - conditions: 
+        - field: "policyHolders.policyHolder.entityType"
           value: "Person"
       children: 
         - "policyHolders.policyHolder.firstName"
@@ -39,8 +36,6 @@
     - "quote"
     - "quote-initialdata"
     - "transaction"
-  createdAt: 2019-04-05T18:09:15.727Z
-  updatedAt: 2019-04-05T18:09:15.727Z
   endorsementType: "Non-Premium Endorsement"
   companyCode: "TTIC"
   state: "FL"
