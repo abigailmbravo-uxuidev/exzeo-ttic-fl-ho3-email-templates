@@ -3,7 +3,7 @@ companyCode: TTIC
 state: FL
 name: "Renew Policy"
 type: policyState
-code: 409
+code: '409'
 effectiveDate: 2017-08-01T04:00:00.000Z
 category: "State Actions"
 documentFields: 
