@@ -1,0 +1,87 @@
+companyCode: "TTIC"
+state: "FL"
+product: "HO3"
+name: "Inactive Agent"
+type: "underwriting"
+effectiveDate: "2017-08-01T04:00:00.000Z"
+category: "Agency"
+code: "115"
+documentFields:
+  - "agentCode"
+condition: "${it.document.lookupFields.agent.status === 'Terminated' || filter(it.document.lookupFields.agent.licenses, { state: it.document.state, appointed: true }).length === 0}"
+active: true
+lookupFields:
+  - name: "agent"
+    type: "builtIn"
+    builtInConfig:
+        name: "agent"
+actions:
+  - transactionTypes:
+      - "New Business"
+      - "Renewal"
+    action: "Fatal Error"
+    actionOutput:
+      internalMessage: "The agent selected is inactive, please choose an active agent to continue."
+      agentMessage: "This agent is no longer active, please select another agent or contact Marketing for assistance."
+      customerMessage: "The agency selected is no longer active, please select another agency to continue."
+    canOverride: false
+    active: true
+tests:
+  - description: "Triggers if agent is terminated"
+    input:
+      document:
+        transactionType: "New Business"
+        agentCode: 10000
+        lookupFields:
+          - name: agent
+            type: builtIn
+            builtInConfig:
+              name: agent
+    output:
+      - action: Fatal Error
+        displayText: "Inactive Agent"
+        category: "Agency"
+        code: "115"
+        internalMessage: "The agent selected is inactive, please choose an active agent to continue."
+        agentMessage: "This agent is no longer active, please select another agent or contact Marketing for assistance."
+        customerMessage: "The agency selected is no longer active, please select another agency to continue."
+        canOverride: false
+        active: true
+        fields:
+          - name: "agentCode"
+            value: 10000
+  - description: "Triggers if agent is service only"
+    input:
+      document:
+        transactionType: "New Business"
+        agentCode: 10001
+        lookupFields:
+          - name: agent
+            type: builtIn
+            builtInConfig:
+              name: agent
+    output:
+      - action: "Fatal Error"
+        displayText: "Inactive Agent"
+        category: "Agency"
+        code: "115"
+        internalMessage: "The agent selected is inactive, please choose an active agent to continue."
+        agentMessage: "This agent is no longer active, please select another agent or contact Marketing for assistance."
+        customerMessage: "The agency selected is no longer active, please select another agency to continue."
+        canOverride: false
+        active: true
+        fields:
+          - name: "agentCode"
+            value: 10001
+  - description: "Does not trigger if agent is active"
+    input:
+      document:
+        transactionType: "New Business"
+        agentCode: 10002
+        state: "FL"
+        lookupFields:
+          - name: agent
+            type: builtIn
+            builtInConfig:
+              name: agent
+    output: null
