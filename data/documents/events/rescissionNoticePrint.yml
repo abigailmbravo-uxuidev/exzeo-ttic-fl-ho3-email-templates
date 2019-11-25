@@ -4,7 +4,7 @@ product: HO3
 name: rescissionNoticePrint
 active: true
 events:
-  - harmony.quote.cancellationRescinded
+  - harmony.policy.cancellationRescinded
 inputFields:
   policyTransactionId: ${it.input.policyTransactionId}
 lookupFields:
