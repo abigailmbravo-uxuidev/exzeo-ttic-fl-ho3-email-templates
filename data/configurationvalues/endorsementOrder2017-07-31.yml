@@ -276,11 +276,11 @@
         order: 65
       - 
         path: "property.physicalAddress.address1"
-        label: "Property 1"
+        label: "Property Address 1"
         order: 66
       - 
         path: "property.physicalAddress.address2"
-        label: "Property 2"
+        label: "Property Address 2"
         order: 67
       - 
         path: "property.physicalAddress.city"
