@@ -42,7 +42,7 @@ emailConfigs:
   - templateName: "${it.inputFields.summaryType === 'csr' ? 'quoteEmail.html' : it.inputFields.summaryType === 'agency' ? 'quoteEmailAgency.html' : 'quoteEmailConsumer.html'}"
     fromName: TypTap
     fromEmail: contact@typtap.com
-    subject: "TypTap Homeowners Quote # ${it.calculatedFields.quoteNumber} ${it.calculatedFields.lastName}"
+    subject: ""
     body: ""
     toEmail: ${Array.of(it.inputFields.toEmail)}
     toName: ${it.inputFields.toName}

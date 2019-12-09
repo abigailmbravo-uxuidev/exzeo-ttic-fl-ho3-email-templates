@@ -3,6 +3,7 @@
   "state": "FL",
   "product": "HO3",
   "name": "invoice.html",
+  "subject": "Invoice: {{POLICY_NUMBER}} {{POLICYHOLDER1_FIRSTNAME}} {{POLICYHOLDER1_LASTNAME}}",
   "body": "",
   "_v": 0
 }
