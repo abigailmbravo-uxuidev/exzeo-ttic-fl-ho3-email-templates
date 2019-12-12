@@ -36,7 +36,7 @@ packetConfigs:
     args:
       policyTransactionId: ${it.inputFields.policyTransactionId}
 emailConfigs:
-  - templateName: cancelNotice.html
+  - templateName: policy.html
     fromName: TypTap
     fromEmail: contact@typtap.com
     subject: ""
