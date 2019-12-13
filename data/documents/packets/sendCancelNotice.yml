@@ -1,0 +1,37 @@
+companyCode: TTIC
+state: FL
+product: HO3
+name: cancelNotice
+inputFields:
+  policyTransactionId: ${it.input.policyTransactionId}
+lookupFields:
+  - name: policyDetails
+    type: rpc
+    rpcConfig:
+      routingKey: harmony.policy.retrievePolicyData
+      message:
+        policyTransactionId: ${it.inputFields.policyTransactionId}
+calculatedFields:
+  - name: document
+    equation: ${it.lookupFields.policyDetails.transaction}
+packetConfig:
+  packetName: cancelNotice
+  forms:
+    - name: Cancel Notice
+  isDec: false
+  data:
+    policy: ${it.calculatedFields.document}
+    transactionType: ${it.calculatedFields.document.transactionType}
+    agency: ${it.lookupFields.policyDetails.agency}
+    agent: ${it.lookupFields.policyDetails.agent}
+    cancelDate: ${it.calculatedFields.document.cancelDate}
+    cancelReason: ${it.calculatedFields.document.cancelReason}
+    nextActionCancelType: ${it.calculatedFields.document.nextActionCancelType}
+    nextActionPolicyNumber: ${it.calculatedFields.document.nextActionPolicyNumber}
+    zipCodeSettings:
+      timezone: ${it.calculatedFields.document.property.timezone}
+  packetType: cancellationNotice
+  folderName: ${it.calculatedFields.document.policyNumber}
+  combine: true
+documentIndex:
+  indexDocument: true
