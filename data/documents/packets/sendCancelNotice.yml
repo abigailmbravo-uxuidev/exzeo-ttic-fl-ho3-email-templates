@@ -16,8 +16,7 @@ calculatedFields:
     equation: ${it.lookupFields.policyDetails.transaction}
 packetConfig:
   packetName: cancelNotice
-  forms:
-    - name: Cancel Notice
+  allForms: true
   isDec: false
   data:
     policy: ${it.calculatedFields.document}
@@ -32,6 +31,5 @@ packetConfig:
       timezone: ${it.calculatedFields.document.property.timezone}
   packetType: cancellationNotice
   folderName: ${it.calculatedFields.document.policyNumber}
-  combine: true
 documentIndex:
   indexDocument: true
