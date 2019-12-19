@@ -13,8 +13,6 @@ lookupFields:
       message:
         policyTransactionId: ${it.inputFields.policyTransactionId}
 calculatedFields:
-  - name: transactionType
-    equation: ${it.lookupFields.policyDetails.transaction.transactionType}
   - name: document
     equation: ${it.lookupFields.policyDetails.transaction}
 packetConfig:
@@ -23,7 +21,7 @@ packetConfig:
   isDec: false
   data:
     policy: ${it.lookupFields.policyDetails.transaction}
-    transactionType: ${it.calculatedFields.transactionType}
+    transactionType: "Rescind Cancellation"
     summaryLedger: ${it.lookupFields.policyDetails.summaryLedger}
     agency: ${it.lookupFields.policyDetails.agency}
     agent: ${it.lookupFields.policyDetails.agent}
