@@ -1,0 +1,32 @@
+companyCode: TTIC
+state: FL
+product: HO3
+name: rescissionNotice
+inputFields:
+  policyTransactionId: ${it.input.policyTransactionId}
+  transactionType: ${it.input.transactionType}
+lookupFields:
+  - name: policyDetails
+    type: rpc
+    rpcConfig:
+      routingKey: harmony.policy.retrievePolicyData
+      message:
+        policyTransactionId: ${it.inputFields.policyTransactionId}
+calculatedFields:
+  - name: document
+    equation: ${it.lookupFields.policyDetails.transaction}
+packetConfig:
+  packetName: rescissionNotice
+  allForms: true
+  isDec: false
+  data:
+    policy: ${it.lookupFields.policyDetails.transaction}
+    transactionType: "Rescind Cancellation"
+    summaryLedger: ${it.lookupFields.policyDetails.summaryLedger}
+    agency: ${it.lookupFields.policyDetails.agency}
+    agent: ${it.lookupFields.policyDetails.agent}
+  packetType: rescissionNotice
+  folderName: ${it.lookupFields.policyDetails.transaction.policyNumber}
+  combine: false
+documentIndex:
+  indexDocument: true
