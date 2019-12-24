@@ -1,0 +1,20 @@
+product: HO3
+companyCode: TTIC
+state: FL
+name: 'Write Off Balance'
+type: policyState
+code: '403'
+category: 'State Actions'
+documentFields: []
+condition: '${parseFloat(it.document.summaryLedger.balance) !== 0 && parseFloat(it.document.summaryLedger.balance) <= it.config.writeOffThreshold && parseFloat(it.document.summaryLedger.balance) >= it.config.refundThreshold}'
+active: true
+actions:
+    - {active: true, action: writeOffBalance, actionOutput: {date: '${it.document.summaryLedger.refundWriteOffDate}', type: workflow, exchangeName: harmony, routingKey: "harmony.policy.writeOffBalance"}, canOverride: false}
+tests:
+    - {description: 'writeOffBalance action triggers when balance is equal to write-off threshold', input: {config: {writeOffThreshold: 5, refundThreshold: -5}, document: {summaryLedger: {balance: 5, refundWriteOffDate: '${moment.utc().add(6, ''days'').second(0).millisecond(0)}'}}}, output: [{active: true, action: writeOffBalance, category: 'State Actions', displayText: 'Write Off Balance', canOverride: false, code: '403', fields: [], date: '${moment.utc().add(6, ''days'').second(0).millisecond(0)}'}]}
+    - {description: 'writeOffBalance action triggers when balance is non zero between the refund and write-off thresholds', input: {config: {writeOffThreshold: 5, refundThreshold: -5}, document: {summaryLedger: {balance: 1, refundWriteOffDate: '${moment.utc().add(6, ''days'').second(0).millisecond(0)}'}}}, output: [{active: true, action: writeOffBalance, category: 'State Actions', displayText: 'Write Off Balance', canOverride: false, code: '403', fields: [], date: '${moment.utc().add(6, ''days'').second(0).millisecond(0)}'}]}
+    - {description: 'writeOffBalance action triggers when balance less than zero and greater than refund threshold', input: {config: {writeOffThreshold: 5, refundThreshold: -5}, document: {summaryLedger: {balance: -1, refundWriteOffDate: '${moment.utc().add(6, ''days'').second(0).millisecond(0)}'}}}, output: [{active: true, action: writeOffBalance, category: 'State Actions', displayText: 'Write Off Balance', canOverride: false, code: '403', fields: [], date: '${moment.utc().add(6, ''days'').second(0).millisecond(0)}'}]}
+    - {description: 'writeOffBalance action triggers when balance is equal to the refund threshold', input: {config: {writeOffThreshold: 5, refundThreshold: -5}, document: {summaryLedger: {balance: -5, refundWriteOffDate: '${moment.utc().add(6, ''days'').second(0).millisecond(0)}'}}}, output: [{active: true, action: writeOffBalance, category: 'State Actions', displayText: 'Write Off Balance', canOverride: false, code: '403', fields: [], date: '${moment.utc().add(6, ''days'').second(0).millisecond(0)}'}]}
+    - {description: 'writeOffBalance action does not trigger when balance is 0', input: {config: {writeOffThreshold: 5, refundThreshold: -5}, document: {summaryLedger: {balance: 0, refundWriteOffDate: '${moment.utc().add(6, ''days'').second(0).millisecond(0)}'}}}, output: null}
+    - {description: 'writeOffBalance action does not trigger when balance is greater than write-ff threshold', input: {config: {writeOffThreshold: 5, refundThreshold: -5}, document: {summaryLedger: {balance: 6, refundWriteOffDate: '${moment.utc().add(6, ''days'').second(0).millisecond(0)}'}}}, output: null}
+    - {description: 'writeOffBalance action does not trigger when balance is less than refund threshold', input: {config: {writeOffThreshold: 5, refundThreshold: -5}, document: {summaryLedger: {balance: -6, refundWriteOffDate: '${moment.utc().add(6, ''days'').second(0).millisecond(0)}'}}}, output: null}
