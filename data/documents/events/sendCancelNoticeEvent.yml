@@ -31,6 +31,8 @@ calculatedFields:
     equation: ${it.calculatedFields.policyHolders[0].lastName}
   - name: transactionType
     equation: ${it.lookupFields.policyDetails.transaction.transactionType}
+  - name: cancelType
+    equation: ${it.lookupFields.policyDetails.status === 'Pending Voluntary Cancellation' ? 'Voluntary Cancellation' : it.lookupFields.policyDetails.status === 'Pending Underwriting Cancellation' ? 'Underwriting Cancellation' : it.lookupFields.policyDetails.status === 'Pending Underwriting Non-Renewal' ? 'Underwriting Non-Renewal' : 'Cancellation'}
 packetConfigs:
   - packetName: cancelNotice
     args:
@@ -39,7 +41,7 @@ emailConfigs:
   - templateName: policy.html
     fromName: TypTap
     fromEmail: contact@typtap.com
-    subject: ""
+    subject: "${it.calculatedFields.cancelType}: ${it.calculatedFields.policyNumber} ${it.calculatedFields.policyHolders[0].firstName} ${it.calculatedFields.policyHolders[0].lastName}"
     body: ""
     toEmail: "${(['Pending Underwriting Cancellation', 'Pending Underwriting Non-Renewal'].includes(it.calculatedFields.transactionType.toLowerCase())) ? Array.of('underwriting@typtap.com') : it.lookupFields.toEmail}"
     toName: Print Shop
