@@ -32,7 +32,7 @@ calculatedFields:
   - name: transactionType
     equation: ${it.lookupFields.policyDetails.transaction.transactionType}
   - name: cancelType
-    equation: ${it.lookupFields.policyDetails.status === 'Pending Voluntary Cancellation' ? 'Voluntary Cancellation' : it.lookupFields.policyDetails.status === 'Pending Underwriting Cancellation' ? 'Underwriting Cancellation' : it.lookupFields.policyDetails.status === 'Pending Underwriting Non-Renewal' ? 'Underwriting Non-Renewal' : 'Cancellation'}
+    equation: "${it.lookupFields.policyDetails.status === 'Pending Voluntary Cancellation' ? 'Voluntary Cancellation' : it.lookupFields.policyDetails.status === 'Pending Underwriting Cancellation' ? 'Underwriting Cancellation' : it.lookupFields.policyDetails.status === 'Pending Underwriting Non-Renewal' ? 'Underwriting Non-Renewal' : 'Cancellation'}"
 packetConfigs:
   - packetName: cancelNotice
     args:
