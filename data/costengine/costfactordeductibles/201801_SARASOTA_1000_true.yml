@@ -1,0 +1,12 @@
+
+  version: "201801"
+  companyCode: "TTIC"
+  state: "FL"
+  product: "HO3"
+  ranking: 12
+  group: 4
+  countyName: "SARASOTA"
+  aopDeductible: 1000
+  replacementCost: true
+  claimRateFactor: 3.1
+  lossCostAdjust: 0

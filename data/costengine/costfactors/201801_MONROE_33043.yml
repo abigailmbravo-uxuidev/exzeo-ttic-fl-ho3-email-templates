@@ -1,0 +1,20 @@
+
+  companyCode: "TTIC"
+  countyCode: 87
+  countyName: "MONROE"
+  exteriorWaterLossCost: 70
+  fireLossCost: 101
+  gridRes: null
+  hailLossCost: 2
+  hurricaneFactor: 2.964642
+  interiorWaterLossCost: 300
+  liabilityLossCost: 50
+  miscLossCost: 15
+  otherWindLossCost: 50
+  product: "HO3"
+  ratingRegion: 18
+  sinkholeLossCost: 4
+  state: "FL"
+  theftLossCost: 20
+  version: "201801"
+  zip: "33043"

@@ -1,0 +1,12 @@
+
+  version: "201801"
+  companyCode: "TTIC"
+  state: "FL"
+  product: "HO3"
+  ranking: 15
+  group: 5
+  countyName: "SAINT LUCIE"
+  aopDeductible: 500
+  replacementCost: false
+  claimRateFactor: 6
+  lossCostAdjust: 100

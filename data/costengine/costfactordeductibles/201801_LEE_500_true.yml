@@ -1,0 +1,12 @@
+
+  version: "201801"
+  companyCode: "TTIC"
+  state: "FL"
+  product: "HO3"
+  ranking: 10
+  group: 4
+  countyName: "LEE"
+  aopDeductible: 500
+  replacementCost: true
+  claimRateFactor: 5.1
+  lossCostAdjust: 100

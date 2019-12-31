@@ -1,0 +1,20 @@
+
+  companyCode: "TTIC"
+  countyCode: 35
+  countyName: "FLAGLER"
+  exteriorWaterLossCost: 35
+  fireLossCost: 120
+  gridRes: "Region"
+  hailLossCost: 16
+  hurricaneFactor: 0.766627
+  interiorWaterLossCost: 209
+  liabilityLossCost: 2
+  miscLossCost: 14
+  otherWindLossCost: 60
+  product: "HO3"
+  ratingRegion: 6
+  sinkholeLossCost: 6
+  state: "FL"
+  theftLossCost: 9
+  version: "201801"
+  zip: "32142"

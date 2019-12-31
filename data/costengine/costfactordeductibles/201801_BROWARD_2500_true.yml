@@ -1,0 +1,12 @@
+
+  version: "201801"
+  companyCode: "TTIC"
+  state: "FL"
+  product: "HO3"
+  ranking: 2
+  group: 1
+  countyName: "BROWARD"
+  aopDeductible: 2500
+  replacementCost: true
+  claimRateFactor: 7
+  lossCostAdjust: -160

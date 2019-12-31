@@ -1,0 +1,12 @@
+
+  version: "201801"
+  companyCode: "TTIC"
+  state: "FL"
+  product: "HO3"
+  ranking: 8
+  group: 3
+  countyName: "HILLSBOROUGH"
+  aopDeductible: 2500
+  replacementCost: true
+  claimRateFactor: 3.9
+  lossCostAdjust: 0

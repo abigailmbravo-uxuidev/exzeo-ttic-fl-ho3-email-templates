@@ -1,0 +1,12 @@
+
+  version: "201801"
+  companyCode: "TTIC"
+  state: "FL"
+  product: "HO3"
+  ranking: 9
+  group: 4
+  countyName: "COLLIER"
+  aopDeductible: 2500
+  replacementCost: true
+  claimRateFactor: 3.7
+  lossCostAdjust: 60

@@ -1,0 +1,12 @@
+
+  version: "201801"
+  companyCode: "TTIC"
+  state: "FL"
+  product: "HO3"
+  ranking: 11
+  group: 4
+  countyName: "CHARLOTTE"
+  aopDeductible: 2500
+  replacementCost: false
+  claimRateFactor: 4
+  lossCostAdjust: 160

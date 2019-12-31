@@ -1,0 +1,12 @@
+
+  version: "201801"
+  companyCode: "TTIC"
+  state: "FL"
+  product: "HO3"
+  ranking: 48
+  group: 9
+  countyName: "CITRUS"
+  aopDeductible: 500
+  replacementCost: true
+  claimRateFactor: 5
+  lossCostAdjust: 200

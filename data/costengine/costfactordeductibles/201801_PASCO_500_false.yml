@@ -1,0 +1,12 @@
+
+  version: "201801"
+  companyCode: "TTIC"
+  state: "FL"
+  product: "HO3"
+  ranking: 5
+  group: 2
+  countyName: "PASCO"
+  aopDeductible: 500
+  replacementCost: false
+  claimRateFactor: 5
+  lossCostAdjust: 200

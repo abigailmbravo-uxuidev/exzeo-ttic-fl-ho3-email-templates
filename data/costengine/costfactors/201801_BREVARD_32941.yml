@@ -1,0 +1,20 @@
+
+  companyCode: "TTIC"
+  countyCode: 9
+  countyName: "BREVARD"
+  exteriorWaterLossCost: 28
+  fireLossCost: 120
+  gridRes: "County"
+  hailLossCost: 2
+  hurricaneFactor: 1.348556
+  interiorWaterLossCost: 290
+  liabilityLossCost: 2
+  miscLossCost: 8
+  otherWindLossCost: 55
+  product: "HO3"
+  ratingRegion: 10
+  sinkholeLossCost: 6
+  state: "FL"
+  theftLossCost: 4
+  version: "201801"
+  zip: "32941"

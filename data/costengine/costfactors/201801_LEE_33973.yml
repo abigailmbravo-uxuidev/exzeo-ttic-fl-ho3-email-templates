@@ -1,0 +1,20 @@
+
+  companyCode: "TTIC"
+  countyCode: 71
+  countyName: "LEE"
+  exteriorWaterLossCost: 32
+  fireLossCost: 70
+  gridRes: "County"
+  hailLossCost: 2
+  hurricaneFactor: 1.044882
+  interiorWaterLossCost: 189
+  liabilityLossCost: 15
+  miscLossCost: 36
+  otherWindLossCost: 90
+  product: "HO3"
+  ratingRegion: 8
+  sinkholeLossCost: 2
+  state: "FL"
+  theftLossCost: 2
+  version: "201801"
+  zip: "33973"

@@ -1,0 +1,12 @@
+
+  version: "201801"
+  companyCode: "TTIC"
+  state: "FL"
+  product: "HO3"
+  ranking: 7
+  group: 3
+  countyName: "PINELLAS"
+  aopDeductible: 500
+  replacementCost: false
+  claimRateFactor: 3.5
+  lossCostAdjust: 0

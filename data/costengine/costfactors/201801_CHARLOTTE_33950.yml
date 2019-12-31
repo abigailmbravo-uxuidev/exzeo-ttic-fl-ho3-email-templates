@@ -1,0 +1,20 @@
+
+  companyCode: "TTIC"
+  countyCode: 15
+  countyName: "CHARLOTTE"
+  exteriorWaterLossCost: 2
+  fireLossCost: 70
+  gridRes: "County"
+  hailLossCost: 2
+  hurricaneFactor: 0.90288
+  interiorWaterLossCost: 237
+  liabilityLossCost: 15
+  miscLossCost: 19
+  otherWindLossCost: 45
+  product: "HO3"
+  ratingRegion: 7
+  sinkholeLossCost: 2
+  state: "FL"
+  theftLossCost: 5
+  version: "201801"
+  zip: "33950"

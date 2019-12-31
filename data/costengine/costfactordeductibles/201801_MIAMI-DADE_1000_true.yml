@@ -1,0 +1,12 @@
+
+  version: "201801"
+  companyCode: "TTIC"
+  state: "FL"
+  product: "HO3"
+  ranking: 1
+  group: 1
+  countyName: "MIAMI-DADE"
+  aopDeductible: 1000
+  replacementCost: true
+  claimRateFactor: 7.2
+  lossCostAdjust: 0

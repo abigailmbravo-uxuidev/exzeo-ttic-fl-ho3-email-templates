@@ -1,0 +1,20 @@
+
+  companyCode: "TTIC"
+  countyCode: 99
+  countyName: "PALM BEACH"
+  exteriorWaterLossCost: 45
+  fireLossCost: 101
+  gridRes: "Zip"
+  hailLossCost: 2
+  hurricaneFactor: 2.964642
+  interiorWaterLossCost: 300
+  liabilityLossCost: 10
+  miscLossCost: 19
+  otherWindLossCost: 9
+  product: "HO3"
+  ratingRegion: 18
+  sinkholeLossCost: 4
+  state: "FL"
+  theftLossCost: 17
+  version: "201801"
+  zip: "33404"

@@ -1,0 +1,12 @@
+
+  version: "201801"
+  companyCode: "TTIC"
+  state: "FL"
+  product: "HO3"
+  ranking: 54
+  group: 9
+  countyName: "WAKULLA"
+  aopDeductible: 2500
+  replacementCost: true
+  claimRateFactor: 3.5
+  lossCostAdjust: -100

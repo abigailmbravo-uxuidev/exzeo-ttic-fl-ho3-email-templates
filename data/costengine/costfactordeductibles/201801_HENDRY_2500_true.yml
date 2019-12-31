@@ -1,0 +1,12 @@
+
+  version: "201801"
+  companyCode: "TTIC"
+  state: "FL"
+  product: "HO3"
+  ranking: 26
+  group: 7
+  countyName: "HENDRY"
+  aopDeductible: 2500
+  replacementCost: true
+  claimRateFactor: 3.5
+  lossCostAdjust: -100

@@ -1,0 +1,12 @@
+
+  version: "201801"
+  companyCode: "TTIC"
+  state: "FL"
+  product: "HO3"
+  ranking: 16
+  group: 5
+  countyName: "INDIAN RIVER"
+  aopDeductible: 500
+  replacementCost: false
+  claimRateFactor: 5
+  lossCostAdjust: 0

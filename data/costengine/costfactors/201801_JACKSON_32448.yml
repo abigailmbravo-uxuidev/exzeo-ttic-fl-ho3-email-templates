@@ -1,0 +1,20 @@
+
+  companyCode: "TTIC"
+  countyCode: 63
+  countyName: "JACKSON"
+  exteriorWaterLossCost: 29
+  fireLossCost: 30
+  gridRes: "Region"
+  hailLossCost: 54
+  hurricaneFactor: 0.146846
+  interiorWaterLossCost: 52
+  liabilityLossCost: 7
+  miscLossCost: 20
+  otherWindLossCost: 77
+  product: "HO3"
+  ratingRegion: 1
+  sinkholeLossCost: 12
+  state: "FL"
+  theftLossCost: 10
+  version: "201801"
+  zip: "32448"

@@ -1,0 +1,20 @@
+
+  companyCode: "TTIC"
+  countyCode: 111
+  countyName: "SAINT LUCIE"
+  exteriorWaterLossCost: 35
+  fireLossCost: 120
+  gridRes: "Region"
+  hailLossCost: 16
+  hurricaneFactor: 1.511669
+  interiorWaterLossCost: 209
+  liabilityLossCost: 2
+  miscLossCost: 14
+  otherWindLossCost: 60
+  product: "HO3"
+  ratingRegion: 11
+  sinkholeLossCost: 6
+  state: "FL"
+  theftLossCost: 9
+  version: "201801"
+  zip: "34951"

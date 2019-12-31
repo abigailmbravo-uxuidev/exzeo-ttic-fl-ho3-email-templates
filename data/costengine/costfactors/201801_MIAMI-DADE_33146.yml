@@ -1,0 +1,20 @@
+
+  companyCode: "TTIC"
+  countyCode: 86
+  countyName: "MIAMI-DADE"
+  exteriorWaterLossCost: 100
+  fireLossCost: 101
+  gridRes: "Zip"
+  hailLossCost: 2
+  hurricaneFactor: 2.964642
+  interiorWaterLossCost: 700
+  liabilityLossCost: 10
+  miscLossCost: 100
+  otherWindLossCost: 52
+  product: "HO3"
+  ratingRegion: 18
+  sinkholeLossCost: 4
+  state: "FL"
+  theftLossCost: 39
+  version: "201801"
+  zip: "33146"
