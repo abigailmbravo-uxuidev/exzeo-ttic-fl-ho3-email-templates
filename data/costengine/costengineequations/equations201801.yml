@@ -1,4 +1,7 @@
 
+companyCode: "TTIC"
+state: "FL"
+product: "HO3"
 version: "201801"
 inputMaps:
     openingProtection: { hurricane: "A", basic: "B", other: "C", none: "N" }
@@ -20,17 +23,209 @@ inputFields:
     replacementCost: "${it.input.coverageOptions.personalPropertyReplacementCost.answer}"
     yearBuilt: "${(it.input.property.yearBuilt < 1994 ? 1994 : (it.input.property.yearBuilt > 2012 ? 2012 : it.input.property.yearBuilt))}"
     roofGeometry: "${it.input.property.windMitigation.roofGeometry}"
-    openingProtection: "${map("openingProtection", it.input.property.windMitigation.openingProtection)}"
-    constructionType: "${map("constructionType", it.input.property.constructionType)}"
+    openingProtection: "${map(\"openingProtection\", it.input.property.windMitigation.openingProtection)}"
+    constructionType: "${map(\"constructionType\", it.input.property.constructionType)}"
 lookupFields:
-    - {collection: "costFactors", query: [{version: "${it.inputFields.version}", zip: "${it.inputFields.zip}"}]}
-    - {collection: "costFactorDeductibles", query: [{version: "${it.inputFields.version}", countyName: "${it.lookupFields.countyName}", aopDeductible: "${it.inputFields.aopDeductible}", replacementCost: "${it.inputFields.replacementCost}"}]}
-    - {collection: "costFactorAdjustments", map: [{from: {factor: "Res_HurrDed"}, to: "hurricaneDeductibleFactor", value: "factorValue"}, {from: {factor: "Res_YearBuilt"}, to: "hurricaneYearBuiltFactor", value: "factorValue"}, {from: {factor: "Res_RoofShape"}, to: "hurricaneRoofShapeFactor", value: "factorValue"}, {from: {factor: "Res_Shutters"}, to: "hurricaneOpeningProtectionFactor", value: "factorValue"}, {from: {factor: Res_Const_Hurr}, to: hurricaneConstructionTypeFactor, value: factorValue}, {from: {factor: Res_RetentMult}, to: hurricaneRetentionMult, value: factorValue}, {from: {factor: Res_Const_LC}, to: nonCatConstructionLossCost, value: factorValue}, {from: {factor: Res_ClaimCost}, to: claimCost, value: factorValue}, {from: {factor: Res_BaseCost}, to: baseCost, value: factorValue}, {from: {factor: Res_CoverA, factorParameter: Base}, to: baseCoverageA, value: factorValue}, {from: {factor: Res_CoverA, factorParameter: Min}, to: minCoverageA, value: factorValue}, {from: {factor: Res_CoverA, factorParameter: Max}, to: maxCoverageA, value: factorValue}], query: [{version: "${it.inputFields.version}", factor: Res_HurrDed, factorParameter: "${it.inputFields.hurricaneDeductible + ""}"}, {version: "${it.inputFields.version}", factor: Res_YearBuilt, factorParameter: "${it.inputFields.yearBuilt + ""}"}, {version: "${it.inputFields.version}", factor: Res_RoofShape, factorParameter: "${it.inputFields.roofGeometry + ""}"}, {version: "${it.inputFields.version}", factor: Res_Shutters, factorParameter: "${it.inputFields.openingProtection + ""}"}, {version: "${it.inputFields.version}", factor: Res_Const_Hurr, factorParameter: "${it.inputFields.constructionType + ""}"}, {version: "${it.inputFields.version}", factor: Res_RetentMult, factorParameter: "${it.inputFields.currentYear + ""}"}, {version: "${it.inputFields.version}", factor: Res_Const_LC, factorParameter: "${it.inputFields.constructionType + ""}"}, {version: "${it.inputFields.version}", factor: Res_ClaimCost, factorParameter: "${it.inputFields.currentYear + ""}"}, {version: "${it.inputFields.version}", factor: Res_BaseCost, factorParameter: "${it.inputFields.currentYear + ""}"}, {version: "${it.inputFields.version}", factor: Res_CoverA, factorParameter: Base}, {version: "${it.inputFields.version}", factor: Res_CoverA, factorParameter: Min}, {version: "${it.inputFields.version}", factor: Res_CoverA, factorParameter: Max}]}
+    - {
+        collection: "costFactors",
+        query: [
+            {
+                version: "${it.inputFields.version}",
+                zip: "${it.inputFields.zip}"
+            }
+        ]
+    }
+    - {
+        collection: "costFactorDeductibles",
+        query: [
+            {
+                version: "${it.inputFields.version}",
+                countyName: "${it.lookupFields.countyName}",
+                aopDeductible: "${it.inputFields.aopDeductible}",
+                replacementCost: "${it.inputFields.replacementCost}"
+            }
+        ]
+    }
+    - {
+        collection: "costFactorAdjustments",
+        map: [
+            {
+                from: {
+                    factor: "Res_HurrDed"
+                },
+                to: "hurricaneDeductibleFactor",
+                value: "factorValue"
+            },
+            {
+                from: {
+                    factor: "Res_YearBuilt"
+                },
+                to: "hurricaneYearBuiltFactor",
+                value: "factorValue"
+            },
+            {
+                from: {
+                    factor: "Res_RoofShape"
+                },
+                to: "hurricaneRoofShapeFactor",
+                value: "factorValue"
+            },
+            {
+                from: {
+                    factor: "Res_Shutters"
+                },
+                to: "hurricaneOpeningProtectionFactor",
+                value: "factorValue"
+            },
+            {
+                from: {
+                    factor: "Res_Const_Hurr"
+                },
+                to: "hurricaneConstructionTypeFactor",
+                value: "factorValue"
+            },
+            {
+                from: {
+                    factor: "Res_RetentMult"
+                },
+                to: "hurricaneRetentionMult",
+                value: "factorValue"
+            },
+            {
+                from: {
+                    factor: "Res_Const_LC"
+                },
+                to: "nonCatConstructionLossCost",
+                value: "factorValue"
+            },
+            {
+                from: {
+                    factor: "Res_ClaimCost"
+                },
+                to: "claimCost",
+                value: "factorValue"
+            },
+            {
+                from: {
+                    factor: "Res_BaseCost"
+                },
+                to: "baseCost",
+                value: "factorValue"
+            },
+            {
+                from: {
+                    factor: "Res_CoverA",
+                    factorParameter: "Base"
+                },
+                to: "baseCoverageA",
+                value: "factorValue"
+            },
+            {
+                from: {
+                    factor: "Res_CoverA",
+                    factorParameter: "Min"
+                },
+                to: "minCoverageA",
+                value: "factorValue"
+            },
+            {
+                from: {
+                    factor: "Res_CoverA",
+                    factorParameter: "Max"
+                },
+                to: "maxCoverageA",
+                value: "factorValue"
+            }
+        ],
+        query: [
+            {
+                version: "${it.inputFields.version}",
+                factor: "Res_HurrDed",
+                factorParameter: "${it.inputFields.hurricaneDeductible + \"\"}"
+            },
+            {
+                version: "${it.inputFields.version}",
+                factor: "Res_YearBuilt",
+                factorParameter: "${it.inputFields.yearBuilt + \"\"}"
+            },
+            {
+                version: "${it.inputFields.version}",
+                factor: "Res_RoofShape",
+                factorParameter: "${it.inputFields.roofGeometry + \"\"}"
+            },
+            {
+                version: "${it.inputFields.version}",
+                factor: "Res_Shutters",
+                factorParameter: "${it.inputFields.openingProtection + \"\"}"
+            },
+            {
+                version: "${it.inputFields.version}",
+                factor: "Res_Const_Hurr",
+                factorParameter: "${it.inputFields.constructionType + \"\"}"
+            },
+            {
+                version: "${it.inputFields.version}",
+                factor: "Res_RetentMult",
+                factorParameter: "${it.inputFields.currentYear + \"\"}"
+            },
+            {
+                version: "${it.inputFields.version}",
+                factor: "Res_Const_LC",
+                factorParameter: "${it.inputFields.constructionType + \"\"}"
+            },
+            {
+                version: "${it.inputFields.version}",
+                factor: "Res_ClaimCost",
+                factorParameter: "${it.inputFields.currentYear + \"\"}"
+            },
+            {
+                version: "${it.inputFields.version}",
+                factor: "Res_BaseCost",
+                factorParameter: "${it.inputFields.currentYear + \"\"}"
+            },
+            {
+                version: "${it.inputFields.version}",
+                factor: "Res_CoverA",
+                factorParameter: "Base"
+            },
+            {
+                version: "${it.inputFields.version}",
+                factor: "Res_CoverA",
+                factorParameter: "Min"
+            },
+            {
+                version: "${it.inputFields.version}",
+                factor: "Res_CoverA",
+                factorParameter: "Max"
+            }
+        ]
+    }
 calculatedFields:
-    - {name: "hurricaneTEFactor", equation: "${round((it.inputFields.coverageA + it.inputFields.coverageB + it.inputFields.coverageC + it.inputFields.coverageD) / 1000, 4)}"}
-    - {name: "coverageAFactor", equation: "${round(0.25 * (((it.inputFields.coverageA < it.lookupFields.minCoverageA ? it.lookupFields.minCoverageA : (it.inputFields.coverageA > it.lookupFields.maxCoverageA ? it.lookupFields.maxCoverageA : it.inputFields.coverageA)) / it.lookupFields.baseCoverageA) - 1), 4) + 1}"}
-    - {name: "nonCatExp", equation: "${round(it.calculatedFields.coverageAFactor * it.lookupFields.interiorWaterLossCost, 0) + it.lookupFields.fireLossCost + it.lookupFields.exteriorWaterLossCost + it.lookupFields.liabilityLossCost + it.lookupFields.theftLossCost + it.lookupFields.miscLossCost + it.lookupFields.hailLossCost + it.lookupFields.otherWindLossCost + ((it.inputFields.sinkholeDeductible && it.inputFields.sinkholeDeductible) === 10 ? it.lookupFields.sinkholeLossCost : 0) + it.lookupFields.nonCatConstructionLossCost + it.lookupFields.lossCostAdjust}"}
-    - {name: "catExp", equation: "${round(it.lookupFields.hurricaneFactor * it.lookupFields.hurricaneYearBuiltFactor * it.lookupFields.hurricaneRoofShapeFactor * it.lookupFields.hurricaneOpeningProtectionFactor * it.calculatedFields.hurricaneTEFactor * it.lookupFields.hurricaneConstructionTypeFactor * it.lookupFields.hurricaneDeductibleFactor, 0)}"}
-    - {name: "retentionExp", equation: "${round(it.lookupFields.hurricaneFactor * it.lookupFields.hurricaneYearBuiltFactor * it.lookupFields.hurricaneRoofShapeFactor * it.lookupFields.hurricaneOpeningProtectionFactor * it.calculatedFields.hurricaneTEFactor * it.lookupFields.hurricaneConstructionTypeFactor * it.lookupFields.hurricaneDeductibleFactor * it.lookupFields.hurricaneRetentionMult, 2)}"}
-    - {name: "adminExp", equation: "${round(((it.lookupFields.claimCost * it.lookupFields.claimRateFactor) / 100) + it.lookupFields.baseCost, 0)}"}
-    - {name: "totalCost", equation: "${round(it.calculatedFields.nonCatExp + it.calculatedFields.catExp + it.calculatedFields.retentionExp + it.calculatedFields.adminExp, 0)}"}
+    - {
+        name: "hurricaneTEFactor",
+        equation: "${round((it.inputFields.coverageA + it.inputFields.coverageB + it.inputFields.coverageC + it.inputFields.coverageD) / 1000, 4)}"
+    }
+    - {
+        name: "coverageAFactor",
+        equation: "${round(0.25 * (((it.inputFields.coverageA < it.lookupFields.minCoverageA ? it.lookupFields.minCoverageA : (it.inputFields.coverageA > it.lookupFields.maxCoverageA ? it.lookupFields.maxCoverageA : it.inputFields.coverageA)) / it.lookupFields.baseCoverageA) - 1), 4) + 1}"
+    }
+    - {
+        name: "nonCatExp",
+        equation: "${round(it.calculatedFields.coverageAFactor * it.lookupFields.interiorWaterLossCost, 0) + it.lookupFields.fireLossCost + it.lookupFields.exteriorWaterLossCost + it.lookupFields.liabilityLossCost + it.lookupFields.theftLossCost + it.lookupFields.miscLossCost + it.lookupFields.hailLossCost + it.lookupFields.otherWindLossCost + ((it.inputFields.sinkholeDeductible && it.inputFields.sinkholeDeductible) === 10 ? it.lookupFields.sinkholeLossCost : 0) + it.lookupFields.nonCatConstructionLossCost + it.lookupFields.lossCostAdjust}"
+    }
+    - {
+        name: "catExp",
+        equation: "${round(it.lookupFields.hurricaneFactor * it.lookupFields.hurricaneYearBuiltFactor * it.lookupFields.hurricaneRoofShapeFactor * it.lookupFields.hurricaneOpeningProtectionFactor * it.calculatedFields.hurricaneTEFactor * it.lookupFields.hurricaneConstructionTypeFactor * it.lookupFields.hurricaneDeductibleFactor, 0)}"
+    }
+    - {
+        name: "retentionExp",
+        equation: "${round(it.lookupFields.hurricaneFactor * it.lookupFields.hurricaneYearBuiltFactor * it.lookupFields.hurricaneRoofShapeFactor * it.lookupFields.hurricaneOpeningProtectionFactor * it.calculatedFields.hurricaneTEFactor * it.lookupFields.hurricaneConstructionTypeFactor * it.lookupFields.hurricaneDeductibleFactor * it.lookupFields.hurricaneRetentionMult, 2)}"
+    }
+    - {
+        name: "adminExp",
+        equation: "${round(((it.lookupFields.claimCost * it.lookupFields.claimRateFactor) / 100) + it.lookupFields.baseCost, 0)}"
+    }
+    - {
+        name: "totalCost",
+        equation: "${round(it.calculatedFields.nonCatExp + it.calculatedFields.catExp + it.calculatedFields.retentionExp + it.calculatedFields.adminExp, 0)}"
+    }
