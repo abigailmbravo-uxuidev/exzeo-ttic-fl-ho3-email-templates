@@ -1,0 +1,20 @@
+
+  companyCode: "TTIC"
+  countyCode: 115
+  countyName: "SARASOTA"
+  exteriorWaterLossCost: 17
+  fireLossCost: 70
+  gridRes: "County"
+  hailLossCost: 2
+  hurricaneFactor: 1.193217
+  interiorWaterLossCost: 224
+  liabilityLossCost: 15
+  miscLossCost: 30
+  otherWindLossCost: 21
+  product: "HO3"
+  ratingRegion: 9
+  sinkholeLossCost: 2
+  state: "FL"
+  theftLossCost: 2
+  version: "201801"
+  zip: "34293"

@@ -1,0 +1,12 @@
+
+  version: "201801"
+  companyCode: "TTIC"
+  state: "FL"
+  product: "HO3"
+  ranking: 21
+  group: 5
+  countyName: "DUVAL"
+  aopDeductible: 2500
+  replacementCost: true
+  claimRateFactor: 4
+  lossCostAdjust: -25

@@ -1,0 +1,20 @@
+
+  companyCode: "TTIC"
+  countyCode: 127
+  countyName: "VOLUSIA"
+  exteriorWaterLossCost: 34
+  fireLossCost: 120
+  gridRes: "County"
+  hailLossCost: 32
+  hurricaneFactor: 0.635616
+  interiorWaterLossCost: 105
+  liabilityLossCost: 2
+  miscLossCost: 22
+  otherWindLossCost: 51
+  product: "HO3"
+  ratingRegion: 5
+  sinkholeLossCost: 6
+  state: "FL"
+  theftLossCost: 14
+  version: "201801"
+  zip: "32125"

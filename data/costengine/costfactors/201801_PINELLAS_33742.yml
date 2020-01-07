@@ -1,0 +1,20 @@
+
+  companyCode: "TTIC"
+  countyCode: 103
+  countyName: "PINELLAS"
+  exteriorWaterLossCost: 21
+  fireLossCost: 101
+  gridRes: "County"
+  hailLossCost: 3
+  hurricaneFactor: 0.90288
+  interiorWaterLossCost: 166
+  liabilityLossCost: 2
+  miscLossCost: 25
+  otherWindLossCost: 24
+  product: "HO3"
+  ratingRegion: 7
+  sinkholeLossCost: 26
+  state: "FL"
+  theftLossCost: 2
+  version: "201801"
+  zip: "33742"

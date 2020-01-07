@@ -1,0 +1,12 @@
+
+  version: "201801"
+  companyCode: "TTIC"
+  state: "FL"
+  product: "HO3"
+  ranking: 34
+  group: 8
+  countyName: "SUMTER"
+  aopDeductible: 500
+  replacementCost: true
+  claimRateFactor: 5
+  lossCostAdjust: 200

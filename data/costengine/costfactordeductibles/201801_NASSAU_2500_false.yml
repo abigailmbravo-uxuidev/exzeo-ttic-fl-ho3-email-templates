@@ -1,0 +1,12 @@
+
+  version: "201801"
+  companyCode: "TTIC"
+  state: "FL"
+  product: "HO3"
+  ranking: 22
+  group: 5
+  countyName: "NASSAU"
+  aopDeductible: 2500
+  replacementCost: false
+  claimRateFactor: 3
+  lossCostAdjust: -100

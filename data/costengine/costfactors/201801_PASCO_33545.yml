@@ -1,0 +1,20 @@
+
+  companyCode: "TTIC"
+  countyCode: 101
+  countyName: "PASCO"
+  exteriorWaterLossCost: 21
+  fireLossCost: 101
+  gridRes: "Region"
+  hailLossCost: 7
+  hurricaneFactor: 0.635616
+  interiorWaterLossCost: 172
+  liabilityLossCost: 2
+  miscLossCost: 28
+  otherWindLossCost: 29
+  product: "HO3"
+  ratingRegion: 5
+  sinkholeLossCost: 40
+  state: "FL"
+  theftLossCost: 2
+  version: "201801"
+  zip: "33545"

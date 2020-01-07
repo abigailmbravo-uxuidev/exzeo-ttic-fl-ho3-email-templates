@@ -1,0 +1,12 @@
+
+  version: "201801"
+  companyCode: "TTIC"
+  state: "FL"
+  product: "HO3"
+  ranking: 3
+  group: 1
+  countyName: "PALM BEACH"
+  aopDeductible: 2500
+  replacementCost: false
+  claimRateFactor: 5.6
+  lossCostAdjust: 150

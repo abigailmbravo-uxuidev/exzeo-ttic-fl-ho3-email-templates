@@ -1,0 +1,20 @@
+
+  companyCode: "TTIC"
+  countyCode: 85
+  countyName: "MARTIN"
+  exteriorWaterLossCost: 35
+  fireLossCost: 120
+  gridRes: "Region"
+  hailLossCost: 16
+  hurricaneFactor: 2.479815
+  interiorWaterLossCost: 209
+  liabilityLossCost: 2
+  miscLossCost: 14
+  otherWindLossCost: 60
+  product: "HO3"
+  ratingRegion: 16
+  sinkholeLossCost: 6
+  state: "FL"
+  theftLossCost: 9
+  version: "201801"
+  zip: "34992"

@@ -1,0 +1,20 @@
+
+  companyCode: "TTIC"
+  countyCode: 21
+  countyName: "COLLIER"
+  exteriorWaterLossCost: 27
+  fireLossCost: 70
+  gridRes: "County"
+  hailLossCost: 2
+  hurricaneFactor: 1.348556
+  interiorWaterLossCost: 121
+  liabilityLossCost: 15
+  miscLossCost: 46
+  otherWindLossCost: 40
+  product: "HO3"
+  ratingRegion: 10
+  sinkholeLossCost: 2
+  state: "FL"
+  theftLossCost: 2
+  version: "201801"
+  zip: "34138"

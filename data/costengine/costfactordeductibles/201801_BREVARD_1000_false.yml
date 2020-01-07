@@ -1,0 +1,12 @@
+
+  version: "201801"
+  companyCode: "TTIC"
+  state: "FL"
+  product: "HO3"
+  ranking: 17
+  group: 5
+  countyName: "BREVARD"
+  aopDeductible: 1000
+  replacementCost: false
+  claimRateFactor: 2.9
+  lossCostAdjust: -150

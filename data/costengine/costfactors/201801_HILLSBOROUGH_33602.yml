@@ -1,0 +1,20 @@
+
+  companyCode: "TTIC"
+  countyCode: 57
+  countyName: "HILLSBOROUGH"
+  exteriorWaterLossCost: 22
+  fireLossCost: 101
+  gridRes: "County"
+  hailLossCost: 19
+  hurricaneFactor: 0.766627
+  interiorWaterLossCost: 188
+  liabilityLossCost: 2
+  miscLossCost: 38
+  otherWindLossCost: 45
+  product: "HO3"
+  ratingRegion: 6
+  sinkholeLossCost: 26
+  state: "FL"
+  theftLossCost: 3
+  version: "201801"
+  zip: "33602"

@@ -1,0 +1,8 @@
+
+  version: "201801"
+  companyCode: "TTIC"
+  state: "FL"
+  product: "HO3"
+  factor: "Res_RateRegion"
+  factorParameter: "19"
+  factorValue: 3.235638

@@ -1,0 +1,20 @@
+
+  companyCode: "TTIC"
+  countyCode: 125
+  countyName: "UNION"
+  exteriorWaterLossCost: 32
+  fireLossCost: 71
+  gridRes: "Region"
+  hailLossCost: 54
+  hurricaneFactor: 0.146846
+  interiorWaterLossCost: 128
+  liabilityLossCost: 2
+  miscLossCost: 44
+  otherWindLossCost: 36
+  product: "HO3"
+  ratingRegion: 1
+  sinkholeLossCost: 6
+  state: "FL"
+  theftLossCost: 5
+  version: "201801"
+  zip: "32083"

@@ -1,0 +1,20 @@
+
+  companyCode: "TTIC"
+  countyCode: 31
+  countyName: "DUVAL"
+  exteriorWaterLossCost: 35
+  fireLossCost: 120
+  gridRes: "Region"
+  hailLossCost: 16
+  hurricaneFactor: 0.387604
+  interiorWaterLossCost: 209
+  liabilityLossCost: 2
+  miscLossCost: 14
+  otherWindLossCost: 60
+  product: "HO3"
+  ratingRegion: 3
+  sinkholeLossCost: 6
+  state: "FL"
+  theftLossCost: 9
+  version: "201801"
+  zip: "32233"

@@ -1,0 +1,12 @@
+
+  version: "201801"
+  companyCode: "TTIC"
+  state: "FL"
+  product: "HO3"
+  ranking: 4
+  group: 1
+  countyName: "MONROE"
+  aopDeductible: 1000
+  replacementCost: false
+  claimRateFactor: 4
+  lossCostAdjust: 0

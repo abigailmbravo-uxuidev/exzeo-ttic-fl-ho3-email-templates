@@ -1,0 +1,12 @@
+
+  version: "201801"
+  companyCode: "TTIC"
+  state: "FL"
+  product: "HO3"
+  ranking: 18
+  group: 5
+  countyName: "VOLUSIA"
+  aopDeductible: 2500
+  replacementCost: false
+  claimRateFactor: 3.1
+  lossCostAdjust: -100

@@ -1,0 +1,20 @@
+
+  companyCode: "TTIC"
+  countyCode: 95
+  countyName: "ORANGE"
+  exteriorWaterLossCost: 64
+  fireLossCost: 140
+  gridRes: "Region"
+  hailLossCost: 200
+  hurricaneFactor: 0.387604
+  interiorWaterLossCost: 337
+  liabilityLossCost: 2
+  miscLossCost: 37
+  otherWindLossCost: 154
+  product: "HO3"
+  ratingRegion: 3
+  sinkholeLossCost: 40
+  state: "FL"
+  theftLossCost: 18
+  version: "201801"
+  zip: "32816"

@@ -1,0 +1,8 @@
+
+  version: "201801"
+  companyCode: "TTIC"
+  state: "FL"
+  product: "HO3"
+  factor: "Res_Const_Hurr"
+  factorParameter: "P"
+  factorValue: 1.316403

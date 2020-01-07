@@ -1,0 +1,20 @@
+
+  companyCode: "TTIC"
+  countyCode: 105
+  countyName: "POLK"
+  exteriorWaterLossCost: 71
+  fireLossCost: 71
+  gridRes: "County"
+  hailLossCost: 59
+  hurricaneFactor: 0.635616
+  interiorWaterLossCost: 95
+  liabilityLossCost: 2
+  miscLossCost: 11
+  otherWindLossCost: 27
+  product: "HO3"
+  ratingRegion: 5
+  sinkholeLossCost: 6
+  state: "FL"
+  theftLossCost: 2
+  version: "201801"
+  zip: "33856"

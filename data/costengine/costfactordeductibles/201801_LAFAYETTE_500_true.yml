@@ -1,0 +1,12 @@
+
+  version: "201801"
+  companyCode: "TTIC"
+  state: "FL"
+  product: "HO3"
+  ranking: 46
+  group: 8
+  countyName: "LAFAYETTE"
+  aopDeductible: 500
+  replacementCost: true
+  claimRateFactor: 5
+  lossCostAdjust: 200

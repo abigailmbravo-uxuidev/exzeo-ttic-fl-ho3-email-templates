@@ -1,0 +1,20 @@
+
+  companyCode: "TTIC"
+  countyCode: 11
+  countyName: "BROWARD"
+  exteriorWaterLossCost: 70
+  fireLossCost: 101
+  gridRes: "Zip"
+  hailLossCost: 2
+  hurricaneFactor: 4.577496
+  interiorWaterLossCost: 910
+  liabilityLossCost: 10
+  miscLossCost: 70
+  otherWindLossCost: 35
+  product: "HO3"
+  ratingRegion: 23
+  sinkholeLossCost: 4
+  state: "FL"
+  theftLossCost: 11
+  version: "201801"
+  zip: "33019"

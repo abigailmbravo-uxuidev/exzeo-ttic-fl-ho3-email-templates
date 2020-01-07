@@ -1,0 +1,20 @@
+
+  companyCode: "TTIC"
+  countyCode: 83
+  countyName: "MARION"
+  exteriorWaterLossCost: 3
+  fireLossCost: 71
+  gridRes: "County"
+  hailLossCost: 5
+  hurricaneFactor: 0.269885
+  interiorWaterLossCost: 144
+  liabilityLossCost: 2
+  miscLossCost: 145
+  otherWindLossCost: 24
+  product: "HO3"
+  ratingRegion: 2
+  sinkholeLossCost: 6
+  state: "FL"
+  theftLossCost: 2
+  version: "201801"
+  zip: "34477"

@@ -1,0 +1,12 @@
+
+  version: "201801"
+  companyCode: "TTIC"
+  state: "FL"
+  product: "HO3"
+  ranking: 13
+  group: 4
+  countyName: "MANATEE"
+  aopDeductible: 1000
+  replacementCost: false
+  claimRateFactor: 4.9
+  lossCostAdjust: 80

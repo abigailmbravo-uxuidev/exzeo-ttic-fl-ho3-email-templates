@@ -1,0 +1,12 @@
+
+  version: "201801"
+  companyCode: "TTIC"
+  state: "FL"
+  product: "HO3"
+  ranking: 31
+  group: 7
+  countyName: "DESOTO"
+  aopDeductible: 1000
+  replacementCost: true
+  claimRateFactor: 4.9
+  lossCostAdjust: 0

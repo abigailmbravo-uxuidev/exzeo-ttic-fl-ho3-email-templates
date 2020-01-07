@@ -1,0 +1,12 @@
+
+  version: "201801"
+  companyCode: "TTIC"
+  state: "FL"
+  product: "HO3"
+  ranking: 65
+  group: 10
+  countyName: "GADSDEN"
+  aopDeductible: 2500
+  replacementCost: false
+  claimRateFactor: 3.5
+  lossCostAdjust: -100

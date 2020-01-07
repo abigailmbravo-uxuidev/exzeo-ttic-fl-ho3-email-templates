@@ -1,0 +1,12 @@
+
+  version: "201801"
+  companyCode: "TTIC"
+  state: "FL"
+  product: "HO3"
+  ranking: 25
+  group: 6
+  countyName: "OSCEOLA"
+  aopDeductible: 500
+  replacementCost: false
+  claimRateFactor: 10
+  lossCostAdjust: 200

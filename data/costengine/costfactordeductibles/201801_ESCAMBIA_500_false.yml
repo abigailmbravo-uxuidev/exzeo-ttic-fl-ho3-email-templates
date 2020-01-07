@@ -1,0 +1,12 @@
+
+  version: "201801"
+  companyCode: "TTIC"
+  state: "FL"
+  product: "HO3"
+  ranking: 55
+  group: 10
+  countyName: "ESCAMBIA"
+  aopDeductible: 500
+  replacementCost: false
+  claimRateFactor: 5
+  lossCostAdjust: 200
