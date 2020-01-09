@@ -49,3 +49,11 @@ emailConfigs:
       - key: POLICYHOLDER1_LASTNAME
         value: ${it.calculatedFields.lastName}
     attachments: ${it.pdfs}
+printConfigs: 
+  - printType: generic
+    metadata:
+      packetName: nonPaymentNotice
+    referenceResource:
+      resourceId: "${it.calculatedFields.policyNumber}"
+      resourceType: policyNumber
+    files: "${it.pdfs}"
