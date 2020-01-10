@@ -3,35 +3,82 @@
   path: "policyHolders.policyHolder"
   type: "object"
   metaData: {}
-  required: 
-    - "policyHolders.policyHolder.entityType"
-    - "policyHolders.policyHolder.order"
-    - "policyHolders.policyHolder.emailAddress"
-    - "policyHolders.policyHolder.primaryPhoneNumber"
-  children: 
-    - "policyHolders.policyHolder.entityType"
-    - "policyHolders.policyHolder.order"
-    - "policyHolders.policyHolder.emailAddress"
-    - "policyHolders.policyHolder.primaryPhoneNumber"
-    - "policyHolders.policyHolder.secondaryPhoneNumber"
-    - "policyHolders.policyHolder.electronicDelivery"
   variations: 
     - conditions: 
         - field: "policyHolders.policyHolder.entityType"
           value: "Company"
+        - field: "policyHolders.policyHolder.order"
+          value: 0
       children: 
         - "policyHolders.policyHolder.companyName"
+        - "policyHolders.policyHolder.emailAddress"
+        - "policyHolders.policyHolder.primaryPhoneNumber"
+        - "policyHolders.policyHolder.secondaryPhoneNumber"
+        - "policyHolders.policyHolder.electronicDelivery"
       required: 
+        - "policyHolders.policyHolder.entityType"
+        - "policyHolders.policyHolder.order"
         - "policyHolders.policyHolder.companyName"
+        - "policyHolders.policyHolder.emailAddress"
+        - "policyHolders.policyHolder.primaryPhoneNumber"
+      metaData:
+        "policyHolders.policyHolder.companyName":
+          minLength: 1
+        "policyHolders.policyHolder.emailAddress":
+          minLength: 1
+        "policyHolders.policyHolder.primaryPhoneNumber":
+          minLength: 1
+    - conditions: 
+        - field: "policyHolders.policyHolder.entityType"
+          value: "Company"
+        - field: "policyHolders.policyHolder.order"
+          value: 1
+      children: 
+        - "policyHolders.policyHolder.companyName"
+        - "policyHolders.policyHolder.emailAddress"
+        - "policyHolders.policyHolder.primaryPhoneNumber"
+        - "policyHolders.policyHolder.secondaryPhoneNumber"
+        - "policyHolders.policyHolder.electronicDelivery"
     - conditions: 
         - field: "policyHolders.policyHolder.entityType"
           value: "Person"
+        - field: "policyHolders.policyHolder.order"
+          value: 0
       children: 
         - "policyHolders.policyHolder.firstName"
         - "policyHolders.policyHolder.lastName"
-      required: 
+        - "policyHolders.policyHolder.emailAddress"
+        - "policyHolders.policyHolder.primaryPhoneNumber"
+        - "policyHolders.policyHolder.secondaryPhoneNumber"
+        - "policyHolders.policyHolder.electronicDelivery"
+      required:
+        - "policyHolders.policyHolder.entityType"
+        - "policyHolders.policyHolder.order"
         - "policyHolders.policyHolder.firstName"
         - "policyHolders.policyHolder.lastName"
+        - "policyHolders.policyHolder.emailAddress"
+        - "policyHolders.policyHolder.primaryPhoneNumber"
+      metaData:
+        "policyHolders.policyHolder.firstName":
+          minLength: 1
+        "policyHolders.policyHolder.lastName":
+          minLength: 1
+        "policyHolders.policyHolder.emailAddress":
+          minLength: 1
+        "policyHolders.policyHolder.primaryPhoneNumber":
+          minLength: 1
+    - conditions: 
+        - field: "policyHolders.policyHolder.entityType"
+          value: "Person"
+        - field: "policyHolders.policyHolder.order"
+          value: 1
+      children: 
+        - "policyHolders.policyHolder.firstName"
+        - "policyHolders.policyHolder.lastName"
+        - "policyHolders.policyHolder.emailAddress"
+        - "policyHolders.policyHolder.primaryPhoneNumber"
+        - "policyHolders.policyHolder.secondaryPhoneNumber"
+        - "policyHolders.policyHolder.electronicDelivery"
   documents: 
     - "quote"
     - "quote-initialdata"
