@@ -18,6 +18,7 @@ packetConfig:
   packetName: cancelNotice
   allForms: true
   isDec: false
+  combine: false
   data:
     policy: ${it.calculatedFields.document}
     transactionType: ${it.calculatedFields.document.transactionType}
