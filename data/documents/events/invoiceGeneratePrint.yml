@@ -3,7 +3,8 @@ state: FL
 product: HO3
 name: invoiceGeneratePrint
 active: true
-events: []
+events:
+  - harmony.policy.paymentInvoiceRequested
 inputFields:
   policyTransactionId: ${it.input.policyTransactionId}
 lookupFields:
