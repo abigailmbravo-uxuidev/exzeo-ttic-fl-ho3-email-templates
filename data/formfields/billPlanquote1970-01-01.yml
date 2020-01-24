@@ -2,7 +2,11 @@
   version: 1970-01-01T00:00:00.000Z
   path: "billPlan"
   type: "string"
-  metaData: {}
+  metaData:
+    enum:
+      - "Annual"
+      - "Semi-Annual"
+      - "Quarterly"
   children: []
   documents: 
     - "quote"
