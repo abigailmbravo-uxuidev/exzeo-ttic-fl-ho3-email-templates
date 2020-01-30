@@ -5,7 +5,7 @@
   metaData: 
     minLength: 2
     maxLength: 2
-    pattern: "^[A-Z]{2}$"
+    pattern: "^[A-Za-z]{2}$"
   children: []
   documents: 
     - "quote"
