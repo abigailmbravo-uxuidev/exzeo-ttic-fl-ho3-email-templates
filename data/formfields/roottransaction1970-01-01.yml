@@ -16,6 +16,7 @@
     - "cancelDate"
     - "cancelNoticeDate"
     - "cancelReason"
+    - "additionalReason"
     - "effectiveDate"
     - "endDate"
     - "agencyCode"
