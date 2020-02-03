@@ -21,7 +21,7 @@ packetConfig:
   combine: false
   data:
     policy: ${it.calculatedFields.document}
-    transactionType: ${it.calculatedFields.document.transactionType}
+    transactionType: ${it.calculatedFields.document.status}
     agency: ${it.lookupFields.policyDetails.agency}
     agent: ${it.lookupFields.policyDetails.agent}
     cancelDate: ${it.calculatedFields.document.cancelDate}
