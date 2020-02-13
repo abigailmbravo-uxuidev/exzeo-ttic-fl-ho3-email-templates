@@ -12,16 +12,17 @@
   style="font-family: 'Roboto', Arial; box-sizing: border-box; font-size: 22px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; width: 100%; height: 100%; line-height: 1.4; background-color: #f6f6f6; margin: 0 auto; padding:0 5px;"
   bgcolor="#fff">
   <div style="font-family: 'Roboto', Arial; width:100%;background-color:#f6f6f6;margin:0;padding:20px 0px;">
-    <font size="2" color="#717171"><span style="font-family: 'Roboto', Arial; font-size:17px;background-color:#f6f6f6;">
+    <font size="2" color="#717171">
+      <span style="font-family: 'Roboto', Arial; font-size:17px;background-color:#f6f6f6;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0"
           style="font-family: 'Roboto', Arial; width:100%;">
           <tbody>
             <tr>
               <!-- HEADER START -->
-              <table align="center" border="0" cellspacing="0" cellpadding=""
-                style="font-family: 'Roboto', Arial; border-collapse:collapse;background-color:none; text-align: center;margin-bottom: 8px;">
+              <table align="center" border="0" cellspacing="0" cellpadding="8"
+                style="font-family: 'Roboto', Arial; border-collapse:collapse;background-color:none; text-align: center;">
                 <tbody align="center">
-                  <tr>
+                  <tr style="padding-bottom: 8px;">
                     <td width="150" valign="middle" style="font-family: 'Roboto', Arial; width:150px;">
                       <div align="left" style="font-family: 'Roboto', Arial; text-align:left; margin:0;">
                         <a href="{{SITEURL}}" target="_blank" style="text-decoration: none;">
@@ -30,10 +31,10 @@
                         </a>
                       </div>
                     </td>
-                    <td width="340" valign="middle" style="font-family: 'Roboto', Arial; width:340px;">
+                    <td width="308" valign="middle" style="font-family: 'Roboto', Arial; width:308px;">
                       <div align="right" style="font-family: 'Roboto', Arial; text-align:right; margin:0;">
                         <font color="#222" style="font-family: 'Roboto', Arial; font-style:italic; font-size: 18px;">
-                          <p style="">Policy Number {{POLICY_NUMBER}}</p>
+                          <p style="">Policy Number {{POLICYNUMBER}}</p>
                         </font>
                       </div>
                     </td>
@@ -41,19 +42,19 @@
                       <div align="right" style="font-family: 'Roboto', Arial; text-align:right; margin:0;">
                         <a href="{{SITEURL}}" target="_blank" style="text-decoration: none;">
                           <img src="https://cdn.typtap.com/2018/12/TypTap-Home-Insurance-logo-300x231.png" border="1"
-                            width="" height="46"
-                            style="font-family: 'Roboto', Arial; border-width: 0px; margin: 0; padding: 0;">
-                        </a>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <!-- HEADER END -->
+                          width="" height="46"
+                          style="font-family: 'Roboto', Arial; border-width: 0px; margin: 0; padding: 0;">
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <!-- HEADER END -->
 
               <!-- STYLE BAR START -->
               <table align="center" border="0" cellspacing="0" cellpadding="0"
-                style="background-color:#1D404E; height: 2px;">
+                style="background-color:#686969; height: 2px;">
                 <tbody>
                   <tr>
                     <td width="680" valign="top" style="width:680px;"></td>
@@ -95,12 +96,12 @@
                             If you are interested in altering your coverages or need to update personal information, 
                             contact your Agent of Record for assistance.</p>
                             <p style="font-family: 'Roboto', Arial; font-size:16px; color:#222; margin:4px 16px; text-align: center;">
-                              {{AGENCY_NAME}}
+                              {{Agency Name}}
                             </p>
                             <p style="font-family: 'Roboto', Arial; font-size:16px; color:#222; margin:4px 16px; text-align: center;">
-                              {{AGENCY_PHONENUMBER}}
+                              {{Phone Number}}
                               <p style="font-family: 'Roboto', Arial; font-size:16px; color:#222; margin:4px 16px; text-align: center;">
-                                {{AGENCY_EMAIL}}
+                                {{Email}}
                               </p>
                             </p>
                         </div>
@@ -111,7 +112,7 @@
                         </div>
                         <div style="font-family: 'Roboto', Arial; font-size:16px; color:#222;">
                           <p style="font-family: 'Roboto', Arial; font-size:16px; color:#222; margin:0 16px 16px 46px;">
-                            The minimum payment amount is due by your policy’s effective date of {{effective date}}. 
+                            The minimum payment amount is due by your policy’s effective date of {{Effective Date}}. 
                             The invoice can be located in the documents attached to this email.
                           </p>
                           <p style="font-family: 'Roboto', Arial; font-size:16px; color:#222; margin:0 16px 16px 46px;">
@@ -172,11 +173,11 @@
                                       </p>
                                       <p
                                         style="font-family: 'Roboto', Arial; font-size:14px; color:#222; margin:0 0 0 36px; font-weight: bold;">
-                                        {{H03OVERNIGHTCUSTOMERSERVICESTREETADDRESS}}
+                                        {{H03STANDARDMAILCUSTOMERSERVICESTREETADDRESS}}
                                       </p>
                                       <p
                                         style="font-family: 'Roboto', Arial; font-size:14px; color:#222; margin:0 0 0 36px; font-weight: bold;">
-                                        {{H03OVERNIGHTCUSTOMERSERVICECITYSTATEZIP}}
+                                        {{H03STANDARDMAILCUSTOMERSERVICECITYSTATEZIP}}
                                       </p>
                                   </div>
                                 </div>
@@ -199,12 +200,12 @@
                           <p
                             style="font-family: 'Roboto', Arial; font-size:16px; color:#222; margin:4px 16px; text-align: center;">
                             If you were happy with your experience, we would appreciate your assistance in spreading the
-                            word. Let your friends know about TypTap and {{AGENCY_NAME}}.
+                            world. Let your friends know about Typtap and {{AGENCY NAME}}.
                           </p>
                           <p
                             style="font-family: 'Roboto', Arial; font-size:16px; color:#222; margin: 8px 16px 32px 16px; text-align: center;">
                             Of course, a <a
-                              href="https://www.google.com/search?q=typtap+insurance&rlz=1C1CHBF_enUS811US811&oq=typtap+insurance&aqs=chrome..69i57j0j69i60l3j0.8718j0j7&sourceid=chrome&ie=UTF-8#lrd=0x88e7d33cbd46e0b5:0x20162b540726d6d6,3,,,">Google
+                              href="https://www.google.com/search?q=typ+tap+insurance&rlz=1C1CHBF_enUS811US811&oq=typ+tap+insurance&aqs=chrome..69i57j0j69i60l3j0.8718j0j7&sourceid=chrome&ie=UTF-8#lrd=0x88e7d33cbd46e0b5:0x20162b540726d6d6,3,,,">Google
                               review</a> works, too!
                           </p>
                           <p
@@ -212,10 +213,10 @@
                             Have your friends contact your agent for their homeowners quote today!
                           </p>
                           <p style="font-family: 'Roboto', Arial; font-size:16px; color:#222; margin:4px 16px; text-align: center;">
-                            {{AGENCY_NAME}}
+                            {{Agency Name}}
                           </p>
                           <p style="font-family: 'Roboto', Arial; font-size:16px; color:#222; margin:4px 16px; text-align: center;">
-                            {{AGENCY_PHONENUMBER}}
+                            {{Phone Number}}
                           </p>
                         </div>
                         <div style="font-family: 'Roboto', Arial; margin: 0; color:#79C043; font-size: 18px;">
@@ -232,7 +233,7 @@
                           <p style="font-family: 'Roboto', Arial; font-size:16px; color:#222; margin:0 24px 4px 24px;">
                             <span style="margin-right: 2px; font-size: 16px;">💻</span>
                             <strong>Email</strong> us at: <a
-                              href="mailto:{{H03CUSTOMERSERVICEEMAIL}}">{{H03CUSTOMERSERVICEEMAIL}}</a>
+                              href="{{H03CUSTOMERSERVICEEMAIL}}">{{H03CUSTOMERSERVICEEMAIL}}</a>
                           </p>
                           <p style="font-family: 'Roboto', Arial; font-size:16px; color:#222; margin:0 24px 4px 24px;">
                             <span style="margin-right: 2px; font-size: 16px;">📠</span>
@@ -258,12 +259,12 @@
                           <p style="font-family: 'Roboto', Arial; color: #777; font-size: 12px;">
                             This e-mail may contain confidential information protected by law and is intended solely for
                             authorized persons. If you have received this e-mail in error, please (i) do not read it,
-                            (ii) Forward the email to <a href="mailto:{{H03CUSTOMERSERVICEEMAIL}}">{{H03CUSTOMERSERVICEEMAIL}}</a>
+                            (ii) Forward the email to <a href="{{H03CUSTOMERSERVICEEMAIL}}">{{H03CUSTOMERSERVICEEMAIL}</a>
                             to let us know you
                             received this email in error and (iii) erase or destroy the message.
                           </p>
                           <p style="font-family: 'Roboto', Arial; color: #777; font-size: 12px;">
-                            All Rights Reserved &copy; TypTap&trade;
+                            All Right's Reserved &copy; TypTap&trade;
                           </p>
                         </div>
                       </div>
