@@ -1,0 +1,20 @@
+name: "fourPointUpdates"
+companyCode: "TTIC"
+state: "FL"
+product: "HO3"
+model: "quote"
+step: "askUWAnswers"
+validations:
+  - "required"
+active: true
+visible: true
+question: "Have the wiring plumbing and HVAC been updated in the last 35 years?"
+answers:
+  - answer: "Yes"
+    default: true
+  - answer: "No"
+  - answer: "Unknown"
+floodZone: []
+ageOfHome:
+  max: 40
+order: 4

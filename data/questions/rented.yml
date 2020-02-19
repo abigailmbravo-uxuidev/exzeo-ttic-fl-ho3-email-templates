@@ -1,0 +1,17 @@
+name: "rented"
+companyCode: "TTIC"
+state: "FL"
+product: "HO3"
+model: "quote"
+step: "askUWAnswers"
+validations:
+  - "required"
+active: true
+visible: true
+question: "Is the home or any structures on the property ever rented?"
+answers:
+  - answer: "Yes"
+  - answer: "Occasionally"
+  - answer: "Never"
+floodZone: []
+order: 1

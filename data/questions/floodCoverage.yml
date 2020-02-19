@@ -1,0 +1,19 @@
+name: "floodCoverage"
+companyCode: "TTIC"
+state: "FL"
+product: "HO3"
+model: "quote"
+step: "askUWAnswers"
+validations: []
+active: false
+visible: true
+question: "Does this property have a separate insurance policy covering flood losses?"
+answers:
+  - answer: "Yes"
+    default: true
+  - answer: "No"
+  - answer: "Unsure"
+floodZone:
+  - "A"
+  - "V"
+order: 5

@@ -1,0 +1,17 @@
+name: "noPriorInsuranceSurcharge"
+companyCode: "TTIC"
+state: "FL"
+product: "HO3"
+model: "quote"
+step: "askUWAnswers"
+validations:
+  - "required"
+active: true
+visible: false
+question: "If not new purchase please provide proof of prior insurance."
+answers:
+  - answer: "Yes"
+  - answer: "No"
+    default: true
+floodZone: []
+order: 7

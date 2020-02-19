@@ -1,0 +1,16 @@
+name: "business"
+companyCode: "TTIC"
+state: "FL"
+product: "HO3"
+model: "quote"
+step: "askUWAnswers"
+validations:
+  - "required"
+active: true
+visible: true
+question: "Is a business conducted on the property?"
+answers:
+  - answer: "Yes"
+  - answer: "No"
+floodZone: []
+order: 6
