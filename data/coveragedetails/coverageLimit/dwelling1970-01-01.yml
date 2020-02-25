@@ -14,8 +14,8 @@
     required: true
     amount: "${it.coverageLimits.dwelling.value}"
     letterDesignation: "A"
-    maxAmount: "${it.document.coverageLimits.dwelling.maxAmount ? it.document.coverageLimits.dwelling.maxAmount : Math.min(Math.max(Math.round(Math.round(it.property.coverageLimits.dwelling.amount / 1000) * 1000 * 1.3/1000) * 1000, 125000), 1500000)}"
-    minAmount: "${it.document.coverageLimits.dwelling.minAmount ? it.document.coverageLimits.dwelling.minAmount : Math.min(Math.max(Math.round(Math.round(it.property.coverageLimits.dwelling.amount / 1000) * 1000 * 0.9/1000) * 1000, 125000), 1500000)}"
+    maxAmount: "${it.coverageLimits.dwelling.maxAmount ? it.coverageLimits.dwelling.maxAmount : Math.min(Math.max(Math.round(Math.round(it.property.coverageLimits.dwelling.amount / 1000) * 1000 * 1.3/1000) * 1000, 125000), 1500000)}"
+    minAmount: "${it.coverageLimits.dwelling.minAmount ? it.coverageLimits.dwelling.minAmount : Math.min(Math.max(Math.round(Math.round(it.property.coverageLimits.dwelling.amount / 1000) * 1000 * 0.9/1000) * 1000, 125000), 1500000)}"
     initialValue: "${Math.round(it.property.coverageLimits.dwelling.amount/1000) * 1000}"
     displayText: "Dwelling"
     root: true
