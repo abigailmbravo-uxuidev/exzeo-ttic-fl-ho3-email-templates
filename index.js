@@ -19,7 +19,8 @@ const argv = require('yargs')
   .example('$0 update costfactoradjustments', '(updates cost-engine adjustments)')
   .example('$0 update costfactordeductibles', '(updates cost-engine deductibles)')
   .example('$0 update costfactors', '(updates cost-engine factors)')
-  .example('$0 update --all', '(updates all templates: email, rules, config, coverage, document events, document packets, form fields, costengineequations, costengineselect, costfactoradjustments, costfactordeductibles, and costfactors)')
+  .example('$0 update questions', '(updates questions)')
+  .example('$0 update --all', '(updates all templates: email, rules, config, coverage, document events, document packets, form fields, costengineequations, costengineselect, costfactoradjustments, costfactordeductibles, questions, and costfactors)')
   .help('h')
   .alias('h', 'help')
   .argv;
@@ -40,6 +41,7 @@ const updateCostEngineSelect = (updateAll) || (updateCommand && argv._.includes(
 const updateCostFactorAdjustments = (updateAll) || (updateCommand && argv._.includes('costfactoradjustments'));
 const updateCostFactorDeductibles = (updateAll) || (updateCommand && argv._.includes('costfactordeductibles'));
 const updateCostFactors = (updateAll) || (updateCommand && argv._.includes('costfactors'));
+const updateQuestions = (updateAll) || (updateCommand && argv._.includes('questions'));
 
 
 service.init({ logger: require('./lib/logger'), timeout: 0 });
@@ -67,6 +69,7 @@ Promise.all([
   updateCostEngineSelect && require('./lib/update-cost-engine').updateCostEngineSelections(context),
   updateCostFactorAdjustments && require('./lib/update-cost-engine').updateCostFactorAdjustments(context),
   updateCostFactorDeductibles && require('./lib/update-cost-engine').updateCostFactorDeductibles(context),
-  updateCostFactors && require('./lib/update-cost-engine').updateCostFactors(context)
+  updateCostFactors && require('./lib/update-cost-engine').updateCostFactors(context),
+  updateQuestions && require('./lib/update-questions').updateQuestions(context)
 ])
   .then(() => service.gracefulShutdown());

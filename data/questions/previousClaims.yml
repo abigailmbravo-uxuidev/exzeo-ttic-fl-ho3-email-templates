@@ -1,0 +1,19 @@
+name: "previousClaims"
+companyCode: "TTIC"
+state: "FL"
+product: "HO3"
+model: "quote"
+step: "askUWAnswers"
+validations:
+  - "required"
+active: true
+visible: true
+question: "When was the last claim filed?"
+answers:
+  - answer: "No claims ever filed"
+  - answer: "Less than 3 Years"
+  - answer: "3-5 Years"
+  - answer: "Over 5 Years"
+  - answer: "Unknown"
+floodZone: []
+order: 2
