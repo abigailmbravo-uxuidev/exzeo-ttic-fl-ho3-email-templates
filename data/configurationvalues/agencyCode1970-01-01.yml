@@ -2,7 +2,7 @@
   state: "FL"
   product: "HO3"
   version: 1970-01-01T00:00:00.000Z
-  key: “agencyCode”
+  key: "agencyCode"
   value: 20000
   updatedAt: 2019-06-14T14:36:40.686Z
   createdAt: 2019-06-14T14:36:40.686Z
