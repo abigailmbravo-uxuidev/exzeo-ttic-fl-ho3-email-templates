@@ -1,3 +1,5 @@
 default:
+  system:
+    environment: 'HARMONY_ENVIRONMENT'
   data:
     mongoUrl: 'MONGO_URL'
