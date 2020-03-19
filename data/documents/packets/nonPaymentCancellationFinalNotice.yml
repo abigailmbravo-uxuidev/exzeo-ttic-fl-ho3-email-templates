@@ -1,0 +1,33 @@
+companyCode: TTIC
+state: FL
+product: HO3
+name: nonPaymentCancellationFinalNotice
+inputFields:
+  policyTransactionId: ${it.input.policyTransactionId}
+lookupFields:
+  - name: policyDetails
+    type: rpc
+    rpcConfig:
+      routingKey: harmony.policy.retrievePolicyData
+      message:
+        policyTransactionId: ${it.inputFields.policyTransactionId}
+calculatedFields:
+  - name: transactionType
+    equation: ${it.lookupFields.policyDetails.transaction.transactionType}
+  - name: document
+    equation: ${it.lookupFields.policyDetails.transaction}
+packetConfig:
+  packetName: nonPaymentCancellationFinalNotice
+  forms:
+    - name: "POLICY CANCELLATION (Non-Payment/Final Cancel)"
+  isDec: false
+  combine: false
+  data:
+    policy: ${it.lookupFields.policyDetails.transaction}
+    transactionType: ${it.calculatedFields.transactionType}
+    agency: ${it.lookupFields.policyDetails.agency}
+    agent: ${it.lookupFields.policyDetails.agent}
+  packetType: nonPaymentCancellationFinalNotice
+  folderName: ${it.lookupFields.policyDetails.transaction.policyNumber}
+documentIndex:
+  indexDocument: true
