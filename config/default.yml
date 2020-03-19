@@ -1,4 +1,6 @@
 default:
+  system:
+    environment: 'dev'
   data:
     mongoUrl: 'mongodb://mongo:27017/harmony'
   ruleservice:
