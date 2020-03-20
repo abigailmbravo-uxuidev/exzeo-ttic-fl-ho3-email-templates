@@ -1,0 +1,39 @@
+companyCode: TTIC
+state: FL
+product: HO3
+name: reinstatementNotice
+inputFields:
+  policyTransactionId: ${it.input.policyTransactionId}
+lookupFields:
+  - name: policyDetails
+    type: rpc
+    rpcConfig:
+      routingKey: harmony.policy.retrievePolicyData
+      message:
+        policyTransactionId: ${it.inputFields.policyTransactionId}
+  - name: companyContactList
+    type: rest
+    restConfig:
+      method: get
+      endpoint: http://list-service
+      path: /v1/lists/formTemplatesContactsDataset/items
+calculatedFields:
+  - name: document
+    equation: ${it.lookupFields.policyDetails.transaction}
+packetConfig:
+  packetName: reinstatementNotice
+  allForms: true
+  isDec: false
+  data:
+    policy: ${it.calculatedFields.document}
+    transactionType: Reinstatement
+    agency: ${it.lookupFields.policyDetails.agency}
+    agent: ${it.lookupFields.policyDetails.agent}
+    companyContactList: ${it.lookupFields.companyContactList}
+    reinstatementDate: ${it.calculatedFields.document.reinstatementDate}
+    zipCodeSettings:
+      timezone: ${it.calculatedFields.document.property.timezone}
+  packetType: reinstatementNotice
+  folderName: ${it.calculatedFields.document.policyNumber}
+documentIndex:
+  indexDocument: true
