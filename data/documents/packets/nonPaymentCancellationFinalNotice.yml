@@ -27,6 +27,7 @@ packetConfig:
     transactionType: ${it.calculatedFields.transactionType}
     agency: ${it.lookupFields.policyDetails.agency}
     agent: ${it.lookupFields.policyDetails.agent}
+    summaryLedger: ${it.lookupFields.policyDetails.summaryLedger}
   packetType: nonPaymentCancellationFinalNotice
   folderName: ${it.lookupFields.policyDetails.transaction.policyNumber}
 documentIndex:
