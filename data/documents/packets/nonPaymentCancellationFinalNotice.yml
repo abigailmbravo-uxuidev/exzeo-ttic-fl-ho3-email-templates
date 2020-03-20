@@ -19,7 +19,7 @@ calculatedFields:
 packetConfig:
   packetName: nonPaymentCancellationFinalNotice
   forms:
-    - name: "POLICY CANCELLATION (Non-Payment/Final Cancel)"
+    - name: "Cancellation Notice - NonPay Final"
   isDec: false
   combine: false
   data:
