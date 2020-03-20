@@ -30,6 +30,8 @@ calculatedFields:
     equation: ${it.calculatedFields.policyHolders[0].firstName}
   - name: lastName
     equation: ${it.calculatedFields.policyHolders[0].lastName}
+  - name: additionalInterest
+    equation: ${it.lookupFields.policyDetails.transaction.additionalInterests.find(ai => ai._id === it.inputFields.additionalInterestId)}
 packetConfigs:
   - packetName: additionalInterestRemovalNotice
     args:
@@ -51,3 +53,13 @@ emailConfigs:
       - key: POLICYHOLDER1_LASTNAME
         value: ${it.calculatedFields.lastName}
     attachments: ${it.pdfs}
+    publishNote:
+      documentReference:
+        number: ${it.calculatedFields.policyNumber}
+        numberType: policyNumber
+      content: >-
+        ${it.calculatedFields.additionalInterest.type + ' ' +
+        (it.calculatedFields.additionalInterest.order + 1) + ' ' +
+        it.calculatedFields.additionalInterest.name1 + ' ' +
+        (it.calculatedFields.additionalInterest.name2 ? it.calculatedFields.additionalInterest.name2 + ' ' : '') +
+        'has been removed'}

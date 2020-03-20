@@ -49,3 +49,8 @@ emailConfigs:
       - key: POLICYHOLDER1_LASTNAME
         value: ${it.calculatedFields.lastName}
     attachments: ${it.pdfs}
+    publishNote:
+      documentReference:
+        number: ${it.calculatedFields.policyNumber}
+        numberType: policyNumber
+      content: "Policy has been reinstated - Notices have been issued"
