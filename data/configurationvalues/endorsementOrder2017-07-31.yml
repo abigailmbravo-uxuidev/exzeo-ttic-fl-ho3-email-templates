@@ -294,3 +294,55 @@
         path: "property.physicalAddress.zip"
         label: "Property Zip"
         order: 70
+      - 
+        path: "additionalInterest.name1"
+        label: "Name 1"
+        order: 71
+      - 
+        path: "additionalInterest.name2"
+        label: "Name 2"
+        order: 72
+      - 
+        path: "additionalInterest.mailingAddress.address1"
+        label: "Address 1"
+        order: 73
+      - 
+        path: "additionalInterest.mailingAddress.address2"
+        label: "Address 2"
+        order: 74
+      - 
+        path: "additionalInterest.mailingAddress.city"
+        label: "City"
+        order: 75
+      - 
+        path: "additionalInterest.mailingAddress.state"
+        label: "State"
+        order: 76
+      - 
+        path: "additionalInterest.mailingAddress.zip"
+        label: "Zip"
+        order: 77
+      - 
+        path: "additionalInterest.mailingAddress.zipExtension"
+        label: "Zip Extension"
+        order: 78
+      - 
+        path: "additionalInterest.mailingAddress.country"
+        label: "Country"
+        order: 79
+      - 
+        path: "additionalInterest.type"
+        label: "Type"
+        order: 80
+      - 
+        path: "additionalInterest.order"
+        label: "Order"
+        order: 81
+      - 
+        path: "additionalInterest.referenceNumber"
+        label: "Reference Number"
+        order: 82
+      - 
+        path: "additionalInterest.phoneNumber"
+        label: "Phone Number"
+        order: 83
