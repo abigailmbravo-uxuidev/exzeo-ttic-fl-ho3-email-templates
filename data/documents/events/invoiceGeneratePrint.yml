@@ -33,6 +33,7 @@ packetConfigs:
   - packetName: invoice
     args:
       policyTransactionId: ${it.inputFields.policyTransactionId}
+      transactionType: "Payment Invoice"
 emailConfigs :
   - templateName: invoice.html
     fromName: TypTap
