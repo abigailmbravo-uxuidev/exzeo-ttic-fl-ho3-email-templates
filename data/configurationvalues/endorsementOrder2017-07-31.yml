@@ -336,7 +336,7 @@
         order: 80
       - 
         path: "additionalInterest.order"
-        label: "Order"
+        label: "Position"
         order: 81
       - 
         path: "additionalInterest.referenceNumber"
