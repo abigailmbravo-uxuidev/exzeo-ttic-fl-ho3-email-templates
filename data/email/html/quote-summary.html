@@ -1,144 +1,194 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>{{TITLE}}</title>
+  <meta name="viewport" content="width=device-width" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Welcome To TypTap</title>
 </head>
-<body style="font-family: 'Open Sans', 'Helvetica Neue', Arial; box-sizing: border-box; font-size: 22px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; width: 100%; height: 100%; line-height: 1.6; background-color: #f6f6f6; margin: 0 auto; padding:0 5px;" bgcolor="#fff">
-    <div style="width:100%;background-color:#f6f6f6;margin:0;padding:20px 0px;">
-        <font face="Open Sans', 'Helvetica Neue',Helvetica,Arial,sans-serif" size="2" color="#717171"><span style="font-size:17px;background-color:#f6f6f6;">
-<table width="100%" border="0" cellspacing="0" cellpadding="0" style="width:100%;">
-<tbody>
- <tr>
- <table align="center" border="0" cellspacing="0" cellpadding="" style="border-collapse:collapse;background-color:none;margin-bottom:20px; text-align: center;">
-        <tbody align="center">
+
+<body
+  style="font-family: 'Roboto', Arial; box-sizing: border-box; font-size: 22px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; width: 100%; height: 100%; line-height: 1.4; background-color: #f6f6f6; margin: 0 auto; padding:0 5px;"
+  bgcolor="#fff">
+  <div style="font-family: 'Roboto', Arial; width:100%;background-color:#f6f6f6;margin:0;padding:20px 0px;">
+    <font size="2" color="#717171">
+      <span style="font-family: 'Roboto', Arial; font-size:17px;background-color:#f6f6f6;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0"
+          style="font-family: 'Roboto', Arial; width:100%;">
+          <tbody>
             <tr>
-                <td width="300" valign="middle" style="width:300px;">
-                    <div align="left" style="text-align:left; margin:0;"><a href="{{SITEURL}}" target="_blank"><font color="#222">
-                    <b><img src="{{BLOB_URL}}images/namebrand-stack.png" border="1" width="" height="45" style="border-width: 0px;"></b></font></a>
-    </div>
-    </td>
-    <td width="300" valign="middle" style="width:300px;">
-        <div align="left" style="text-align:right; margin:0;">
-            <font color="#222" size="2" face="Open Sans', 'Helvetica Neue',Helvetica,Arial,sans-serif" style="font-style:italic;">
-                        <p>Quote Number: {{QUOTE_NUMBER}}</p>
+              <!-- HEADER START -->
+              <table align="center" border="0" cellspacing="0" cellpadding="8"
+                style="font-family: 'Roboto', Arial; border-collapse:collapse;background-color:none; text-align: center;">
+                <tbody align="center">
+                  <tr style="padding-bottom: 8px;">
+                    <td width="150" valign="middle" style="font-family: 'Roboto', Arial; width:150px;">
+                      <div align="left" style="font-family: 'Roboto', Arial; text-align:left; margin:0;">
+                        <a href="{{SITEURL}}" target="_blank" style="text-decoration: none;">
+                          <img src="https://cdn.typtap.com/2018/12/TypTap-300x87.png" border="1" width="" height="46"
+                            style="font-family: 'Roboto', Arial; border-width: 0px;">
+                        </a>
+                      </div>
+                    </td>
+                    <td width="308" valign="middle" style="font-family: 'Roboto', Arial; width:308px;">
+                      <div align="right" style="font-family: 'Roboto', Arial; text-align:right; margin:0;">
+                        <font color="#222" style="font-family: 'Roboto', Arial; font-style:italic; font-size: 18px;">
+                          <p>Quote Number {{QUOTE_NUMBER}}</p>
                         </font>
-        </div>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-    <table align="center" border="0" cellspacing="0" cellpadding="0" bgcolor="#3f4351" style="background-color:#fff;margin-bottom:0px;border-radius: 2.5px 2.5px 0 0;border: 1px solid #717171;height: 5px; border-bottom: none;background-color:#3f4351;">
-        <tbody style="">
-            <tr>
-                <td width="580" valign="top" style="width:600px;"></td>
-            </tr>
-        </tbody>
-    </table>
-    <table align="center" border="0" cellspacing="0" cellpadding="0" style="background-color:#fff;margin-bottom:2px;border-radius:0 0 5px 5px;border: 1px solid #ccc; border-top:none;padding:50px 20px; font-family='Open Sans', 'Helvetica Neue',Helvetica,Arial,sans-serif">
-        <tbody style="">
-            <tr>
-                <td width="560" valign="top" style="width:560px;">
-                    <div style="margin:0; padding: 0 5%">
-                        <div style="margin:0px 0 12px 0;"><font size="5" color="#222">{{TITLE}}</font></div>
-                        <div style="margin:0;"><font size="3"><span style="font-size:15px; color:#222">
-                            <p>Dear {{NAME}},</p>
-     <p>
-    Thank you for the opportunity to provide a {{PRODUCT_NAME}} quote for your property! Attached you will find your TypTap {{PRODUCT_NAME}} Quote summary.  We make it easy to purchase your policy: </p>
-<ul>
-    <li><a href="{{SITEURL}}" target="_blank">Finish online</a></li>
-    <li>Call us at <a href="tel:813-405-3600">(813) 405-3600</a>. We'll be glad to help</li>
-    <li><a href="mailto:typtap@exzeo.com">Email us for questions</a></li>
-    </ul>
-</span></font></div>
-                        <hr style="border: 1px solid #f2f2f2; margin: 25px 0;">
-                        <div style="margin:0 0 12px 0; text-align: center;"><font size="3" color="#222;">Summary for Quote #<font style="font-weight: bold;">{{QUOTEID}}</font></font>
+                      </div>
+                    </td>
+                    <td width="180" valign="middle" style="font-family: 'Roboto', Arial; width:180;">
+                      <div align="right" style="font-family: 'Roboto', Arial; text-align:right; margin:0;">
+                        <a href="{{SITEURL}}" target="_blank" style="text-decoration: none;">
+                           <img src="https://cdn.typtap.com/2018/12/TypTap-Home-Insurance-logo-300x231.png" border="1"
+                           width="" height="46"
+                           style="font-family: 'Roboto', Arial; border-width: 0px; margin: 0; padding: 0;">
+                       </a>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <!-- HEADER END -->
+
+              <!-- STYLE BAR START -->
+              <table align="center" border="0" cellspacing="0" cellpadding="0"
+                style="background-color:#686969; height: 2px;">
+                <tbody>
+                  <tr>
+                    <td width="680" valign="top" style="width:680px;"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <!-- STYLE BAR END -->
+
+              <!-- MAIN CONTENT START -->
+              <table align="center" border="0" cellspacing="0" cellpadding="0"
+                style="font-family: 'Roboto', Arial; background-color:#fff;margin-bottom:2px;border-radius:0 0 5px 5px;border: 1px solid #ffffff; border-top:2px;padding:24px 16px">
+                <tbody style="font-family: 'Roboto', Arial; ">
+                  <tr>
+                    <td width="648" valign="top" style="font-family: 'Roboto', Arial; width:648px;">
+                     <div style="font-family: 'Roboto', Arial; margin: 0; color:#1D404E; font-size: 20px;">
+                        <h1
+                          style="font-family: 'Roboto', Arial; margin: 0; color:#1D404E; font-size: 20px; text-align: center;">
+                          {{AGENCY_NAME}} has shared a TypTap Homeowners quote with you!</h1>
+                      </div>
+                      <div
+                        style="font-family: 'Roboto', Arial; font-size:16px; color:#222; margin:0; padding: 0 40px;">
+                        <p
+                          style="font-family: 'Roboto', Arial; font-size:16px; color:#222; margin:4px 0; text-align: center;">
+                          We have attached a copy of the quote summary for your consideration. Your quote will be
+                          saved in our system for 30 days.
+                        </p>
+                        <p
+                          style="font-family: 'Roboto', Arial; font-size:16px; color:#222; margin:8px 0 16px; text-align: center;">
+                          To learn more about TypTap Insurance Company, visit our website <a
+                            href="https://typtap.com/">TypTap.com</a>
+                        </p>
+                        <p
+                          style="font-family: 'Roboto', Arial; font-size:16px; color:#222; margin:8px 0 16px; text-align: center;">
+                          We make it simple to purchase your policy, all you need to do is <br>contact your agent!
+                        </p>
+                        <p
+                          style="font-family: 'Roboto', Arial; font-size:16px; color:#222; margin:8px 0 16px; text-align: center;">
+                          {{AGENCY_NAME}}</p>
+                        <p
+                          style="font-family: 'Roboto', Arial; font-size:16px; color:#222; margin:8px 0 16px; text-align: center;">
+                          {{AGENCY_PHONE_NUMBER}}</p>
+                        <p
+                          style="font-family: 'Roboto', Arial; font-size:16px; color:#222; margin:8px 0 16px; text-align: center;">
+                          {{AGENCY_EMAIL_ADDRESS}}</p>
+                      </div>
                         </div>
-                       <table width="100%" border="0" cellspacing="0" cellpadding="5" style="margin:0 0 25px; padding: 0 10%; color: #222;">
-                            <tr bgcolor="#f2f2f2">
-                                <td>
-                                   Building Limit
-                                </td>
-                                <td>
-                                   {{BUILDING_LIMIT}}
-                                </td>
-                            </tr>
-                            <tr bgcolor="#fff">
-                                <td>
-                                   Building Deductible
-                                </td>
-                                <td>
-                                   {{BUILDING_DEDUCTIBLE}}
-                                </td>
-                            </tr>
-                            <tr bgcolor="#f2f2f2">
-                                <td>
-                                   Contents Limit
-                                </td>
-                                <td>
-                                   {{CONTENTS_LIMIT}}
-                                </td>
-                            </tr>
-                            <tr bgcolor="#fff">
-                                <td>
-                                   Contents Deductible
-                                </td>
-                                <td>
-                                   {{CONTENTS_DEDUCTIBLE}}
-                                </td>
-                            </tr>
-                            <tr bgcolor="#f2f2f2">
-                                <td>
-                                   Contents Replacement Cost
-                                </td>
-                                <td>
-                                   {{CONTENTS_REPLACEMENT_COST}}
-                                </td>
-                            </tr>
-                        </table>
-                        <!-- *Summary End* -->
-                   <!--CTA Button-->
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin: 15px 0;">
-                            <tr>
-                                <td>
-                                    <table border="0" cellspacing="0" cellpadding="0" align="center">
-                                        <tr>
-                                            <td align="center" style="-webkit-border-radius: 2.5px; -moz-border-radius: 2.5px; border-radius: 2.5px;" bgcolor="#4ce98b">
-                                                <a href="{{SITEURL}}" target="_blank" style="font-size: 18px; font-family: Helvetica, Arial, sans-serif; font-weight: 500; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; -webkit-border-radius:2.5px; -moz-border-radius:2.5px; border-radius:2.5px; padding: 7.5px 15px; border: 1px solid #4ce98b; display: inline-block;">FINISH ONLINE</a>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-                        </table>
-                        <!--CTA Button End-->
-                    </div>
-                </td>
+                        <div style="font-family: 'Roboto', Arial; margin: 0; color:#2A9DD8; font-size: 18px;">
+                          <h2
+                            style="font-family: 'Roboto', Arial; color:#79C043; font-size: 18px; margin:0 24px 8px 24px; font-weight: bold;">
+                            Questions?</h2>
+                        </div>
+                        <div style="font-family: 'Roboto', Arial; font-size:16px; color:#222; margin:0;">
+                          <p
+                          style="font-family: 'Roboto', Arial; font-size:16px; color:#222; margin:0 24px 4px 24px;">
+                          <span style="margin-right: 2px; font-size: 16px;">📞</span>
+                          <strong>Call</strong> us at: <a href="tel:8442897968">844-289-7968</a>
+                        </p>
+                        <p
+                          style="font-family: 'Roboto', Arial; font-size:16px; color:#222; margin:0 24px 4px 24px;">
+                          <span style="margin-right: 2px; font-size: 16px;">💻</span>
+                          <strong>Email</strong> us at: <a href="customerservice@typtap.com">customerservice@typtap.com</a>
+                      </p>
+                      <p style="font-family: 'Roboto', Arial; font-size:16px; color:#222; margin:0 24px 4px 24px;">
+                        <span style="margin-right: 2px; font-size: 16px;">📠</span>
+                        <strong>Fax</strong> us at: 352-533-4073
+                        </p>
+                        <p
+                          style="font-family: 'Roboto', Arial; font-size:16px; color:#222; margin:0 24px 4px 24px;">
+                          <span style="margin-right: 2px; font-size: 16px;">📬</span>
+                          <strong>Write</strong> us at: P.O. Box 1120, Ocala, FL 34478
+                        </p>
+
+                          <p style="font-family: 'Roboto', Arial; font-size:12px; color:#222; margin:0 24px 4px 24px; padding-top: 4px;"> 
+                           This quote does not provide coverage for your property nor guarantee coverage will be issued.
+                        </p>
+                        </div>
+                        <div style="font-family: 'Roboto', Arial; font-size:16px; color:#222; margin:0;">
+                          <hr style="border: 1px dashed #f2f2f2; margin: 25px 0; border-width:1px 0 0 0; height: 1px;">
+                        </div>
+                        <div style="font-family: 'Roboto', Arial; font-size:12px; color:#222; margin:0;">
+                          <p style="font-family: 'Roboto', Arial; color: #686969; font-size: 16px; text-align: center;">
+                            <a href="{{SITEURL}}"
+                                        style="font-family: 'Roboto', Arial; color: #686969; font-size: 16px; text-align: center;">www.TypTap.com</a>
+                                &nbsp;|&nbsp;
+                                <a href="https://www.typtap.com/home" style="font-family: 'Roboto', Arial; color: #79C043; font-size: 16px; text-align: center;">
+                                  Homeowners
+                                  Insurance
+                                </a>
+                                &nbsp;|&nbsp;
+                                <a href="https://www.typtap.com/flood" style="font-family: 'Roboto', Arial; color: #289DD8; font-size: 16px; text-align: center;">
+                                  Flood Insurance
+                                </a>
+                              </p>
+                                      <p style="font-family: 'Roboto', Arial; color: #777; font-size: 12px;">
+                                        This e-mail may contain confidential information protected by law and is
+                                        intended solely for
+                                        authorized persons. If you have received this e-mail in error, please (i) do not
+                                        read it,
+                                        (ii) Forward the email to <a
+                                          href="{{AF3CUSTOMERSERVICEEMAIL}}">{{HO3CUSTOMERSERVICEEMAIL}}</a> to let
+                                        us know you
+                                        received this email in error and (iii) erase or destroy the message.
+                                      </p>
+                                      <p style="font-family: 'Roboto', Arial; color: #777; font-size: 12px;">
+                                        All Rights Reserved &copy; TypTap<sup>&reg;</sup>
+                                      </p>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <!-- MAIN CONTENT END -->
+
+              <table align="center" border="0" cellspacing="0" cellpadding="32"
+                style="font-family: 'Slab', Arial; border-collapse:collapse;background-color:#f6f6f6;margin-bottom:0px;">
+                <tbody>
+                  <tr>
+                    <td width="600" align="center" valign="top" style="font-family: 'Slab', Arial; width:600px;">
+                      <div style="font-family: 'Slab', Arial; margin:0;">
+                        <div style="margin: 0;">
+                          <font size="2" color="#222"> This is an automated email. Please do not reply. </font>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </tr>
-        </tbody>
-    </table>
-    <table align="center" border="0" cellspacing="0" cellpadding="32" style="border-collapse:collapse;background-color:#f6f6f6;margin-bottom:0px;">
-        <tbody>
-            <tr>
-                <td width="600" align="center" valign="top" style="width:600px;">
-                    <div style="margin:0;">
-                        <div style="margin: 0;"><font size="2" color="#222">
-                            This is an automated email. Please do not reply.
-                        </font></div>
-                        <div style="margin:0;"><font size="1" color="#222">
-                            <a style="color: #ccc;" href="typtap.com/unsub">unsubscribe</a>
-                        </font></div>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    </tr>
-    </tbody>
-    </table>
-    </span>
+          </tbody>
+        </table>
+      </span>
     </font>
-    </div>
+  </div>
 </body>
+
 </html>
